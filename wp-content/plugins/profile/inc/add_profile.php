@@ -191,7 +191,7 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
         </li>
         <li id="profile_awards">
           <label class="type_label" for="awards">Awards and Recognitions</label>
-           <?php $settings = array( 'media_buttons' => true,'quicktags' => false );
+           <?php $settings = array( 'media_buttons' => false,'quicktags' => false );
                 $content = $_POST['awards'];                     
                 $editor_id = 'awards';
                 wp_editor( $content, $editor_id,$settings ); ?>
