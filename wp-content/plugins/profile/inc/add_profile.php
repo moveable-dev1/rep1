@@ -195,7 +195,9 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
                 $content = $_POST['awards'];                     
                 $editor_id = 'awards';
                 wp_editor( $content, $editor_id,$settings ); ?>
+            <span class="sub-label">250 maximum characters</span>
           <!-- <textarea id="awards" name="awards" class="element textarea medium" maxlength="250"><?php echo $_POST['awards']; ?></textarea> -->
+          <div id="wp-word-count"></div>
         </li>
         <li id="profile_videos">
           <div class="main-label">Videos</div>

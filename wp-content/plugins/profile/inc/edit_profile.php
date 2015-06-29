@@ -444,6 +444,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
                 $editor_id = 'awards';
                 wp_editor( $content, $editor_id,$settings ); ?>
         <!-- <textarea id="awards" name="awards" class="element textarea medium" maxlength="250"><?php //echo $profileName->awards; ?></textarea> -->
+        <span class="sub-label">250 maximum characters</span>
       </label>
     </li>
     <li id="profile_videos">

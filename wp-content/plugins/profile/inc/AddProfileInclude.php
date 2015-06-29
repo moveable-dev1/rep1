@@ -219,7 +219,7 @@ if(isset($_POST["submit"])){
 		}
 		else {
 			$class = "error";
-			$message = "Required information is incorrect. Please review.";
+			$message = "Required information is missing or incorrect. Please review.";
 			echo "<div class=\"$class\"> <p>$message</p></div>";
 		}
 	} else { 
