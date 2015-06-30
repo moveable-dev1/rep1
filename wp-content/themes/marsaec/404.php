@@ -9,22 +9,22 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div class="row">
+  <div class="banner"> <img src="<?php bloginfo('template_directory'); ?>/img/contact-banner.jpg" alt="image"/> </div>
+</div>
+<!--Banner section ends--> 
 
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'twentyfifteen' ); ?></h1>
-				</header><!-- .page-header -->
-
-				<div class="page-content">
-					<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'twentyfifteen' ); ?></p>
-
-					<?php get_search_form(); ?>
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
-
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
+<!--Thanks section starts-->
+<div class="row">
+  <div class="profile-sec">
+    <div class="large-12 columns">
+      <div class="page-head">
+        <h1 class="page-title">404 Page Not Found</h1>
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span> </div>
+    </div>
+    <div class="large-12 columns"> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="Home" class="sub-btn" role="button">RETURN TO HOMEPAGE</a> </div>
+  </div>
+</div>
+<!--Thanks section ends--> 
 
 <?php get_footer(); ?>

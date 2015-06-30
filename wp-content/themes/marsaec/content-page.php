@@ -14,11 +14,14 @@
 		twentyfifteen_post_thumbnail();
 	?>
 
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
+	 <div class="page-head">
+	 	<?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
+	 	<?php if( get_post_meta($post->ID, 'sub-heading', true) ) {  //If sub heading exist
+	 		echo "<h3 class='sub-txt'>".get_post_meta($post->ID, 'sub-heading', true)."</h3>";
+	 	 } ?>
+      </div>
 
-	<div class="entry-content">
+      	<div class="basic-cont">
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
@@ -30,7 +33,7 @@
 				'separator'   => '<span class="screen-reader-text">, </span>',
 			) );
 		?>
-	</div><!-- .entry-content -->
+		</div>
 
 	<?php edit_post_link( __( 'Edit', 'twentyfifteen' ), '<footer class="entry-footer"><span class="edit-link">', '</span></footer><!-- .entry-footer -->' ); ?>
 

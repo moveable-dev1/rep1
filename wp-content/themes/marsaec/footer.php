@@ -10,23 +10,26 @@
  */
 ?>
 
-	</div><!-- .site-content -->
-
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<?php
-				/**
-				 * Fires before the Twenty Fifteen footer text for footer customization.
-				 *
-				 * @since Twenty Fifteen 1.0
-				 */
-				do_action( 'twentyfifteen_credits' );
-			?>
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'twentyfifteen' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentyfifteen' ), 'WordPress' ); ?></a>
-		</div><!-- .site-info -->
-	</footer><!-- .site-footer -->
-
-</div><!-- .site -->
+	<!--footer starts-->
+<div class="row">
+  <footer class="site-footer">
+    <div class="large-4 columns"> <a href="http://www.marsdd.com/systems-change/advanced-energy-centre" class="left" title=""><img src="<?php bloginfo('template_directory'); ?>/img/footer-logo.jpg" alt="image"/></a> <a href="http://www.marsdd.com" class="right" title=""><img src="<?php bloginfo('template_directory'); ?>/img/mars-logo.jpg" alt="image"/></a> </div>
+    <div class="large-8 columns">
+      <ul class="inline-list footer-links">
+        <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="Home">Home </a></li>
+        <li><a href="<?php echo get_permalink( 11 ); ?>" title="About">About</a></li>
+        <li><a href="<?php echo get_permalink( 14 ); ?>" title="Partners">Partners</a></li>
+        <li><a href="<?php echo get_permalink( 24 ); ?>" title="RSS Feed">RSS Feed</a></li>
+        <li><a href="<?php echo get_permalink( 16 ); ?>" title="Contact">Contact</a></li>
+      </ul>
+      <div class="footer-social"> <a href="https://www.facebook.com/MaRSCentre" title="" target="_blank"> <i class="fa fa-facebook"></i> </a> <a href="https://twitter.com/MaRSDD" title="" target="_blank"> <i class="fa fa-twitter"></i> </a> <a href="http://www.linkedin.com/company/mars-discovery-district" title="" target="_blank"> <i class="fa fa-linkedin"></i> </a> </div>
+    </div>
+    <div class="large-12 columns">
+      <div class="footer-copy">© 2015 COPYRIGHT MaRS DISCOVERY DISTRICT. ALL RIGHTS RESERVED.&nbsp;&nbsp; <a href="#" title="">Terms & Conditions</a>.</div>
+    </div>
+  </footer>
+</div>
+<!--footer ends--> 
 
 <?php wp_footer(); ?>
 

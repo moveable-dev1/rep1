@@ -16,46 +16,37 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<?php get_template_part( 'toggle' ); ?>
 
-		<?php if ( have_posts() ) : ?>
+<!--Newest Profiles section starts-->
+<div class="row">
+  <div class="profile-sec">
+    <div class="large-12 columns">
+      <div class="profile-head">Newest Profiles</div>
+    </div>
+    <?php foreach(newest_profile() as $newvalue) { 
+      ?>
+    <div class="large-5 columns prof-col">
+      <div class="panel">
+        <div class="th radius feat-img"><img src="<?php echo wpse_resizeimage(feautured_image($newvalue->id),291); ?>" alt="image"/> 
+        </div>
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="<?php echo $newvalue->logo; ?>" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $newvalue->name; ?></a>
+            <div class="comp-short"><?php echo $newvalue->description; ?></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
 
-			<?php if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-			<?php endif; ?>
+    </div>
+  </div>
+</div>
+<!--Newest Profiles section ends--> 
 
-			<?php
-			// Start the loop.
-			while ( have_posts() ) : the_post();
-
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'content', get_post_format() );
-
-			// End the loop.
-			endwhile;
-
-			// Previous/next page navigation.
-			the_posts_pagination( array(
-				'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
-				'next_text'          => __( 'Next page', 'twentyfifteen' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
-			) );
-
-		// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'content', 'none' );
-
-		endif;
-		?>
-
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
+<?php get_template_part( 'promo' ); ?> 
 
 <?php get_footer(); ?>

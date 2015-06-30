@@ -129,14 +129,15 @@ add_action( 'after_setup_theme', 'twentyfifteen_setup' );
  * @link https://codex.wordpress.org/Function_Reference/register_sidebar
  */
 function twentyfifteen_widgets_init() {
+
 	register_sidebar( array(
-		'name'          => __( 'Widget Area', 'twentyfifteen' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your sidebar.', 'twentyfifteen' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'name'          => __( 'Introductory Video Content', 'twentyfifteen' ),
+		'id'            => 'vimeo-content',
+		'description'   => __( 'Add video content on homepage', 'marsaec' ),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
 	) );
 }
 add_action( 'widgets_init', 'twentyfifteen_widgets_init' );
@@ -222,41 +223,36 @@ add_action( 'wp_head', 'twentyfifteen_javascript_detection', 0 );
  *
  * @since Twenty Fifteen 1.0
  */
-function twentyfifteen_scripts() {
+function marsaec_scripts() {
 	// Add custom fonts, used in the main stylesheet.
-	wp_enqueue_style( 'twentyfifteen-fonts', twentyfifteen_fonts_url(), array(), null );
+	wp_enqueue_style( 'marsaec', "http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700", array(), null );
 
-	// Add Genericons, used in the main stylesheet.
-	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.2' );
+	// Add font-awesome
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.css', array(), '4.3.0' );
 
 	// Load our main stylesheet.
-	wp_enqueue_style( 'twentyfifteen-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'marsaec-style', get_stylesheet_uri() );
 
-	// Load the Internet Explorer specific stylesheet.
-	wp_enqueue_style( 'twentyfifteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfifteen-style' ), '20141010' );
-	wp_style_add_data( 'twentyfifteen-ie', 'conditional', 'lt IE 9' );
+	// Add normalize.css
+	wp_enqueue_style( 'normalize', get_template_directory_uri() . '/css/normalize.css', array(), '3.0.3' );
 
-	// Load the Internet Explorer 7 specific stylesheet.
-	wp_enqueue_style( 'twentyfifteen-ie7', get_template_directory_uri() . '/css/ie7.css', array( 'twentyfifteen-style' ), '20141010' );
-	wp_style_add_data( 'twentyfifteen-ie7', 'conditional', 'lt IE 8' );
+	// Add foundation.css
+	wp_enqueue_style( 'foundation', get_template_directory_uri() . '/css/foundation.css', array(), '5' );
+	
+	// Add app.css
+	wp_enqueue_style( 'app', get_template_directory_uri() . '/css/app.css', array(), '1' );
 
-	wp_enqueue_script( 'twentyfifteen-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20141010', true );
+	// Add modernizr.js
+	wp_enqueue_script( 'marsaec', get_template_directory_uri() . '/js/vendor/modernizr.js', array( 'jquery' ), '2.8.3', true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+	// Add foundation.js
+	wp_enqueue_script( 'foundation-min', get_template_directory_uri() . '/js/foundation.min.js', array( 'jquery' ), '5', true );
 
-	if ( is_singular() && wp_attachment_is_image() ) {
-		wp_enqueue_script( 'twentyfifteen-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20141010' );
-	}
+	// Add custom.js
+	wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ), '2015', true );
 
-	wp_enqueue_script( 'twentyfifteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20150330', true );
-	wp_localize_script( 'twentyfifteen-script', 'screenReaderText', array(
-		'expand'   => '<span class="screen-reader-text">' . __( 'expand child menu', 'twentyfifteen' ) . '</span>',
-		'collapse' => '<span class="screen-reader-text">' . __( 'collapse child menu', 'twentyfifteen' ) . '</span>',
-	) );
 }
-add_action( 'wp_enqueue_scripts', 'twentyfifteen_scripts' );
+add_action( 'wp_enqueue_scripts', 'marsaec_scripts' );
 
 /**
  * Add featured image as background image to post navigation elements.
@@ -354,6 +350,8 @@ require get_template_directory() . '/inc/template-tags.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+//Ajax Request for profile category
+
 function implement_ajax() {
     $parent_cat_ID = $_POST['parent_cat_ID'];
     $args = array(
@@ -387,4 +385,169 @@ add_action('wp_ajax_category_select_action', 'implement_ajax');
 add_action('init', 'start_buffer_output');
 function start_buffer_output() {
         ob_start();
+}
+
+//Trim words for page
+
+function trim_words($id)
+{
+	$page_data = get_page( $id );
+    $content = $page_data->post_content;
+    $trimmed_content = wp_trim_words( $content, 48, '' );
+    return $trimmed_content;
+}
+
+//Get Newest Profile on Home Page
+
+function newest_profile()
+{
+	global $wpdb;
+	$query="SELECT * FROM aec_profile ORDER BY id DESC LIMIT 2";
+	$newprofile=$wpdb->get_results($query);
+	return $newprofile;
+}
+
+//Get Featured Image by ID
+function feautured_image($id)
+{
+	global $wpdb;
+	$query="SELECT a1.value FROM aec_profilevalue a1 INNER JOIN aec_profilevalue a2 ON a2.value=a1.fieldid AND a1.id=$id AND a1.metaid=8 AND a2.metaid=9 AND a2.id=$id";
+	$getimage=$wpdb->get_row($query);
+	return $getimage->value;
+}
+
+//Get Search by keyword
+function search_keyword($searchterm)
+{
+	global $wpdb;
+	$searchFieldName= "name";
+	$searchCondition = "$searchFieldName LIKE '%" . $searchterm . "%'";
+	$query="SELECT * FROM aec_profile WHERE $searchCondition";
+	$getsearch=$wpdb->get_row($query);
+	return $getsearch;
+}
+
+//Add Fields in settings
+$new_general_setting = new new_general_setting();
+
+class new_general_setting {
+    function new_general_setting( ) {
+        add_filter( 'admin_init' , array( &$this , 'register_fields' ) );
+    }
+    function register_fields() {
+    	//Field for Vimeo
+        register_setting( 'general', 'vimeo_url', 'esc_attr' );
+        add_settings_field('vimeo_url', '<label for="vimeo_url">'.__('Vimeo URL (Home Page)' , 'vimeo' ).'</label>' , array(&$this, 'fields_html') , 'general' );
+        register_setting( 'general', 'profile_email', 'esc_attr' );
+        add_settings_field('profile_email', '<label for="profile_email">'.__('Email Copy to (Submit a Profile)' , 'profile' ).'</label>' , array(&$this, 'fields_html_email') , 'general' );
+    }
+    function fields_html() {
+        $value = get_option( 'vimeo_url', '' );
+        echo '<input type="text" id="vimeo_url" name="vimeo_url" value="' . $value . '" />';
+    }
+
+    function fields_html_email() {
+        $value = get_option( 'profile_email', '' );
+        echo '<input type="text" id="profile_email" name="profile_email" value="' . $value . '" />';
+    }
+}
+
+/**
+  * Resize Images
+  * @param string $url
+  * @param int $width 
+  * return $image resized image URL
+ */
+function wpse_resizeimage($url, $width, $height = null, $crop = null, $single = true) {
+//validate inputs
+    if (!$url OR !$width)
+        return false;
+
+//define upload path & dir
+    $upload_info = wp_upload_dir();
+    $upload_dir = $upload_info['basedir'];
+    $upload_url = $upload_info['baseurl'];
+
+//check if $img_url is local
+    if (strpos($url, $upload_url) === false)
+        return false;
+
+//define path of image
+    $rel_path = str_replace($upload_url, '', $url);
+    $img_path = $upload_dir . $rel_path;
+
+//check if img path exists, and is an image indeed
+    if (!file_exists($img_path) OR !getimagesize($img_path))
+        return false;
+
+//get image info
+    $info = pathinfo($img_path);
+    $ext = $info['extension'];
+    list($orig_w, $orig_h) = getimagesize($img_path);
+
+//get image size after cropping
+    $dims = image_resize_dimensions($orig_w, $orig_h, $width, $height, $crop);
+    $dst_w = $dims[4];
+    $dst_h = $dims[5];
+
+//use this to check if cropped image already exists, so we can return that instead
+    $suffix = "{$dst_w}x{$dst_h}";
+    $dst_rel_path = str_replace('.' . $ext, '', $rel_path);
+    $destfilename = "{$upload_dir}{$dst_rel_path}-{$suffix}.{$ext}";
+
+    if (!$dst_h) {
+//can't resize, so return original url
+        $img_url = $url;
+        $dst_w = $orig_w;
+        $dst_h = $orig_h;
+    }
+//else check if cache exists
+    elseif (file_exists($destfilename) && getimagesize($destfilename)) {
+        $img_url = "{$upload_url}{$dst_rel_path}-{$suffix}.{$ext}";
+    }
+//else, we resize the image and return the new resized image url
+    else {
+
+// Note: pre-3.5 fallback check 
+        if (function_exists('wp_get_image_editor')) {
+
+            $editor = wp_get_image_editor($img_path);
+
+            if (is_wp_error($editor) || is_wp_error($editor->resize($width, $height, $crop)))
+                return false;
+
+            $resized_file = $editor->save();
+
+            if (!is_wp_error($resized_file)) {
+                $resized_rel_path = str_replace($upload_dir, '', $resized_file['path']);
+                $img_url = $upload_url . $resized_rel_path;
+            } else {
+                return false;
+            }
+        } else {
+
+            $resized_img_path = image_resize($img_path, $width, $height, $crop);
+            if (!is_wp_error($resized_img_path)) {
+                $resized_rel_path = str_replace($upload_dir, '', $resized_img_path);
+                $img_url = $upload_url . $resized_rel_path;
+            } else {
+                return false;
+            }
+        }
+    }
+
+//return the output
+    if ($single) {
+//str return
+        $image = $img_url;
+    } else {
+//array return
+        $image = array(
+            0 => $img_url,
+            1 => $dst_w,
+            2 => $dst_h
+        );
+    }
+
+    return $image;
 }
