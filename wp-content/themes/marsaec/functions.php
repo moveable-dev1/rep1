@@ -422,8 +422,8 @@ function search_keyword($searchterm)
 	global $wpdb;
 	$searchFieldName= "name";
 	$searchCondition = "$searchFieldName LIKE '%" . $searchterm . "%'";
-	$query="SELECT * FROM aec_profile WHERE $searchCondition";
-	$getsearch=$wpdb->get_row($query);
+	$query="SELECT * FROM aec_profile WHERE $searchCondition ORDER BY id DESC";
+	$getsearch=$wpdb->get_results($query);
 	return $getsearch;
 }
 

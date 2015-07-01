@@ -27,154 +27,32 @@ if(!empty($searchterm)) {
         <div class="right search-count">51 results</div>
       </div>
     </div>
-    <div class="large-5 columns prof-col">
-      <div class="panel">
-        <div class="th radius feat-img"><img src="img/profile-pic1.jpg" alt="image"/> </div>
+    <?php 
+    $i=1;
+    $getsearch=search_keyword($searchterm);
+    foreach($getsearch as $searchvalue){
+     ?>
+    <div class="large-5 <?php echo $i%2==0?"large-offset-2":""; ?> columns prof-col">
+      <div class="panel <?php echo $i>2?"panel-search":""; ?>">
+      <?php if($i<=4) { ?>
+      <div class="th radius feat-img">
+        <img src="<?php echo wpse_resizeimage(feautured_image($searchvalue->id),291); ?>" alt="image"/> 
+      </div>
+      <?php } ?>
+
         <div class="row prof-cont">
           <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img1.jpg" alt="image" class="th radius"/> </div>
+            <div class="comp-thumb"><img src="<?php echo $searchvalue->logo; ?>" alt="image" class="th radius"/> </div>
           </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $searchvalue->name; ?></a>
+            <div class="comp-short"><?php echo $searchvalue->description; ?></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel">
-        <div class="th radius feat-img"><img src="img/profile-pic2.jpg" alt="image"/> </div>
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 columns prof-col">
-      <div class="panel panel-search">
-        <div class="th radius feat-img"><img src="img/profile-pic1.jpg" alt="image"/> </div>
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img1.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel panel-search">
-        <div class="th radius feat-img"><img src="img/profile-pic2.jpg" alt="image"/> </div>
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <?php $i++; 
+    }?>
+
     <div class="large-12 columns text-center"> <a role="button" class="button tiny radius more-btn more-btn-inner" href="#">Load More</a> 
     </div>
 <!--Search results section ends--> 
