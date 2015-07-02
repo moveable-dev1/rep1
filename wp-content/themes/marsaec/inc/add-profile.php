@@ -45,7 +45,7 @@ if(isset($_POST["submit"])){
 	/**
 	* Required field name
 	*/
-	$required = array('name','profile_type','email','description','website');
+	$required = array('uname','profile_type','email','description','website');
 	// Loop over field names, make sure each one exists and is not empty
 	$error = false;
 	foreach($required as $field) {
@@ -67,8 +67,10 @@ if(isset($_POST["submit"])){
 	}
 
 	//If fields are not empty
-	if($error==false) {
-
+	if($error!=true) {
+		include_once ABSPATH . 'wp-admin/includes/media.php';
+		include_once ABSPATH . 'wp-admin/includes/file.php';
+		include_once ABSPATH . 'wp-admin/includes/image.php';
 		//Register our path override.
 		if($_FILES['logo']['name']) {
 			add_filter( 'upload_dir', 'upload_dirlogo' );
@@ -99,7 +101,7 @@ if(isset($_POST["submit"])){
 		}
 		global $wpdb;
 		$wpinsertprofile=$wpdb->insert("aec_profile", array("profile_type" => $_POST['profile_type'],
-					   "name" => $_POST['name'],
+					   "name" => $_POST['uname'],
 					   "logo" => $logourl,
 					   "region" => $_POST['region'],
 					   "description" => $_POST['description'],
@@ -108,9 +110,8 @@ if(isset($_POST["submit"])){
 					   "twitter" => $_POST['twitter'],
 					   "facebook" => $_POST['facebook'],
 					   "linkedin" => $_POST['linkedin'],
-					   "awards" => $_POST['awards'],
-					   "is_featured" => $_POST['featured'],
-					   "status" => $_POST['status']
+					   "is_featured" => 0,
+					   "status" => 0
 					 ));
 		$last_inserted_id = $wpdb->insert_id;
 
@@ -120,11 +121,6 @@ if(isset($_POST["submit"])){
 		$wpmeta=addmetavalue(1,$last_inserted_id,$affiliated_post); 
 		}
 
-		//Save Affiliated URL
-		if(isset($_POST['affiliated_url'])) {
-		$affiliatedurl_post=$_POST['affiliated_url'];
-		$wpmeta=addmetavalue(2,$last_inserted_id,$affiliatedurl_post);
-		}
 
 		//Save Street address
 		if(isset($_POST['streetaddress'])) {
@@ -161,22 +157,10 @@ if(isset($_POST["submit"])){
 		$wpmeta=addmetavalue(10,$last_inserted_id,$funders_post);
 		}
 
-		//Save Project Funder URL
-		if(isset($_POST['project_fundersurl'])) {
-		$fundersurl_post=$_POST['project_fundersurl'];
-		$wpmeta=addmetavalue(11,$last_inserted_id,$fundersurl_post);
-		}
-
 		//Save Investors
 		if(isset($_POST['investors'])) {
 		$investors_post=$_POST['investors'];
 		$wpmeta=addmetavalue(12,$last_inserted_id,$investors_post);
-		}
-
-		//Save Investors URL
-		if(isset($_POST['investorsurl'])) {
-		$investorsurl_post=$_POST['investorsurl'];
-		$wpmeta=addmetavalue(13,$last_inserted_id,$investorsurl_post);
 		}
 
 		//Save Videos
@@ -212,16 +196,18 @@ if(isset($_POST["submit"])){
 		if( $wpinsertprofile!=false ) {
 			session_start();
 			$_SESSION['success_messages']="<div class='updated'>Profile created for ". $_POST['name']."</div>";
-			wp_redirect( admin_url( "admin.php?page=edit-profile&profileid=$last_inserted_id")); exit;
+			$_SESSION['profile_id']=$last_inserted_id;
 			//echo "<div class='updated'>Profile created for ". $_POST['name']."</div>";
+			wp_redirect( get_permalink( 35 ) );  exit;
+		
 		}
 		else {
-			$class = "error";
+			$class = "error row";
 			$message = "Required information is missing or incorrect. Please review.";
 			echo "<div class=\"$class\"> <p>$message</p></div>";
 		}
 	} else { 
-			$class = "error";
+			$class = "error row";
 			$message = "Required information is missing or incorrect. Please review.";
 			echo "<div class=\"$class\"> <p>$message</p></div>";
 		} //endif $error==true

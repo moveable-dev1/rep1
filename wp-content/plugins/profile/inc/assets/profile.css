@@ -329,7 +329,7 @@ textarea {
 #wpbody-content .tableheading td {
 	padding: 16px 0px;
 }
-.toplevel_page_list-profile ul li:last-child {
+#toplevel_page_list-profile ul li:last-child {
 	display: none;
 }
 .toplevel_page_list-profile .wrap h2 {

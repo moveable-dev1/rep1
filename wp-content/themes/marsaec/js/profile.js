@@ -1,41 +1,27 @@
 /**
  * Add multiple input by add more button e.g. Affiliated Companies, Project Funders, Investors
  */
-function addinput(elementid,limit,postname,postname2)
+function addinput(elementid,limit,postname)
 {     
-        var n = jQuery("#"+elementid+" div").length;
-        if (n <=limit) {
-               jQuery("#"+elementid).append('<div class="has-btn"><label class="type_label fw-nrml main-sub-label" for="affiliated">Company Name</label><input type="text" name="'+postname+'[]"><label class="type_label fw-nrml main-sub-label" for="affiliated">Company URL</label><input type="text" name="'+postname2+'[]"><button class="delete remove-field-btn">Remove Company</button></div>');
+        var n = jQuery("#"+elementid+" div#length").length;
+        if (n <limit) {
+                jQuery("#"+elementid).append("<div class='has-btn' id='length'><label for='affiliated' class='fw-nrml main-sub-label'>Company Name</label><input type='text' name='"+postname+"[]' id='"+postname+"'><a class='remove-field-btn' alt='remove-company' id='delete'>Remove Company</a></div>");
         }
         else{
                 alert("No more additional fields are allowed!");
         }
+        
 }
-
-/**
- * Add multiple single input by add more button e.g. Video
- */
-function addsingleinput(elementid,limit,postname)
-{     
-        var n = jQuery("#"+elementid+" div").length;
-        if (n <=limit) {
-               jQuery("#"+elementid).append('<div class="has-btn"><input type="text" name="'+postname+'[]"><button class="delete remove-field-btn">Remove</button></div>');
-        }
-        else{
-                alert("No more additional fields are allowed!");
-        }
-}
-
 
 /**
  * Add multiple featured image by add more button
  */
 function addfeaturedimage(limit)
 {     
-        var n = jQuery("#profile_featured div#FimageBox").length;
+        var n = jQuery("#profile_featured div#length").length;
 		
-        if (n <=limit) {
-               jQuery("#profile_featured").append('<div class="has-rt-btn mb" id="FimageBox"><div class="has-rt-btn"><input name="feauturedimage[]" type="file" id="feauturedimage" class="feauturedimage"><div class="fl-btn"><input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()"><span class="type_label fw-nrml " for="featured_image">Featured Image</span></div><button class="delete remove-field-btn">Remove</button></div></div>');
+        if (n <limit) {
+               jQuery("#profile_featured").append('<div id="length"><div class="has-rt-btn"><label><span class="upload"> <span class="file-status">file name</span><input type="file" name="feauturedimage[]" id="feauturedimage"/></span></label><div class="fl-btn"><input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()"><label class="type_label fw-nrml ">Featured Image</label></div><a class="remove-field-btn" alt="remove-company" id="delete">Remove Image</a></div></div>');
         }
         else{
                 alert("No more additional fields are allowed!");
@@ -46,9 +32,9 @@ function addfeaturedimage(limit)
  */
 function add_address(limit)
 {     
-        var n = jQuery("#profile_location div#ProfLoc").length;
-        if (n <=limit) {
-               jQuery("#profile_location").append("<div id='ProfLoc' class='has-btn'><label for='streetaddress' class='fw-nrml main-sub-label'>Street Address<input id='streetaddress' name='streetaddress[]' class='element text large' value='' type='text'></label><label for='streetaddress' class='fw-nrml main-sub-label'>City<input id='city' name='city[]' class='element text medium' value='' type='text'></label><label for='state' class='fw-nrml main-sub-label'>State / Province / Region<input id='state' name='state[]' class='element text medium' value='' type='text'></label><label for='postalcode' class='fw-nrml main-sub-label'>Postal / Zip Code<input id='postalcode' name='postalcode[]' class='element text medium' value='' type='text'></label><label for='country' class='fw-nrml main-sub-label'>Country<input id='country' name='country[]' class='element text medium' value='' type='text'></label><button class='delete remove-field-btn'>Remove Address</button></div>");
+        var n = jQuery("#profile_location div#LengthLoc").length;
+        if (n <limit) {
+               jQuery("#profile_location").append('<div id="LengthLoc"><div class="has-btn"><label for="address" class="fw-nrml main-sub-label">Street Address</label><input id="streetaddress" name="streetaddress[]" type="text"></div><span class="fw-nrml sub-label" id="delete"><a class="remove-field-btn" alt="remove-address"><img src="/wp-content/themes/marsaec/img/remove-field.jpg" alt="remove-field" /></a>Remove Address</span><label for="city" class="fw-nrml main-sub-label">City<input type="text" id="city" name="city[]"></label><label for="state" class="fw-nrml main-sub-label">State / Province / Region<input type="text" id="state" name="state[]"></label><label for="zip" class="fw-nrml main-sub-label">ZIP / Postal Code<input type="text" id="postalcode" name="postalcode[]"></label><label for="country" class="fw-nrml main-sub-label">Country<input type="text" id="country" name="country[]"></label></div>');
         }
         else{
                 alert("No more additional fields are allowed!");
@@ -77,8 +63,8 @@ function getElement() {
 
 jQuery(function($) {
 //Delete Add more elements
-$("body").on("click", ".delete", function (e) {
-         $(this).parent("div").remove();
+$("body").on("click", "#delete", function (e) {
+       $(this).parent("div").remove();
 });
 
 //Get Level 2 Category
@@ -87,13 +73,13 @@ $("body").on("click", ".delete", function (e) {
          var parentCat=this.value;
             // call ajax add_action declared in functions.php
             $.ajax({
-                url:ajaxurl,
+                url:"/wp-admin/admin-ajax.php",
                 type:'POST',
-                data:'action=category_select_action&parent_cat_ID=' + parentCat,
+                data:'action=category_select_frontend&parent_cat_ID=' + parentCat,
                 success:function(results)
                 {
                 //Append all child element in level 2
-                $("#level2").append(results);
+                $("#level2 ul").append(results);
                 }
              });
         } else
@@ -110,9 +96,9 @@ $("body").on("click", ".delete", function (e) {
          var parentvalue = $('#parent_id'+parentCat).val();
             // call ajax
             $.ajax({
-                url:ajaxurl,
+                url:"/wp-admin/admin-ajax.php",
                 type:'POST',
-                data:'action=category_select_action&parent_cat_ID=' + parentCat,
+                data:'action=category_select_frontend&parent_cat_ID=' + parentCat,
                 success:function(results)
                 {
                  //Append all child element in level 3

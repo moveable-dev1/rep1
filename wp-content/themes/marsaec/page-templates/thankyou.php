@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: RSS Feed
+ * Template Name: Thank you submit form
  *
  *
  * @package Marsaec
@@ -8,6 +8,7 @@
  */
 
 get_header();
+session_start();
 ?>
 <!--Banner section starts-->
 
@@ -26,17 +27,27 @@ get_header();
 		 			echo "<h3 class='sub-txt'>".get_post_meta($post->ID, 'sub-heading', true)."</h3>"; 
 		 		} ?>
 	      		</div>
+
 	      		<?php
+	      		if(!isset($_SESSION['profile_id']))
+	      		{
+	      			echo "Click <a href='".get_permalink( 20 )."'>here</a> to submit the form";
+
+	      		} else {
 				// Start the loop.
 				while ( have_posts() ) : the_post(); 
 					// Include the page content .
 					the_content();
 				// End the loop.
 				endwhile;
+				}
+
 				?>
    	 	</div>
 	</div>
 </div>
 <!--Form section ends--> 
 
-<?php get_footer(); ?>
+<?php 
+session_destroy();
+get_footer(); ?>

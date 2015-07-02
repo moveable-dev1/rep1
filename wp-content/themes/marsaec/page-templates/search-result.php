@@ -6,7 +6,6 @@
  * @package Marsaec
  * 
  */
-global $road_opt;
 
 get_header();
 ?>

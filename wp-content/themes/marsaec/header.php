@@ -22,8 +22,8 @@
 <div class="row">
   <header class="site-head">
     <div class="large-6 columns"> 
-    	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="">
-    		<img src="<?php bloginfo('template_directory'); ?>/img/logo.jpg" alt="image"/>
+    	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="marsaec">
+    		<img src="<?php bloginfo('template_directory'); ?>/img/logo.jpg" alt="marsaec logo"/>
     	</a> 
     </div>
     <div class="large-6 columns show-for-large-only"> 

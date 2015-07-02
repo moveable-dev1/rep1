@@ -22,7 +22,7 @@
         <li><a href="<?php echo get_permalink( 24 ); ?>" title="RSS Feed">RSS Feed</a></li>
         <li><a href="<?php echo get_permalink( 16 ); ?>" title="Contact">Contact</a></li>
       </ul>
-      <div class="footer-social"> <a href="https://www.facebook.com/MaRSCentre" title="" target="_blank"> <i class="fa fa-facebook"></i> </a> <a href="https://twitter.com/MaRSDD" title="" target="_blank"> <i class="fa fa-twitter"></i> </a> <a href="http://www.linkedin.com/company/mars-discovery-district" title="" target="_blank"> <i class="fa fa-linkedin"></i> </a> </div>
+      <div class="footer-social"> <a href="https://www.facebook.com/MaRSCentre" title="" target="_blank"> <img src="<?php bloginfo('template_directory'); ?>/img/fb-icon.png" alt="facebook link"/> </a> <a href="https://twitter.com/MaRSDD" title="" target="_blank"> <img src="<?php bloginfo('template_directory'); ?>/img/twitter-icon.png" alt="twitter link"/> </a> <a href="http://www.linkedin.com/company/mars-discovery-district" title="" target="_blank"> <img src="<?php bloginfo('template_directory'); ?>/img/in-icon.png" alt="linkedin link"/> </a> </div>
     </div>
     <div class="large-12 columns">
       <div class="footer-copy">© 2015 COPYRIGHT MaRS DISCOVERY DISTRICT. ALL RIGHTS RESERVED.&nbsp;&nbsp; <a href="#" title="">Terms & Conditions</a>.</div>

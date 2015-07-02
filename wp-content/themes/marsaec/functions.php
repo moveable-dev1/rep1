@@ -228,7 +228,7 @@ function marsaec_scripts() {
 	wp_enqueue_style( 'marsaec', "http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700", array(), null );
 
 	// Add font-awesome
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.css', array(), '4.3.0' );
+	//wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.css', array(), '4.3.0' );
 
 	// Load our main stylesheet.
 	wp_enqueue_style( 'marsaec-style', get_stylesheet_uri() );
@@ -380,6 +380,39 @@ function implement_ajax() {
 
 add_action('wp_ajax_category_select_action', 'implement_ajax');
 
+
+//Ajax Request for submit a profile frontend
+
+function submit_formcategory() {
+    $parent_cat_ID = $_POST['parent_cat_ID'];
+    $args = array(
+   					 'parent'         => $parent_cat_ID, //Get all category of profile
+   					 'hide_empty'    => false,
+				); 
+				$parentcategory = get_categories($args);
+				if($parentcategory){
+				?>
+				<div id="getallcat<?php echo $parent_cat_ID; ?>">
+					<?php
+					foreach ($parentcategory as $catvalue) {
+					?>
+	               <li>
+	                	<div>
+			             	<input id="parent_cat2" name="term_taxonomy_id[]" class="cb" type="checkbox" value="<?php echo $catvalue->cat_ID; ?>">
+			             	<label class="type_label fw-nrml" for="<?php echo $catvalue->cat_name; ?>"><?php echo $catvalue->cat_name; ?></label>
+			             	<input id="parent_id<?php echo $catvalue->cat_ID; ?>" name="parent_id" type="hidden" value="<?php echo $parent_cat_ID; ?>">
+			             </div>
+					</li>
+			             	<?php
+							}
+							?> 
+				</div>
+				<?php }
+        die();
+    } // end if
+
+add_action('wp_ajax_category_select_frontend', 'submit_formcategory');
+add_action('wp_ajax_nopriv_category_select_frontend', 'submit_formcategory');
 //add_action('wp_ajax_nopriv_category_select_action', 'implement_ajax');//for users that are not logged in.
 //For Admin Redirects
 add_action('init', 'start_buffer_output');

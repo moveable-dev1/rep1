@@ -34,7 +34,7 @@ $(function() {
 });
 
 $('.accordion .accordion-navigation > a').click(function(){
-	$(this).find("i").toggleClass('fa-caret-right fa-caret-down');
+	$(this).find("i").toggleClass('up dwn');
 	
 });
   	
@@ -62,7 +62,7 @@ $('span.custom').on('click', function(){
 });
 
 
-$('#logoFile').bind('change', function() {
+$('#logo').bind('change', function() {
         var filename = $(this).val();
 		//var filesize = $(this)[0].files[0].size;		
 		var filesize = ($(this)[0].files[0].size / 1024); 
@@ -90,7 +90,7 @@ $('#logoFile').bind('change', function() {
 
 
 
-$('#FImageFile').bind('change', function() {
+$('#feauturedimage').bind('change', function() {
         var filename = $(this).val();
 		//var filesize = $(this)[0].files[0].size;		
 		var filesize = ($(this)[0].files[0].size / 1024); 

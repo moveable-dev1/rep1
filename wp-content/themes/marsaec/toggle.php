@@ -21,7 +21,7 @@
             <div class="small-10 columns">
               <input type="text" placeholder="Search all profiles" title="search" name="q">
             </div>
-            <div class="small-2 columns"> <a href="#" class="postfix" aria-label="submit form" title=""><i class="fa fa-search"></i></a> </div>
+            <div class="small-2 columns"> <a href="#" class="postfix" aria-label="submit form" title=""><img src="<?php bloginfo('template_directory'); ?>/img/search-icon.png" alt="search"/></a> </div>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
     <!--for devices only-->
     <div class="toggle-sec hide-for-large-only">
       <ul class="accordion" data-accordion="myAccordionGroup">
-        <li class="accordion-navigation"> <a href="#panel4c" aria-expanded="false" title="">Search Site <i class="fa fa-caret-right"></i></a>
+        <li class="accordion-navigation"> <a href="#panel4c" aria-expanded="false" title="">Search Site <i class="fa fa-caret-right up"></i></a>
           <div id="panel4c" class="content">
             <div class="cat-col">
               <h4 class="cat-head">Select Categories</h4>
