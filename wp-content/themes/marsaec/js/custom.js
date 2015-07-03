@@ -1,11 +1,13 @@
 // JavaScript Document
 
 jQuery(document).ready(function($) {
+	
+"use strict";
 
 $(document).foundation();
 	
-"use strict";	
-$(function() {
+	
+/*$(function() {
 	  $('span.checkbox').click(function(){
     		$(this).toggleClass("checked");
 			
@@ -33,12 +35,6 @@ $(function() {
 	});
 });
 
-$('.accordion .accordion-navigation > a').click(function(){
-	$(this).find("i").toggleClass('up dwn');
-	
-});
-  	
-
 $(function() {
 	function validateChk(e) {
 		if($('input[type="checkbox"]').hasClass('error') || $('input[type="radio"]').hasClass('error')) {
@@ -61,6 +57,14 @@ $('span.custom').on('click', function(){
 });
 });
 
+
+*/
+
+$('.accordion .accordion-navigation > a').click(function(){
+	$(this).find("i").toggleClass('up dwn');
+	
+});
+  	
 
 $('#logo').bind('change', function() {
         var filename = $(this).val();
@@ -90,7 +94,7 @@ $('#logo').bind('change', function() {
 
 
 
-$('#feauturedimage').bind('change', function() {
+$('input[name^="feauturedimage"]').bind('change', function() {
         var filename = $(this).val();
 		//var filesize = $(this)[0].files[0].size;		
 		var filesize = ($(this)[0].files[0].size / 1024); 

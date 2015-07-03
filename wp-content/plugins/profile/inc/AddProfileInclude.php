@@ -99,7 +99,26 @@ if(isset($_POST["submit"])){
 			$featuredimgurl[]=$filefeatured['url'];
 		    }
 		}
+
 		global $wpdb;
+
+		//Save Permalink
+		if(!empty($_POST['permalink'])) {
+			$ispermalink=$_POST['permalink'];
+			$newpermalink = sanitize_title($ispermalink);
+		} else {
+			$newpermalink= sanitize_title($_POST['name']);
+		}
+		//Check duplicate value
+		$exists = $wpdb->get_var( $wpdb->prepare(
+    "SELECT COUNT(*) FROM aec_profile WHERE permalink = %s", "$newpermalink"
+ 	 ) );
+
+		if($exists>=1)
+		{
+			$newpermalink= $newpermalink."_".$exists;
+		} 
+		
 		$wpinsertprofile=$wpdb->insert("aec_profile", array("profile_type" => $_POST['profile_type'],
 					   "name" => $_POST['name'],
 					   "logo" => $logourl,
@@ -112,7 +131,8 @@ if(isset($_POST["submit"])){
 					   "linkedin" => $_POST['linkedin'],
 					   "awards" => $_POST['awards'],
 					   "is_featured" => $_POST['featured'],
-					   "status" => $_POST['status']
+					   "status" => $_POST['status'],
+					   "permalink" => $newpermalink
 					 ));
 		$last_inserted_id = $wpdb->insert_id;
 
@@ -209,6 +229,7 @@ if(isset($_POST["submit"])){
 		$suggesttags=$_POST['suggesttags'];
 		$wpmeta=$wpdb->insert("aec_profilevalue", array("metaid" => 15, "id" => $last_inserted_id, "fieldid" => 1, "value"=>$suggesttags ));
 		}
+
 
 		//If no error in save or upload show success message
 		if( $wpinsertprofile!=false ) {

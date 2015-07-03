@@ -29,7 +29,7 @@ require get_template_directory() . '/inc/add-profile.php';
 	 			echo "<h3 class='sub-txt'>".get_post_meta($post->ID, 'sub-heading', true)."</h3>"; 
 	 		} ?>
       </div>
-      <div class="large-6 columns">
+      <div class="large-7 columns">
         <form id="CompProfileForm" class="custom" enctype="multipart/form-data" method="post" action="<?php echo get_permalink( 20 ); ?>">
           <div id="profile_type">
             <div class="main-label">Profile Type <span class="help-txt" id="CompHTxt"><strong>Company</strong> is defined as a Canadian company that has deployed innovative energy technologies and is seeking export opportunities</span><span class="help-txt" id="ProfHTxt" style="display:none;"><strong>Project</strong> is defined as deployed initiatives using innovative energy technologies and solutions by Canadian companies.</span></div>
@@ -62,7 +62,7 @@ require get_template_directory() . '/inc/add-profile.php';
           <div class="fw-nrml sub-label">
             <hr>
             <a class="add-field-btn" id="addinput" onclick="addinput(elementid='profile_affiliated',limit=19,postname='affiliated')"><img src="<?php bloginfo('template_directory'); ?>/img/add-field.jpg" alt="addmore"/></a> Add Another Company </div>
-          <div id="profile_featured">
+          <div id="profile_featured" class="mt">
             <div class="main-label">Upload Featured Images (Optional) <span id="profileType" class="help-txt">Providing at least one image of your innovation is highly recommended to increase the visibility of your profile on the site.</span></div>
             <div class="has-rt-btn">
               <label><span class="upload"> <span class="file-status">file name</span>
@@ -78,7 +78,7 @@ require get_template_directory() . '/inc/add-profile.php';
             <hr>
             <a class="add-field-btn" id="add_featuredimage" onclick="addfeaturedimage(limit=9)"><img src="<?php bloginfo('template_directory'); ?>/img/add-field.jpg" alt="addmore"/></a> Add Another </div>
           <input type="hidden" value="" id="feauturedimagevalue" name="feauturedimagevalue"/>
-          <div id="profile_tags">
+          <div id="profile_tags" class="mt">
             <div class="main-label">Categories <span class="help-txt">Help Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span> </div>
             <div id="level1">
               <div class="sub-label">Level 1</div>
@@ -113,7 +113,7 @@ require get_template_directory() . '/inc/add-profile.php';
               </ul>
             </div>
           </div>
-          <div id="profile_suggesttags">
+          <div id="profile_suggesttags" class="mt">
             <label for="tags" class="sub-label">Suggest New Tags (Optional)
               <textarea id="suggesttags" name="suggesttags"><?php echo $_POST['suggesttags']; ?></textarea>
             </label>
@@ -157,7 +157,7 @@ require get_template_directory() . '/inc/add-profile.php';
           <div class="fw-nrml sub-label">
             <hr>
             <a class="add-field-btn" id="add_address" onclick="add_address(limit=19)"><img src="<?php bloginfo('template_directory'); ?>/img/add-field.jpg" alt="addmore"/></a> Add Another Location </div>
-          <div id="profile_description">
+          <div id="profile_description" class="mt">
             <label for="description">Description <span class="help-txt">Help Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
               <textarea class="mar-no" id="description" name="description" data-validation="required"><?php echo $_POST['description']; ?></textarea>
               <span class="sub-label">250 maximum characters</span> </label>
@@ -171,7 +171,7 @@ require get_template_directory() . '/inc/add-profile.php';
           </div>
           <div class="fw-nrml sub-label" style="display:none">
             <hr>
-            <a class="add-field-btn" id="addinput" onclick="addinput(elementid='profile_projectfunders',limit=19,postname='project_funders')" class="add-field-btn"><img src="<?php bloginfo('template_directory'); ?>/img/add-field.jpg" alt="addmore"/></a> Add Another Company </div>
+            <a class="add-field-btn" id="addinput" onclick="addinput(elementid='profile_projectfunders',limit=19,postname='project_funders')" class="add-field-btn"><img src="<?php bloginfo('template_directory'); ?>/img/add-field.jpg" alt="addmore"/>Add Another Company </a> </div>
           <div id="profile_investors">
             <div class="main-label">Investors <span class="help-txt">Provide up to 20 company names. If a company is not listed on this website, you may direct them to the following URL to submit a profile: (<a href="#">Submit a Profile webform</a>)</span> </div>
             <div class="has-btn">
@@ -182,16 +182,16 @@ require get_template_directory() . '/inc/add-profile.php';
           <div class="fw-nrml sub-label">
             <hr>
             <a class="add-field-btn" id="addinput" onclick="addinput(elementid='profile_investors',limit=19,postname='investors')"><img src="<?php bloginfo('template_directory'); ?>/img/add-field.jpg" alt="addmore"/></a> Add Another Company </div>
-          <div id="profile_email">
+          <div id="profile_email" class="mt">
             <label for="email">Contact Email
               <input type="text" id="email" name="email" class="mar-no" value="<?php echo $_POST['email']; ?>" data-validation="email">
             </label>
             <div>
               <input type="checkbox" data-validation="required" name="terms" class="cb" id="terms">
-              <label for="terms" class="small-txt addn-txt"> By submitting your email, you have read and agree to the terms of use.</label>
+              <label for="terms" class="small-txt">By submitting your email, you have read and agree to the <a href="#" title="">terms of use.</a></label>
             </div>
           </div>
-          <div id="profile_website">
+          <div id="profile_website" class="mt">
             <label for="website">Website
               <input type="text" id="website" name="website" value="<?php echo $_POST['website']?$_POST['website']:""; ?>" data-validation="url" data-validation-error-msg="Please enter correct website URL e.g. http://aec.com" placeholder="http://">
             </label>

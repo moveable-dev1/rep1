@@ -230,6 +230,14 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
               Unapproved</label>
           </div>
         </li>
+
+        <li id="profile_permalink">
+          <div class="main-label">Permalink</div>
+          <div class="has-btn">
+            <input id="permalink" name="permalink" class="element text medium" type="text" value="<?php echo $_POST['permalink']; ?>">
+          </div>
+        </li>
+
         <li class="profile_buttons">
           <input type="hidden" name="form_id" value="">
           <input id="saveForm" class="button_text sub-btn" type="submit" name="submit" value="Submit">

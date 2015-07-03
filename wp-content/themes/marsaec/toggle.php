@@ -6,6 +6,7 @@
  */
 ?>
 <!--toggle section starts-->
+
 <form class="custom" action="<?php echo get_permalink( 28 ); ?>" method="get">
   <div class="row">
     <div class="toggle-sec show-for-large-only">
@@ -21,7 +22,9 @@
             <div class="small-10 columns">
               <input type="text" placeholder="Search all profiles" title="search" name="q">
             </div>
-            <div class="small-2 columns"> <a href="#" class="postfix" aria-label="submit form" title=""><img src="<?php bloginfo('template_directory'); ?>/img/search-icon.png" alt="search"/></a> </div>
+            <div class="small-2 columns">
+              <input type="submit" value="" class="search-sub">
+              <!--<a href="#" class="postfix" aria-label="submit form" title=""><img src="<?php //bloginfo('template_directory'); ?>/img/search-icon.png" alt="search"/></a> --></div>
           </div>
         </div>
       </div>

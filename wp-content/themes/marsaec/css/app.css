@@ -34,6 +34,9 @@ button, .button {
 .mb {
 	margin-bottom: 1.6rem;
 }
+.mt {
+	margin-top: 1.6rem;
+}
 .row {
 	max-width: 61rem;
 	border-right: 1px solid #b4c5cc;
@@ -114,6 +117,14 @@ button, .button {
 }
 .search-box {
 	border: none;
+}
+.search-sub {
+	background: #fff url(../img/search-icon.png) no-repeat 10px 10px;
+	border-radius: 0 7px 7px 0 !important;
+	border: 2px solid #b4c5cc;
+	height: 3rem;
+	border-left: none;
+	width: 3rem;
 }
 form .row .toggle-sec .postfix-radius.row.collapse input, form .row .toggle-sec .postfix-radius.row.collapse textarea, form .row .toggle-sec .postfix-radius.row.collapse select, form .row .toggle-sec .postfix-radius.row.collapse button {
 	border-radius: 7px 0 0 7px;
@@ -281,6 +292,9 @@ input[type=checkbox]:not(old) + label, input[type=radio ]:not(old) + label {
 	margin-left: -1.3rem;
 	padding-left: 1.7rem;
 }
+/*.has-error input[type=checkbox]:not(old) + label{
+	background: rgba(0, 0, 0, 0) url("../img/checks-error.png") no-repeat scroll 0 0;
+}*/
 input[type=radio ]:not(old) + label {
 	background : url('../img/checks.png') no-repeat 0 -2.5rem;
 }
@@ -307,26 +321,26 @@ input[type=radio]:not(old):checked + label {
 	padding: 0;
 	width: 28px;*/
 	background: rgba(0, 0, 0, 0) url("../img/remove-field.jpg") no-repeat scroll 0 0;
-    border: medium none;
-    bottom: 30px;
-    color: #b4c5cc;
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-weight: 700;
-    height: 28px;
-    line-height: 2;
-    padding: 0 0 0 35px;
-    position: absolute;
-    right: 0;
-    width: auto;
+	border: medium none;
+	bottom: 30px;
+	color: #b4c5cc;
+	cursor: pointer;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: 28px;
+	line-height: 2;
+	padding: 0 0 0 35px;
+	position: absolute;
+	right: 0;
+	width: auto;
 }
 .has-btn {
 	position: relative;
-	width: 150%;
+	width: 145%;
 	float: left;
 }
 .has-btn input {
-	width: 67%;
+	width: 70%;
 }
 .has-btn span {
 	position: absolute;
@@ -345,25 +359,29 @@ input[type=radio]:not(old):checked + label {
 	float: left;
 	display: block;
 }
+.upload.has-error{
+	background: #fdeeee;
+	border: 2px solid #ff0000 !important;
+}
 .has-rt-btn {
-    float: left;
-    position: relative;
-    width: 150%;
+	float: left;
+	position: relative;
+	width: 145%;
 }
 .has-rt-btn .upload {
-    width: 67% !important;
+	width: 70% !important;
 }
 .has-rt-btn .fl-btn {
-    font-size: 0.875rem;
-    font-weight: 700;
-    line-height: 2;
-    position: absolute;
-    right: 25px;
-    top: 5px;
+	font-size: 0.875rem;
+	font-weight: 700;
+	line-height: 2;
+	position: absolute;
+	right: 25px;
+	top: 5px;
 }
 .has-rt-btn .remove-field-btn {
-    right: -6.5625rem;
-    top: 6px;
+	right: -6.5625rem;
+	top: 6px;
 }
 span.file-status {
 	display: none;
@@ -371,7 +389,7 @@ span.file-status {
 	left: 10px;
 	position: absolute;
 }
-a#delete:hover{
+a#delete:hover {
 	background: rgba(0, 0, 0, 0) url("../img/remove-field.jpg") no-repeat scroll 0 0;
 	color: #b4c5cc;
 }
@@ -648,7 +666,7 @@ textarea {
 	background-color: #4695b3;
 }
 .small-txt {
-	font-size: 0.750em;
+	font-size: 0.750em !important;
 	font-weight: 400;
 }
 .help-txt {
@@ -661,7 +679,7 @@ textarea {
 	font-weight: 400;
 }
 .addn-txt {
-	margin: 0.5rem 0 1.6rem 0;
+	margin: 0.5rem 0 1.6rem 0 !important;
 	display: block;
 	float: left;
 	width: 100%;
@@ -673,17 +691,17 @@ textarea {
 iframe {
 	border: none;
 }
-#level2, #level2, level3{
-	float:left;
-	width:100%;
-}
-#profile_tags ul{
-	margin:0;
-}
-#profile_tags li{
+#level2, #level2, level3 {
 	float: left;
-    list-style: outside none none;
-    width: 50%;
+	width: 100%;
+}
+#profile_tags ul {
+	margin: 0;
+}
+#profile_tags li {
+	float: left;
+	list-style: outside none none;
+	width: 100%;
 }
 .footer-links {
 	margin: 0.5rem 0;
@@ -699,7 +717,7 @@ iframe {
 	font-size: 0.875em;
 }
 .footer-links a:hover {
-	background:none;
+	background: none;
 }
 .footer-links a:after {
 	content: ".";
@@ -714,7 +732,7 @@ iframe {
 }
 .footer-social {
 	float: left;
-	margin-left: 7px;
+	margin-left: 15px;
 	padding: 0;
 }
 .footer-social a {
@@ -760,6 +778,9 @@ ul {
 	padding: 1rem 2rem;
 	border-bottom: 1px solid #b4c5cc;
 }
+.promo-head {
+	margin-bottom: 0;
+}
 .more-btn {
 	display: none;
 }
@@ -789,17 +810,17 @@ ul {
 .accordion .accordion-navigation i.up {
 	float: right;
 	color: #99d6ea;
-	background:url("../img/caret-rt.png") no-repeat;
-	width:1.25rem;
-	height:2.0625rem;
+	background: url("../img/caret-rt.png") no-repeat;
+	width: 1.25rem;
+	height: 2.0625rem;
 	margin-top: 1rem;
 }
 .accordion .accordion-navigation i.dwn {
 	float: right;
 	color: #99d6ea;
-	background:url("../img/caret-dn.png") no-repeat;
-	height:1.25rem;
-	width:2.0625rem;
+	background: url("../img/caret-dn.png") no-repeat;
+	height: 1.25rem;
+	width: 2.0625rem;
 	margin-top: 1rem;
 }
 .accordion .accordion-navigation > a:hover, .accordion dd > a:hover, .accordion .accordion-navigation.active > a, .accordion dd.active > a {
@@ -811,7 +832,7 @@ ul {
 .share-btn {
 	float: right;
 }
-.has-btn {
+.has-btn, .has-rt-btn {
 	width: 100%;
 }
 .req-link {

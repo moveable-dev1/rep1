@@ -455,16 +455,16 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
           foreach ($getVideos as $VideosValue) {
         ?>
       <label class="type_label" for="videos">Videos
-        <input id="videos" name="videos[]" class="element text medium" type="text" 
-        value="<?php echo $VideosValue->value; ?>">
+         <textarea id="videos" name="videos[]" class="element textarea medium"><?php echo $VideosValue->value; ?></textarea>
+     <?php /*   <input id="videos" name="videos[]" class="element text medium" type="text" 
+        value="<?php echo $VideosValue->value; ?>"> */?>
       </label>
       <hr>
       <?php 
           } 
         } else { ?>
       <label class="type_label" for="videos">Videos
-        <input id="videos" name="videos[]" class="element text medium" type="text" 
-        value="">
+        <textarea id="videos" name="videos[]" class="element textarea medium"></textarea>
       </label>
       <?php
         }
@@ -499,6 +499,14 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
           Unapproved</label>
       </div>
     </li>
+
+     <li id="profile_permalink">
+          <div class="main-label">Permalink</div>
+          <div class="has-btn">
+            <input id="permalink" name="permalink" class="element text medium" type="text" value="<?php echo $profileName->permalink; ?>">
+          </div>
+        </li>
+
     <li class="profile_buttons">
       <input type="hidden" name="form_id" value="">
       <input id="saveForm" class="button_text button_text sub-btn" type="submit" name="update" value="Update">

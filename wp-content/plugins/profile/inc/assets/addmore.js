@@ -24,7 +24,7 @@ function addsingleinput(elementid,limit,postname)
 {     
         var n = jQuery("#"+elementid+" div").length;
         if (n <=limit) {
-               jQuery("#"+elementid).append('<div class="has-btn"><input type="text" name="'+postname+'[]"><button class="delete remove-field-btn">Remove</button></div>');
+               jQuery("#"+elementid).append('<div class=""><textarea id="'+postname+'" name="'+postname+'[]" class="element textarea medium"></textarea><button class="delete">Remove</button></div>');
         }
         else{
                 alert("No more additional fields are allowed!");

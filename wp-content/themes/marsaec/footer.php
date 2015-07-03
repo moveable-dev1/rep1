@@ -25,7 +25,7 @@
       <div class="footer-social"> <a href="https://www.facebook.com/MaRSCentre" title="" target="_blank"> <img src="<?php bloginfo('template_directory'); ?>/img/fb-icon.png" alt="facebook link"/> </a> <a href="https://twitter.com/MaRSDD" title="" target="_blank"> <img src="<?php bloginfo('template_directory'); ?>/img/twitter-icon.png" alt="twitter link"/> </a> <a href="http://www.linkedin.com/company/mars-discovery-district" title="" target="_blank"> <img src="<?php bloginfo('template_directory'); ?>/img/in-icon.png" alt="linkedin link"/> </a> </div>
     </div>
     <div class="large-12 columns">
-      <div class="footer-copy">© 2015 COPYRIGHT MaRS DISCOVERY DISTRICT. ALL RIGHTS RESERVED.&nbsp;&nbsp; <a href="#" title="">Terms & Conditions</a>.</div>
+      <div class="footer-copy">© 2015 COPYRIGHT MaRS DISCOVERY DISTRICT. ALL RIGHTS RESERVED.&nbsp;&nbsp; <a href="/terms-conditions/" title="">Terms & Conditions</a>.</div>
     </div>
   </footer>
 </div>

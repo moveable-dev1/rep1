@@ -138,6 +138,25 @@ if($_FILES['feauturedimage']['name']) {
 
 //Update fields in aec_profile table
 if(isset($_POST['update'])) {
+
+    //Save Permalink
+        if(!empty($_POST['permalink'])) {
+            $ispermalink=$_POST['permalink'];
+            $newpermalink = sanitize_title($ispermalink);
+        } else {
+            $newpermalink= sanitize_title($_POST['name']);
+        }
+
+        //Check duplicate value
+        $exists = $wpdb->get_var( $wpdb->prepare(
+    "SELECT COUNT(*) FROM aec_profile WHERE permalink = %s AND id!=$profileId", "$newpermalink"
+     ) );
+
+        if($exists>=1)
+        {
+            $newpermalink= $newpermalink."_".$exists;
+        } 
+
     $result = $wpdb->update('aec_profile', array('profile_type' => $_POST['profile_type'],
     'name' => $_POST['name'],
     'logo' => $logourl,
@@ -150,7 +169,8 @@ if(isset($_POST['update'])) {
     'linkedin' => $_POST['linkedin'],
     'awards' => $_POST['awards'],
     'is_featured' => $_POST['is_featured'],
-    'status' => $_POST['status']), array('id' => $profileId), array('%s', '%s','%s', '%s', '%s','%s', '%s', '%s','%s', '%s', '%s','%s','%s'), array('%d'));
+    'status' => $_POST['status'],
+    'permalink' => $newpermalink), array('id' => $profileId), array('%s', '%s','%s', '%s', '%s','%s', '%s', '%s','%s', '%s', '%s','%s','%s','%s'), array('%d'));
    
     //Save Affiliated Field
     if(isset($_POST['affiliated'])) {

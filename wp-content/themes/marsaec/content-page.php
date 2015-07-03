@@ -17,7 +17,7 @@
 	 <div class="page-head">
 	 	<?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
 	 	<?php if( get_post_meta($post->ID, 'sub-heading', true) ) {  //If sub heading exist
-	 		echo "<h3 class='sub-txt'>".get_post_meta($post->ID, 'sub-heading', true)."</h3>";
+	 		echo "<h2 class='sub-txt'>".get_post_meta($post->ID, 'sub-heading', true)."</h2>";
 	 	 } ?>
       </div>
 

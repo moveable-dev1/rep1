@@ -449,6 +449,19 @@ function feautured_image($id)
 	return $getimage->value;
 }
 
+//Get Profile URL
+function get_profileUrl($id)
+{
+	global $wpdb;
+	$getURL = $wpdb->get_var( $wpdb->prepare(
+    "SELECT permalink FROM aec_profile WHERE id=%s", "$id"
+ 	 ) );
+	if(!$getURL){
+		$getURL=$id;
+	}
+	return "/profile/".$getURL;
+}
+
 //Get Search by keyword
 function search_keyword($searchterm)
 {
@@ -584,3 +597,14 @@ function wpse_resizeimage($url, $width, $height = null, $crop = null, $single = 
 
     return $image;
 }
+
+//SEO friendly profile detail page
+function custom_rewrite_tag() {
+  add_rewrite_tag('%profile%', '([^&]+)');
+}
+add_action('init', 'custom_rewrite_tag', 10, 0);
+
+function custom_rewrite_rule() {
+    add_rewrite_rule('^profile/([^/]*)/?','index.php?page_id=39&profile=$matches[1]','top');
+  }
+add_action('init', 'custom_rewrite_rule', 10, 0);

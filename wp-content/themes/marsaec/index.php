@@ -16,13 +16,14 @@
 
 get_header(); ?>
 
+
 <?php get_template_part( 'toggle' ); ?>
 
 <!--Newest Profiles section starts-->
 <div class="row">
   <div class="profile-sec">
     <div class="large-12 columns">
-      <div class="profile-head">Newest Profiles</div>
+      <h1 class="profile-head">Newest Profiles</h1>
     </div>
     <?php foreach(newest_profile() as $newvalue) { 
       ?>
@@ -34,7 +35,7 @@ get_header(); ?>
           <div class="small-3 columns">
             <div class="comp-thumb"><img src="<?php echo $newvalue->logo; ?>" alt="image" class="th radius"/> </div>
           </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $newvalue->name; ?></a>
+          <div class="small-9 columns"> <a href="<?php echo get_profileUrl($newvalue->id); ?>" class="comp-name" title=""><?php echo $newvalue->name; ?></a>
             <div class="comp-short"><?php echo $newvalue->description; ?></div>
           </div>
         </div>
