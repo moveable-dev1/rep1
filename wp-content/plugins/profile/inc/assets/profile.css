@@ -127,7 +127,7 @@ form.custom hr {
 	width: 550px;
 	float: left;
 }
-.has-btn input, .has-rt-btn .upload {
+.has-btn input, .has-rt-btn .upload, .has-btn textarea {
 	width: 385px !important;
 }
 .has-btn span {

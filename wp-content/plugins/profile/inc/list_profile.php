@@ -69,9 +69,13 @@
 		                        	<a href="admin.php?page=edit-profile&profileid=<?php echo $ProfileValue->id; ?>">Edit
 		                        	</a> | 
 		                        </span>
+		                         <span class="view"> 
+		                        	<a href="/profile/<?php echo $ProfileValue->permalink; ?>" target="_blank">View
+		                        	</a> | 
+		                        </span>
 		                        <span class="trash">
 		                        	<a href="admin.php?page=list-profile&delete=1&profileid=<?php echo $ProfileValue->id; ?>" onClick="return confirm('Are you sure you want to delete this?');">Delete
-		                        	</a>
+		                        	</a> 
 		                        </span>
 		                    </div>
 		            </td>

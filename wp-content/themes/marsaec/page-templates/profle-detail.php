@@ -16,9 +16,9 @@ if( ctype_digit( $profileVar ) )  //Check if variable is ID
 } else { //Get Profile ID
 	$profileId=get_profileId($profileVar);
 }
-$profileId;
-$getProfile= get_profileDetail($profileId);
 
+if($profileId) {
+$getProfile= get_profileDetail($profileId);
 ?>
 <link href="<?php bloginfo('template_directory'); ?>/css/carosuel.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/css/jquery.fancybox.css?v=2.1.5" media="screen" />
@@ -302,4 +302,16 @@ jQuery(document).ready(function($) {
 });
 </script>
 
+<?php } ?>
+<div class="row">
+  <div class="banner"> <img src="<?php bloginfo('template_directory'); ?>/img/profile-banner.jpg" alt="image"/> </div>
+</div>
+</div>
+<div class='row'>
+	<div class='profile-sec'>
+    	<div class='large-12 columns'>No profile found. Click here to 
+    		<a href='/submit-a-profile'>submit the form</a>
+    	</div>
+    </div>
+</div>
 <?php get_footer(); ?>

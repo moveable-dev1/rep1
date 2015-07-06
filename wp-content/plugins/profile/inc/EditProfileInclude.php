@@ -170,7 +170,8 @@ if(isset($_POST['update'])) {
     'awards' => $_POST['awards'],
     'is_featured' => $_POST['is_featured'],
     'status' => $_POST['status'],
-    'permalink' => $newpermalink), array('id' => $profileId), array('%s', '%s','%s', '%s', '%s','%s', '%s', '%s','%s', '%s', '%s','%s','%s','%s'), array('%d'));
+    'permalink' => $newpermalink,
+    'updated_at' => date('Y-m-d H:i:s')), array('id' => $profileId), array('%s', '%s','%s', '%s', '%s','%s', '%s', '%s','%s', '%s', '%s','%s','%s','%s'), array('%d'));
    
     //Save Affiliated Field
     if(isset($_POST['affiliated'])) {
@@ -248,6 +249,12 @@ if(isset($_POST['update'])) {
     $updatemeta=updatemetavalue(14,$profileId,$videos_post);
     }
 
+
+    //Save Featured Images
+    if(isset($featuredimgurl)) {
+    $updatemeta=updatefeatured(8,$profileId,$featuredimgurl);
+    }
+
     //Remove Featured Image if checked
     if(!empty($_POST['removeimage'])) {
         foreach ($_POST['removeimage'] as $removevalue) {
@@ -264,11 +271,6 @@ if(isset($_POST['update'])) {
             }    
     }
 
-    //Save Featured Images
-    if(isset($featuredimgurl)) {
-    $updatemeta=updatefeatured(8,$profileId,$featuredimgurl);
-    }
-
     //Save Categories
     if(isset($_POST['term_taxonomy_id'])) {
         $term_taxonomy_id=$_POST['term_taxonomy_id'];
@@ -277,20 +279,27 @@ if(isset($_POST['update'])) {
 
 
     //Set Featured Image respective to feautured image field ID
-    if(!empty($_POST['feauturedimagevalue'])) {
-        $featuredvalue=$_POST['feauturedimagevalue'];
-        $deleteIsfea=$wpdb->query("DELETE FROM aec_profilevalue WHERE id = $profileId AND metaid=9");
-        $updatemeta=$wpfeaturedvalue=$wpdb->insert("aec_profilevalue", array("metaid" => 9, "id" => $profileId, "fieldid" => $featuredvalue, "value"=>$featuredvalue ));
-        //Reset all values
-            $getfeaturedImages=GetSingle($metaid=8,$profileId);
-            if(!empty($getfeaturedImages)){
-                foreach ($getfeaturedImages as $FeaValues) {
-                    $newvalue[]=$FeaValues->value;
-                    $deletefeat=$wpdb->query("DELETE FROM aec_profilevalue WHERE id = $profileId AND metaid=8 AND fieldid=$FeaValues->fieldid");
-                }
-                updatefeatured(8,$profileId,$newvalue);
-            }
+    if(isset($_POST['feauturedimagevalue']) && $_POST['feauturedimagevalue']!=0) {
+    $featuredvalue=$_POST['feauturedimagevalue'];
+    $deleteIsfea=$wpdb->query("DELETE FROM aec_profilevalue WHERE id = $profileId AND metaid=9");
+    $wpmeta=$wpfeaturedvalue=$wpdb->insert("aec_profilevalue", array("metaid" => 9, "id" => $profileId, "fieldid" => $featuredvalue, "value"=>$featuredvalue ));
     }
+
+    //Set Featured Image respective to feautured image field ID
+    // if(!empty($_POST['feauturedimagevalue'])) {
+    //     $featuredvalue=$_POST['feauturedimagevalue'];
+    //     $deleteIsfea=$wpdb->query("DELETE FROM aec_profilevalue WHERE id = $profileId AND metaid=9");
+    //     $updatemeta=$wpfeaturedvalue=$wpdb->insert("aec_profilevalue", array("metaid" => 9, "id" => $profileId, "fieldid" => $featuredvalue, "value"=>$featuredvalue ));
+    //     //Reset all values
+    //         $getfeaturedImages=GetSingle($metaid=8,$profileId);
+    //         if(!empty($getfeaturedImages)){
+    //             foreach ($getfeaturedImages as $FeaValues) {
+    //                 $newvalue[]=$FeaValues->value;
+    //                 $deletefeat=$wpdb->query("DELETE FROM aec_profilevalue WHERE id = $profileId AND metaid=8 AND fieldid=$FeaValues->fieldid");
+    //             }
+    //             updatefeatured(8,$profileId,$newvalue);
+    //         }
+    // }
     if($result!=false || $updatemeta==1){ 
         $_SESSION['success_messages']="<div class='updated'>Successfully Updated ".$_POST['name']."</div>";
        wp_redirect( admin_url( "admin.php?page=edit-profile&profileid=$profileId")); exit;

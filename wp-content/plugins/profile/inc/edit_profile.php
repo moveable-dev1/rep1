@@ -70,6 +70,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
       <hr>
       <a class="add-field-btn" role="button" id="addinput" onclick="addinput(elementid='profile_affiliated',limit=21,postname='affiliated',postname2='affiliated_url')">Add Another Company</a> </div>
     <li id="profile_featured">
+      <div class="main-label">Featured Image</div>
       <?php
       //Featured Image ID=8
       $getfetauredImage=GetSingle($metaid=8,$profileId);
@@ -84,15 +85,18 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
               }
             }
           ?>
-      <div class="main-label">Featured Image</div>
+      
       <div class="has-rt-btn mb">
         <hr>
         <label> <span class="logoimage"><img src="<?php echo wpse_resizeimage($FeaValue->value,100); ?>"/></span> </label>
         <div class="fl-btn">
           <input name="removeimage[]" type="checkbox" id="removeimage" value="<?php echo $Checkfeatured; ?>">
-          <span for="featured_image" class="type_label fw-nrml ">Remove Image</span>
-          <input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()" <?php echo $CheckIsFeatured; ?>>
-          <span for="featured_image" class="type_label fw-nrml ">Featured Image</span></div>
+          <span class="type_label fw-nrml ">Remove Image</span>
+          <div id="featuredSection<?php echo $Checkfeatured; ?>">
+            <input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()" <?php echo $CheckIsFeatured; ?>>
+            <span class="type_label fw-nrml ">Featured Image</span>
+          </div>
+        </div>
       </div>
       <?php 
             unset($CheckIsFeatured);
@@ -183,20 +187,27 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
                //Select category
                if (in_array($catvalueLevel2->cat_ID, $level3checks)) {
                   $selectchecboxLevel2="checked=checked";
+                  $disablefield[]=$level2values;
               } else {
                 $selectchecboxLevel2="";
               } ?>
         <label class="type_label fw-nrml" for="parent_cat">
-          <input id="parent_cat" name="term_taxonomy_id[]" class="element checkbox" type="checkbox" value="<?php echo $catvalueLevel2->cat_ID; ?>" <?php echo $selectchecboxLevel2; ?> />
+          <input id="parent_cat2" name="term_taxonomy_id[]" class="element checkbox" type="checkbox" value="<?php echo $catvalueLevel2->cat_ID; ?>" <?php echo $selectchecboxLevel2; ?> />
           <?php echo $catvalueLevel2->cat_name; ?></label>
+           <input id="parent_id<?php echo $catvalueLevel2->cat_ID; ?>" name="parent_id" type="hidden" value="<?php echo $level2values; ?>">
         <?php
               } ?>
-        <input id="parent_id" name="parent_id" type="hidden" value="<?php echo $level2values; ?>">
+       
       </div>
       <?php } 
-          }//enforeach
-
-        }//endif
+          }//enforeach ?>
+          <script type="text/javascript">
+          <?php foreach(array_unique($disablefield) as $dvalue) {?>
+            jQuery('#level1 input[value="<?php echo $dvalue; ?>"]').prop("disabled", true);
+          //print_r(array_unique($disablefield));
+           <?php }?>
+          </script>
+        <?php }//endif
           ?>
     </div>
     <div id="level3">
@@ -310,24 +321,24 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
         } else { //If address not found?>
       </label>
       <label class="fw-nrml main-sub-label" for="streetaddress">Street Address
-        <input id="streetaddress" name="streetaddress[]" class="element text large" 
-          value="" type="text" data-validation="required">
+        <input id="streetaddress" name="streetaddress[]" class="element text large"
+          value="" type="text" data-validation="required" maxlength="150">
       </label>
       <label class="fw-nrml main-sub-label" for="city">City
         <input id="city" name="city[]" class="element text medium" value="" 
-          type="text" data-validation="required">
+          type="text" data-validation="required" maxlength="150">
       </label>
       <label class="fw-nrml main-sub-label" for="state">State / Province / Region
         <input id="state" name="state[]" class="element text medium" value="" 
-          type="text" data-validation="required">
+          type="text" data-validation="required" maxlength="150">
       </label>
       <label class="fw-nrml main-sub-label" for="postalcode">Postal / Zip Code
         <input id="postalcode" name="postalcode[]" class="element text medium" 
-          value="" type="text" data-validation="required">
+          value="" type="text" data-validation="required" maxlength="150">
       </label>
       <label class="fw-nrml main-sub-label"for="country">Country
         <input id="country" name="country[]" class="element text medium" 
-          value="" type="text" data-validation="required">
+          value="" type="text" data-validation="required" maxlength="150">
         <?php
         }
         
@@ -339,7 +350,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
       <a id="add_address" onclick="add_address(limit=19)" role="button" class="add-field-btn">Add Another Location</a> </div>
     <li id="profile_description">
       <label class="type_label" for="description">Description
-        <textarea id="description" name="description" class="element textarea medium" data-validation="required" maxlength="250"><?php echo $profileName->description; ?></textarea>
+        <textarea id="description" name="description" class="element textarea medium" data-validation="required" maxlength="300"><?php echo $profileName->description; ?></textarea>
       </label>
     </li>
     <li id="profile_projectfunders">
@@ -422,13 +433,13 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
     <li id="profile_twitter">
       <label class="fw-nrml main-sub-label" for="twitter">Twitter
         <input id="twitter" name="twitter" class="element text medium" 
-        type="text" value="<?php echo $profileName->twitter; ?>">
+        type="text" value="<?php echo $profileName->twitter; ?>" maxlength="150">
       </label>
     </li>
     <li id="profile_facebook">
       <label class="fw-nrml main-sub-label" for="facebook">Facebook
         <input id="facebook" name="facebook" class="element text medium" 
-        type="text" value="<?php echo $profileName->facebook; ?>">
+        type="text" value="<?php echo $profileName->facebook; ?>" maxlength="150">
       </label>
     </li>
     <li id="profile_linkedin">
@@ -444,7 +455,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
                 $editor_id = 'awards';
                 wp_editor( $content, $editor_id,$settings ); ?>
         <!-- <textarea id="awards" name="awards" class="element textarea medium" maxlength="250"><?php //echo $profileName->awards; ?></textarea> -->
-        <span class="sub-label">250 maximum characters</span>
+        <span class="sub-label">300 maximum characters</span>
       </label>
     </li>
     <li id="profile_videos">
@@ -474,14 +485,14 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
       <hr>
       <a class="add-field-btn" id="addsingleinput" onclick="addsingleinput(elementid='profile_videos',limit=6,postname='videos')">Add Another</a> </div>
     <li id="profile_featured">
-      <div class="main-label">Is featured? </div>
+      <div class="main-label">Is Featured? </div>
       <div class="mb">
         <label class="fw-nrml" for="featured_yes">
-          <input id="featured_yes" name="featured" class="element radio" type="radio" 
+          <input id="featured_yes" name="is_featured" class="element radio" type="radio" 
         value="1" <?php echo $profileName->is_featured==1? "checked='checked'":""; ?>>
           Yes</label>
         <label class="fw-nrml" for="featured_no">
-          <input id="featured_no" name="featured" class="element radio" type="radio" 
+          <input id="featured_no" name="is_featured" class="element radio" type="radio" 
         value="0" <?php echo $profileName->is_featured==0? "checked='checked'":""; ?>>
           No</label>
       </div>
@@ -526,8 +537,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
 <script>
 jQuery.validate({
   form : '#adminprofile',
-  errorMessagePosition : 'top',
-  validateOnBlur : false,
+  errorMessagePosition : 'top'
 });
 </script>
 <?php session_destroy(); ?>

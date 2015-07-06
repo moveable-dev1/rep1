@@ -118,6 +118,9 @@ if(isset($_POST["submit"])){
 		{
 			$newpermalink= $newpermalink."_".$exists;
 		} 
+
+		//Get Auhor ID
+		$user_ID = get_current_user_id();
 		
 		$wpinsertprofile=$wpdb->insert("aec_profile", array("profile_type" => $_POST['profile_type'],
 					   "name" => $_POST['name'],
@@ -132,7 +135,9 @@ if(isset($_POST["submit"])){
 					   "awards" => $_POST['awards'],
 					   "is_featured" => $_POST['featured'],
 					   "status" => $_POST['status'],
-					   "permalink" => $newpermalink
+					   "permalink" => $newpermalink,
+					   "created_at" => date('Y-m-d H:i:s'),
+					   "profile_author" => $user_ID
 					 ));
 		$last_inserted_id = $wpdb->insert_id;
 

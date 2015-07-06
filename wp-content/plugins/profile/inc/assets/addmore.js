@@ -24,7 +24,7 @@ function addsingleinput(elementid,limit,postname)
 {     
         var n = jQuery("#"+elementid+" div").length;
         if (n <=limit) {
-               jQuery("#"+elementid).append('<div class=""><textarea id="'+postname+'" name="'+postname+'[]" class="element textarea medium"></textarea><button class="delete">Remove</button></div>');
+               jQuery("#"+elementid).append('<div class="has-btn"><textarea id="'+postname+'" name="'+postname+'[]" class="element textarea medium"></textarea><button class="delete remove-field-btn">Remove</button></div>');
         }
         else{
                 alert("No more additional fields are allowed!");
@@ -40,7 +40,7 @@ function addfeaturedimage(limit)
         var n = jQuery("#profile_featured div#FimageBox").length;
 		
         if (n <=limit) {
-               jQuery("#profile_featured").append('<div class="has-rt-btn mb" id="FimageBox"><div class="has-rt-btn"><input name="feauturedimage[]" type="file" id="feauturedimage" class="feauturedimage"><div class="fl-btn"><input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()"><span class="type_label fw-nrml " for="featured_image">Featured Image</span></div><button class="delete remove-field-btn">Remove</button></div></div>');
+               jQuery("#profile_featured").append('<div class="has-rt-btn mb" id="FimageBox"><input name="feauturedimage[]" type="file" id="feauturedimage" class="feauturedimage"><div class="fl-btn"><input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()"><span class="type_label fw-nrml " for="featured_image">Featured Image</span></div><button class="delete remove-field-btn">Remove</button></div>');
         }
         else{
                 alert("No more additional fields are allowed!");
@@ -64,17 +64,17 @@ function add_address(limit)
  * Set Featured image
  */
 function getElement() {
+    document.getElementById('feauturedimagevalue').value = "";
     var options = document.getElementsByName('feauturedimageradio[]');
     for(i = 0; i < options.length; i++)
     {
         var opt = options[i];
         if(opt.type=="radio")
         {              
-            if(opt.checked)
-            {
+            if(opt.checked) {
                 //Set value for featured image if checked
                 document.getElementById('feauturedimagevalue').value = i+1;
-            }                  
+            }              
         }
     }
 }     
@@ -84,6 +84,19 @@ jQuery(function($) {
 //Delete Add more elements
 $("body").on("click", ".delete", function (e) {
          $(this).parent("div").remove();
+         getElement();
+});
+
+$('#profile_featured').on("change", ":checkbox", function () {
+        if (this.checked) {
+             $("#featuredSection"+this.value+" input").remove();
+             $("#featuredSection"+this.value+" span").remove();
+             getElement();
+}
+else {
+     $("#featuredSection"+this.value).append('<input name="feauturedimageradio[]"type="radio" id="feauturedimageradio" onclick="getElement()"><span class="type_label fw-nrml ">Featured Image</span>');
+     getElement();
+}
 });
 
 //Get Level 2 Category

@@ -113,19 +113,19 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
         <li id="profile_location">
           <div class="main-label">Location(s) <span class="help-txt">At least one location is required. If you’re a Company, include your head office address. If you’re a Project, include deployed location(s).</span> </div>
           <label class="fw-nrml main-sub-label" for="streetaddress">Street Address
-            <input id="streetaddress" name="streetaddress[]" class="element text large" value="<?php echo $_POST['streetaddress'][0]; ?>" type="text" data-validation="required">
+            <input id="streetaddress" name="streetaddress[]" class="element text large" value="<?php echo $_POST['streetaddress'][0]; ?>" type="text" data-validation="required" maxlength="150">
           </label>
           <label class="fw-nrml main-sub-label" for="city">City
-            <input id="city" name="city[]" class="element text medium" value="<?php echo $_POST['city'][0]; ?>" type="text" data-validation="required">
+            <input id="city" name="city[]" class="element text medium" value="<?php echo $_POST['city'][0]; ?>" type="text" data-validation="required" maxlength="150">
           </label>
           <label class="fw-nrml main-sub-label" for="state">State / Province / Region
-            <input id="state" name="state[]" class="element text medium" value="<?php echo $_POST['state'][0]; ?>" type="text" data-validation="required">
+            <input id="state" name="state[]" class="element text medium" value="<?php echo $_POST['state'][0]; ?>" type="text" data-validation="required" maxlength="150">
           </label>
           <label class="fw-nrml main-sub-label" for="postalcod">Postal / Zip Code
-            <input id="postalcode" name="postalcode[]" class="element text medium" value="<?php echo $_POST['postalcode'][0]; ?>" type="text" data-validation="required">
+            <input id="postalcode" name="postalcode[]" class="element text medium" value="<?php echo $_POST['postalcode'][0]; ?>" type="text" data-validation="required" maxlength="150">
           </label>
           <label class="fw-nrml main-sub-label" for="country">Country
-            <input id="country" name="country[]" class="element text medium" value="<?php echo $_POST['country'][0]; ?>" type="text" data-validation="required">
+            <input id="country" name="country[]" class="element text medium" value="<?php echo $_POST['country'][0]; ?>" type="text" data-validation="required" maxlength="150">
           </label>
         </li>
         <div class="fw-nrml sub-label mb">
@@ -133,8 +133,8 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
           <a id="add_address" onclick="add_address(limit=19)" class="add-field-btn">Add Another Location</a> </div>
         <li id="profile_description">
           <label for="description">Description
-            <textarea id="description" name="description" class="element textarea medium mar-no" data-validation="required" maxlength="250"><?php echo $_POST['description']; ?></textarea>
-            <span class="sub-label">250 maximum characters</span> </label>
+            <textarea id="description" name="description" class="element textarea medium mar-no" data-validation="required" maxlength="300"><?php echo $_POST['description']; ?></textarea>
+            <span class="sub-label">300 maximum characters</span> </label>
         </li>
         <li id="profile_projectfunders" style="display:none">
           <div class="main-label">Project Funders <span class="help-txt">Provide up to 20 company names. If a company is not listed on this website, you may direct them to the following URL to submit a profile: (<a href="#">Submit a Profile webform</a>)</span> </div>
@@ -165,12 +165,12 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
             <input id="email" name="email" class="element text medium mar-no" type="text" value="<?php echo $_POST['email']; ?>" data-validation="email">
           </label>
           <label class="small-txt addn-txt" for="terms">
-            <input type="checkbox" id="terms" class="cb" name="terms" data-validation="required" data-validation-error-msg="You must agree to the terms and conditions">
+            <input type="checkbox" id="terms" class="cb" name="terms" data-validation="required" data-validation-error-msg="You must agree to the terms and conditions.">
             By submitting your email, you have read and agree to the <a href="#" title="">terms of use</a>.</label>
         </li>
         <li id="profile_website">
           <label for="website">Website
-            <input id="website" name="website" class="element text medium" type="text" value="<?php echo $_POST['website']?$_POST['website']:""; ?>" data-validation="url" data-validation-error-msg="Please enter correct website URL e.g. http://aec.com" placeholder="http://">
+            <input id="website" name="website" class="element text medium" type="text" value="<?php echo $_POST['website']?$_POST['website']:""; ?>" data-validation="url" data-validation-error-msg="Please enter correct website URL e.g. http://aec.com." placeholder="http://">
           </label>
         </li>
         <div class="main-label">Social Media <span class="help-txt">Users will be able to follow you on social media using the links provided</span> </div>
@@ -195,19 +195,20 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
                 $content = $_POST['awards'];                     
                 $editor_id = 'awards';
                 wp_editor( $content, $editor_id,$settings ); ?>
-            <span class="sub-label">250 maximum characters</span>
+            <span class="sub-label">300 maximum characters</span>
           <!-- <textarea id="awards" name="awards" class="element textarea medium" maxlength="250"><?php echo $_POST['awards']; ?></textarea> -->
           <div id="wp-word-count"></div>
         </li>
         <li id="profile_videos">
           <div class="main-label">Videos</div>
-          <div class="has-btn">
-            <input id="videos" name="videos[]" class="element text medium" type="text" value="<?php echo $_POST['videos'][0]; ?>">
-          </div>
+          <div class="">
+              <textarea id="videos" name="videos[]" class="element textarea medium"></textarea>
+           <!--  <input id="videos" name="videos[]" class="element text medium" type="text" value="<?php echo $_POST['videos'][0]; ?>">
+ -->          </div>
         </li>
         <div class="fw-nrml sub-label mb">
           <hr>
-          <a class="add-field-btn" id="addsingleinput" onclick="addsingleinput(elementid='profile_videos',limit=6,postname='videos')">Add Another</a> </div>
+          <a class="add-field-btn" id="addsingleinput" onclick="addsingleinput(elementid='profile_videos',limit=5,postname='videos')">Add Another</a> </div>
         <li id="profile_featured">
           <div class="main-label">Is featured? </div>
           <div class="mb">
@@ -255,7 +256,7 @@ jQuery("[name='term_taxonomy_id[]']:eq(0)")
   .valAttr('error-msg','At least one category is required. ');
 jQuery.validate({
   form : '#adminprofile',
-  errorMessagePosition : 'top',
-  validateOnBlur : false,
+  errorMessagePosition : 'top'
+ //validateOnBlur : false
 });
 </script> 
