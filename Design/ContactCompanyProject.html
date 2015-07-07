@@ -1,0 +1,123 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AEC</title>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/foundation.css">
+
+<!-- This is how you would link your custom stylesheet -->
+<link rel="stylesheet" href="css/app.css">
+<script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<!--header starts-->
+<div class="row">
+  <header class="site-head">
+    <div class="large-6 columns"> <a href="index.html" title=""><img src="img/logo.jpg" alt="image"/></a> </div>
+    <div class="large-6 columns show-for-large-only"> <a href="#" class="button radius prof-btn right"  title="">SUBMIT A PROFILE</a> </div>
+  </header>
+</div>
+<!--header ends--> 
+
+<!--Banner section starts-->
+
+<div class="row">
+  <div class="banner"> <img src="img/contact-banner.jpg" alt="image"/> </div>
+</div>
+<!--Banner section ends--> 
+
+<!--Form section starts-->
+<div class="row">
+  <div class="profile-sec">
+    <div class="large-12 columns">
+      <div class="page-head">
+        <h1 class="page-title">Contact {Company/Project}</h1>
+        <h3 class="sub-txt">Secondary Headline</h3>
+      </div>
+    </div>
+    <div class="large-6 columns">
+      <form id="contact-form" class="custom">
+        <label for="name">Your Name
+          <input type="text" name="name" data-validation="required" id="name">
+        </label>
+        <label for="email">Your Email
+          <input  type="text" name="email" data-validation="required" class="mar-no" id="email">
+        </label>
+        <label  for="terms" class="small-txt addn-txt">
+          <input type="checkbox" class="cb" name="terms" data-validation="required" id="terms">
+          <span class="custom checkbox"  data-validation="required"></span>By submitting your email, you have read and agree to the <a href="#" title="">terms of use</a>.</label>
+        <label  for="company">Company/ Organization Affiliation (Optional)
+          <input type="text" name="affiliation" id="company">
+        </label>
+        <label for="number">Your Telephone Number  (Optional)
+          <input type="text" name="phNumber" data-validation="number" id="number">
+        </label>
+        <label for="subject">Subject
+          <select data-validation="required" id="subject">
+            <option value="">Please Select</option>
+            <option>Updating/Revising Profile Content</option>
+            <option>How to Get Featured</option>
+            <option>Errors Submitting a Profile</option>
+            <option>General Website Inquiries</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label for="message">Your Message <span class="help-txt">Please provide additional details so we can respond appropriately.</span>
+          <textarea name="message" data-validation="required" id="message"></textarea>
+        </label>
+        <input type="submit" value="submit" class="sub-btn">
+      </form>
+    </div>
+    <div class="large-6 columns"> </div>
+    <div class="large-12 columns">
+      <div class="form-btm-txt">Please note that all responses are up to individual companies’/project’s discretion. A Visible AEC administrator will be copied on your message for information purposes only.<br>
+        Please don’t hesitate to contact the Advanced Energy Centre if you would like to collaborate further: advancedenergycentre@marsdd.com </div>
+    </div>
+  </div>
+</div>
+
+<!--Form section ends--> 
+
+<!--footer starts-->
+<div class="row">
+  <footer class="site-footer">
+    <div class="large-4 columns"> <a href="http://www.marsdd.com/systems-change/advanced-energy-centre" class="left" title=""><img src="img/footer-logo.jpg" alt="image"/></a> <a href="http://www.marsdd.com" class="right" title=""><img src="img/mars-logo.jpg" alt="image"/></a> </div>
+    <div class="large-8 columns">
+      <ul class="inline-list footer-links">
+        <li><a href="#" title="">Home </a></li>
+        <li><a href="#" title="">About</a></li>
+        <li><a href="#" title="">Partners</a></li>
+        <li><a href="#" title="">RSS Feed</a></li>
+        <li><a href="#" title="">Contact</a></li>
+      </ul>
+      <div class="footer-social"> <a href="https://www.facebook.com/MaRSCentre" title="" target="_blank"> <i class="fa fa-facebook"></i> </a> <a href="https://twitter.com/MaRSDD" title="" target="_blank"> <i class="fa fa-twitter"></i> </a> <a href="http://www.linkedin.com/company/mars-discovery-district" title="" target="_blank"> <i class="fa fa-linkedin"></i> </a> </div>
+    </div>
+    <div class="large-12 columns">
+      <div class="footer-copy">© 2015 COPYRIGHT MaRS DISCOVERY DISTRICT. ALL RIGHTS RESERVED.&nbsp;&nbsp; <a href="#" title="">Terms & Conditions</a>.</div>
+    </div>
+  </footer>
+</div>
+<!--footer ends--> 
+
+<script src="js/vendor/jquery.js"></script> 
+<script src="js/foundation.min.js"></script> 
+<script>
+      $(document).foundation();
+</script> 
+<script src="js/custom.js"></script> 
+<script src="js/jquery.form-validator.js"></script> 
+<script>
+$.validate({
+  form : '#contact-form',
+  errorMessagePosition : 'top',
+  validateOnBlur : false
+});
+</script>
+</body>
+</html>

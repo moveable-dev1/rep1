@@ -1,0 +1,342 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AEC</title>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/foundation.css">
+
+<!-- This is how you would link your custom stylesheet -->
+<link rel="stylesheet" href="css/app.css">
+<script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
+<!--header starts-->
+<div class="row">
+  <header class="site-head">
+    <div class="large-6 columns"> <a href="index.html" title=""><img src="img/logo.jpg" alt="image"/></a> </div>
+    <div class="large-6 columns show-for-large-only"> <a href="#" class="button radius prof-btn right"  title="">SUBMIT A PROFILE</a> </div>
+  </header>
+</div>
+<!--header ends--> 
+
+<!--toggle section starts-->
+<form class="custom">
+  <div class="row">
+    <div class="toggle-sec show-for-large-only">
+      <div class="toggle-head">
+        <div class="large-8 columns"> <span class="left toggle-title">Browse by:</span>
+          <ul class="tabs button-group radius" data-tab role="tablist">
+            <li class="tab-title active"><a href="#panel2-1" tabindex="0" aria-selected="true" title="" role="tab">INFOGRAPHIC</a></li>
+            <li class="tab-title"><a href="#panel2-2" tabindex="0" aria-selected="false" title="" role="tab">CATEGORY</a></li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <div class="row collapse postfix-radius search-box">
+            <div class="small-10 columns">
+              <input type="text" placeholder="Search all profiles" title="search">
+            </div>
+            <div class="small-2 columns"> <a href="#" class="postfix" aria-label="submit form" title=""><i class="fa fa-search"></i></a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="tabs-content">
+        <div aria-hidden="false" class="content active text-center" id="panel2-1">
+          <div class="infographic"> <img src="img/infographic.jpg" alt="image"/> </div>
+        </div>
+        <div aria-hidden="true" class="content" id="panel2-2">
+          <div class="small-4 columns cat-col">
+            <h4 class="cat-head">Select Categories</h4>
+            <div class="cat-cont">
+              <label for="category1">
+                <input type="checkbox" class="cb" id="category1">
+                <span class="custom checkbox"></span>Centralized Generation</label>
+              <label for="category2">
+                <input type="checkbox" class="cb" id="category2">
+                <span class="custom checkbox"></span>Transmission</label>
+              <label for="category3">
+                <input type="checkbox" class="cb" id="category3">
+                <span class="custom checkbox"></span>Distribution</label>
+              <label for="category4">
+                <input type="checkbox" class="cb" id="category4">
+                <span class="custom checkbox"></span>Customer Technologies</label>
+              <label for="category5">
+                <input type="checkbox" class="cb" id="category5">
+                <span class="custom checkbox"></span>Microgrid</label>
+              <label for="category6">
+                <input type="checkbox" class="cb" id="category6">
+                <span class="custom checkbox"></span>Grid Operation</label>
+            </div>
+          </div>
+          <div class="small-4 columns cat-col dsbl">
+            <h4 class="cat-head">Refine</h4>
+            <div class="cat-cont"> Please select at least one category from level one. </div>
+          </div>
+          <div class="small-4 columns cat-col dsbl">
+            <h4 class="cat-head">Refine</h4>
+            <div class="cat-cont"> Please select at least one category from level one. </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--for devices only-->
+    <div class="toggle-sec hide-for-large-only">
+      <ul class="accordion" data-accordion="myAccordionGroup">
+        <li class="accordion-navigation"> <a href="#panel4c" aria-expanded="false" title="">Search Site <i class="fa fa-caret-right"></i></a>
+          <div id="panel4c" class="content">
+            <div class="cat-col">
+              <h4 class="cat-head">Select Categories</h4>
+              <div class="cat-cont">
+                <label for="category1a">
+                  <input type="checkbox" class="cb" id="category1a">
+                  <span class="custom checkbox"></span>Centralized Generation</label>
+                <label for="category2a">
+                  <input type="checkbox" class="cb" id="category2a">
+                  <span class="custom checkbox"></span>Transmission</label>
+                <label for="category3a">
+                  <input type="checkbox" class="cb" id="category3a">
+                  <span class="custom checkbox"></span>Distribution</label>
+                <label for="category4a">
+                  <input type="checkbox" class="cb" id="category4a">
+                  <span class="custom checkbox"></span>Customer Technologies</label>
+                <label for="category5a">
+                  <input type="checkbox" class="cb" id="category5a">
+                  <span class="custom checkbox"></span>Microgrid</label>
+                <label for="category6a">
+                  <input type="checkbox" class="cb" id="category6a">
+                  <span class="custom checkbox"></span>Grid Operation</label>
+              </div>
+            </div>
+            <div class="cat-col dsbl">
+              <h4 class="cat-head">Refine</h4>
+              <div class="cat-cont"> Please select at least one category from level one. </div>
+            </div>
+            <div class="cat-col dsbl">
+              <h4 class="cat-head">Refine</h4>
+              <div class="cat-cont"> Please select at least one category from level one. </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>
+<!--toggle section ends--> 
+
+<!--Search results section starts-->
+<div class="row">
+  <div class="profile-sec">
+    <div class="large-12 columns">
+      <div class="search-status">
+        <div class="left">You searched for: <span class="Search-terms">Item 1, Item 2, Item 3</span></div>
+        <div class="right search-count">51 results</div>
+      </div>
+    </div>
+    <div class="large-5 columns prof-col">
+      <div class="panel">
+        <div class="th radius feat-img"><img src="img/profile-pic1.jpg" alt="image"/> </div>
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img1.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 large-offset-2 columns prof-col">
+      <div class="panel">
+        <div class="th radius feat-img"><img src="img/profile-pic2.jpg" alt="image"/> </div>
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 columns prof-col">
+      <div class="panel panel-search">
+        <div class="th radius feat-img"><img src="img/profile-pic1.jpg" alt="image"/> </div>
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img1.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 large-offset-2 columns prof-col">
+      <div class="panel panel-search">
+        <div class="th radius feat-img"><img src="img/profile-pic2.jpg" alt="image"/> </div>
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 columns prof-col">
+      <div class="panel panel-search">
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 large-offset-2 columns prof-col">
+      <div class="panel panel-search">
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 columns prof-col">
+      <div class="panel panel-search">
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 large-offset-2 columns prof-col">
+      <div class="panel panel-search">
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 columns prof-col">
+      <div class="panel panel-search">
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 large-offset-2 columns prof-col">
+      <div class="panel panel-search">
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 columns prof-col">
+      <div class="panel panel-search">
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-5 large-offset-2 columns prof-col">
+      <div class="panel panel-search">
+        <div class="row prof-cont">
+          <div class="small-3 columns">
+            <div class="comp-thumb"><img src="img/company-img2.jpg" alt="image" class="th radius"/> </div>
+          </div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
+            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="large-12 columns text-center"> <a role="button" class="button tiny radius more-btn more-btn-inner" href="#">Load More</a> </div>
+  </div>
+</div>
+<!--Search results section ends--> 
+
+<!--Promo section starts-->
+<div class="row show-for-large-only">
+  <div class="promo-sec profile-sec">
+    <div class="large-3 columns"> <a href="" class="promo-head" title="">About AEC</a>
+      <div class="promo-cont">Cras varius molestie risus, sed aliquet tellus pulvinar sed. Pellentesque dignissim enim et augue lacinia elementum. Proin felis augue, pharetra sed condimentum vitae, porttitor a felis. Cras eget diam quis risus cursus porta. Nam quis laoreet mi. Cras mollis, ante vitae luctus pharetra.</div>
+      <a href="#" class="button tiny radius more-btn" role="button" title="">View More</a> </div>
+    <div class="large-3 large-offset-1 columns">
+      <div class="promo-head">Introductory Video</div>
+      <div class="flex-video widescreen vimeo">
+        <iframe src="http://player.vimeo.com/video/60122989" width="400" height="225" allowfullscreen="" title="video"></iframe>
+      </div>
+      <div class="promo-cont">Cras varius molestie risus, sed aliquet tellus pulvinar sed. Pellentesque dignissim enim et augue lacinia elementum. Proin felis augue, pharetra sed condimentum vitae.</div>
+    </div>
+    <div class="large-3 large-offset-1 columns"> <a href="" class="promo-head" title="">Partners</a>
+      <div class="promo-cont">Cras varius molestie risus, sed aliquet tellus pulvinar sed. Pellentesque dignissim enim et augue lacinia elementum. Proin felis augue, pharetra sed condimentum vitae, porttitor a felis. Cras eget diam quis risus cursus porta. Nam quis laoreet mi. Cras mollis, ante vitae luctus pharetra.</div>
+      <a href="#" class="button tiny radius more-btn" role="button" title="">View More</a> </div>
+  </div>
+</div>
+<!--Promo section ends--> 
+
+<!--footer starts-->
+<div class="row">
+  <footer class="site-footer">
+    <div class="large-4 columns"> <a href="http://www.marsdd.com/systems-change/advanced-energy-centre" class="left" title=""><img src="img/footer-logo.jpg" alt="image"/></a> <a href="http://www.marsdd.com" class="right" title=""><img src="img/mars-logo.jpg" alt="image"/></a> </div>
+    <div class="large-8 columns">
+      <ul class="inline-list footer-links">
+        <li><a href="#" title="">Home </a></li>
+        <li><a href="#" title="">About</a></li>
+        <li><a href="#" title="">Partners</a></li>
+        <li><a href="#" title="">RSS Feed</a></li>
+        <li><a href="#" title="">Contact</a></li>
+      </ul>
+      <div class="footer-social"> <a href="https://www.facebook.com/MaRSCentre" title="" target="_blank"> <i class="fa fa-facebook"></i> </a> <a href="https://twitter.com/MaRSDD" title="" target="_blank"> <i class="fa fa-twitter"></i> </a> <a href="http://www.linkedin.com/company/mars-discovery-district" title="" target="_blank"> <i class="fa fa-linkedin"></i> </a> </div>
+    </div>
+    <div class="large-12 columns">
+      <div class="footer-copy">© 2015 COPYRIGHT MaRS DISCOVERY DISTRICT. ALL RIGHTS RESERVED.&nbsp;&nbsp; <a href="#" title="">Terms & Conditions</a>.</div>
+    </div>
+  </footer>
+</div>
+<!--footer ends--> 
+
+<script src="js/vendor/jquery.js"></script> 
+<script src="js/foundation.min.js"></script> 
+<script>
+      $(document).foundation();
+</script>
+<script src="js/custom.js"></script> 
+</body>
+</html>
