@@ -473,6 +473,17 @@ function search_keyword($searchterm)
 	return $getsearch;
 }
 
+//
+function search_count($searchterm)
+{
+	global $wpdb;
+	$searchFieldName= "name";
+	$searchCondition = "$searchFieldName LIKE '%" . $searchterm . "%'";
+	$query="SELECT COUNT(*) FROM aec_profile WHERE $searchCondition AND status=1 ORDER BY id DESC";
+	$getsearch=$wpdb->get_var($query);
+	return $getsearch;
+}
+
 //Add Fields in settings
 $new_general_setting = new new_general_setting();
 

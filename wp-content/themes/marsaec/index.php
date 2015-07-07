@@ -29,8 +29,13 @@ get_header(); ?>
       ?>
     <div class="large-5 columns prof-col">
       <div class="panel">
-        <div class="th radius feat-img"><img src="<?php echo wpse_resizeimage(feautured_image($newvalue->id),291); ?>" alt="image"/> 
-        </div>
+        <?php 
+        $featuredimage=feautured_image($newvalue->id);
+        if($featuredimage) { ?>
+          <div class="th radius feat-img"><img src="<?php echo wpse_resizeimage($featuredimage,291); ?>" alt="image"/>
+             </div>
+        <?php } ?> 
+       
         <div class="row prof-cont">
           <div class="small-3 columns">
             <div class="comp-thumb"><img src="<?php echo $newvalue->logo; ?>" alt="image" class="th radius"/> </div>

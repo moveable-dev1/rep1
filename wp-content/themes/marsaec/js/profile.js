@@ -1,6 +1,34 @@
 /**
  * Add multiple input by add more button e.g. Affiliated Companies, Project Funders, Investors
  */
+
+
+function addimageinfo(info) {
+        var filename = jQuery(info).val();
+        //var filesize = $(this)[0].files[0].size;      
+        var filesize = (jQuery(info)[0].files[0].size / 1024); 
+            if (filesize / 1024 > 1) { 
+                if (((filesize / 1024) / 1024) > 1) { 
+                    filesize = (Math.round(((filesize / 1024) / 1024) * 100) / 100);
+                    jQuery(info).prev(jQuery('.file-status')).css('display' , 'block');
+                    jQuery(info).prev(jQuery('.file-status')).html(filename + '&nbsp;&nbsp;' + filesize + 'GB');
+                }
+                else{ 
+                    filesize = (Math.round((filesize / 1024) * 100) / 100);
+                    jQuery(info).prev(jQuery('.file-status')).css('display' , 'block');
+                    jQuery(info).prev(jQuery('.file-status')).html(filename + '&nbsp;&nbsp;' + filesize + 'MB');
+                } 
+                } 
+                else {
+                    filesize = (Math.round(filesize * 100) / 100);
+                    jQuery(info).prev(jQuery('.file-status')).css('display' , 'block');
+                    jQuery(info).prev(jQuery('.file-status')).html(filename + '&nbsp;&nbsp;' + filesize + 'KB');
+                }   
+        //filename=filename.substring(filename.lastIndexOf('\\')+1);
+        //$(this).prev($('.file-status')).css('display' , 'block');
+        //$(this).prev($('.file-status')).html(filename + '&nbsp;&nbsp;' + filesize + 'bytes');
+}
+
 function addinput(elementid,limit,postname)
 {     
         var n = jQuery("#"+elementid+" div#length").length;
@@ -21,7 +49,10 @@ function addfeaturedimage(limit)
         var n = jQuery("#profile_featured div#length").length;
 		
         if (n <limit) {
-               jQuery("#profile_featured").append('<div id="length"><div class="has-rt-btn"><label><span class="upload"> <span class="file-status">file name</span><input type="file" name="feauturedimage[]" id="feauturedimage"/></span></label><div class="fl-btn"><input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()"><label class="type_label fw-nrml ">Featured Image</label></div><a class="remove-field-btn" alt="remove-company" id="delete">Remove Image</a></div></div>');
+               jQuery("#profile_featured").append('<div id="length"><div class="has-rt-btn"><label><span class="upload"> <span class="file-status">file name</span><input type="file" name="feauturedimage[]" id="feauturedimage" data-validation="mime size" data-validation-allowing="jpg, png, gif, jpeg" data-validation-max-size="1M"/></span></label><div class="fl-btn"><input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()"><label class="type_label fw-nrml ">Featured Image</label></div><a class="remove-field-btn" alt="remove-company" id="delete">Remove Image</a></div></div>');
+               jQuery('input[name^="feauturedimage"]').bind('change', function() {
+                    addimageinfo(this);
+                    });
         }
         else{
                 alert("No more additional fields are allowed!");
@@ -145,6 +176,15 @@ $("body").on("click", "#delete", function (e) {
         $('#profile_investors').hide();
         $('#companyaddmore').hide();
        }
+    });
+
+    $('#logo').bind('change', function() {
+     addimageinfo(this);
+    });
+
+
+    $('input[name^="feauturedimage"]').bind('change', function() {
+        addimageinfo(this);
     });
 });
 

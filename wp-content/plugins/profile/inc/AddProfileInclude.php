@@ -111,15 +111,15 @@ if(isset($_POST["submit"])){
 		}
 		//Check duplicate value
 		$exists = $wpdb->get_var( $wpdb->prepare(
-    "SELECT COUNT(*) FROM aec_profile WHERE permalink = %s", "$newpermalink"
- 	 ) );
+    	"SELECT COUNT(*) FROM aec_profile WHERE permalink = %s", "$newpermalink"
+ 	 	) );
 
 		if($exists>=1)
 		{
 			$newpermalink= $newpermalink."_".$exists;
 		} 
 
-		//Get Auhor ID
+		//Get Author ID
 		$user_ID = get_current_user_id();
 		
 		$wpinsertprofile=$wpdb->insert("aec_profile", array("profile_type" => $_POST['profile_type'],

@@ -63,72 +63,110 @@ $getProfile= get_profileDetail($profileId);
           	 ?>
             
            
-        
+         <?php
+        //Videos ID=14
+        $getVideos=GetSingle($metaid=14,$profileId); //Get All Videos
+        if(!empty($getVideos)){
+        ?>
         <div class="row prof-cont comp-short prof-cont-inner">
           <div class="sub-head">VIDEO</div>
           <div class="flex-video widescreen vimeo"> 
+           <?php  foreach ($getVideos as $VideosValue) { ?>
             <iframe src="http://player.vimeo.com/video/60122989" width="400" height="225" allowfullscreen="" title="video"></iframe> 
+            <?php } ?>
           </div>
         </div>
+        <?php } ?>
+
+
       </div>
       
       <!--Right Sidebar-->
       <div class="large-5 large-offset-1 columns"> 
         <!--Company Links box-->
         <ul class="small-block-grid-2 comp-btn">
-          <li><a href="#" class="button expand radius more-btn big-btn" role="button" title=""> <img src="<?php bloginfo('template_directory'); ?>/img/profile-icon.jpg" alt="image"/> Contact this Profile</a></li>
-          <li><a href="#" class="button expand radius more-btn big-btn" role="button" title=""><img src="<?php bloginfo('template_directory'); ?>/img/website-icon.jpg" alt="image"/> Visit Website</a></li>
+          <li><a href="mailto:<?php echo $getProfile->email; ?>" class="button expand radius more-btn big-btn" role="button" title=""> <img src="<?php bloginfo('template_directory'); ?>/img/profile-icon.jpg" alt="image"/> Contact this Profile</a></li>
+          <?php $website=$getProfile->website; 
+          if($website) {
+          ?>
+          <li><a href="<?php echo $website; ?>" class="button expand radius more-btn big-btn" role="button" title=""><img src="<?php bloginfo('template_directory'); ?>/img/website-icon.jpg" alt="image"/> Visit Website</a></li>
+          <?php } ?>
         </ul>
         <a href="#" class="button expand radius more-btn more-btn-inner req-link" role="button" title="">Request Translation</a> 
         
         <!--Follow box-->
         <div class="show-for-large-only">
           <div class="sub-head side-bar-subhead">Follow</div>
-          <div class="sidebar-social"> <a href="" title=""> <i class="fa fa-facebook"></i> </a> <a href="" title=""> <i class="fa fa-twitter"></i> </a> <a href="" title=""> <i class="fa fa-linkedin"></i> </a> </div>
+          <div class="sidebar-social"> 
+            <?php if($getProfile->facebook){ ?>
+           <a href="<?php echo $getProfile->facebook; ?>" title="" target="_blank"> <img src="/wp-content/themes/marsaec/img/fb-icon.png" alt="facebook link"> </a>
+            <?php }
+            if($getProfile->twitter){ ?>
+            <a href="<?php echo $getProfile->twitter; ?>" title="" target="_blank"> <img src="/wp-content/themes/marsaec/img/twitter-icon.png" alt="twitter link"> </a>
+            <?php }
+            if($getProfile->linkedin){ ?>
+           <a href="<?php echo $getProfile->linkedin; ?>" title="" target="_blank"> <img src="/wp-content/themes/marsaec/img/in-icon.png" alt="linkedin link"> </a>
+            <?php } ?>
+          </div>
         </div>
         <div class="hide-for-large-only">
           <hr>
           <ul class="accordion" data-accordion="myAccordionGroup">
             <li class="accordion-navigation"> <a href="#panelFollow" aria-expanded="false" title="">Follow Company / Project<i class="fa fa-caret-right"></i></a>
               <div id="panelFollow" class="content">
-                <div class="sidebar-social"> <a href="" title=""> <i class="fa fa-facebook"></i> </a> <a href="" title=""> <i class="fa fa-twitter"></i> </a> <a href="" title=""> <i class="fa fa-linkedin"></i> </a> </div>
+                <div class="sidebar-social">
+                  <?php if($getProfile->facebook){ ?>
+                 <a href="<?php echo $getProfile->facebook; ?>" title="" target="_blank"> <img src="/wp-content/themes/marsaec/img/fb-icon.png" alt="facebook link"> </a> 
+                   <?php }
+                  if($getProfile->twitter){ ?>
+                 <a href="<?php echo $getProfile->twitter; ?>" title="" target="_blank"> <img src="/wp-content/themes/marsaec/img/twitter-icon.png" alt="twitter link"> </a>  
+                  <?php }
+                  if($getProfile->linkedin){ ?>
+                 <a href="<?php echo $getProfile->linkedin; ?>" title="" target="_blank"> <img src="/wp-content/themes/marsaec/img/in-icon.png" alt="linkedin link"> </a> 
+                  <?php } ?>
+               </div>
               </div>
             </li>
           </ul>
           <hr>
         </div>
-        
+
         <!--Map box-->
-        <div class="comp-map show-for-large-only"><img src="<?php bloginfo('template_directory'); ?>/img/comp-map.jpg" alt="image"/></div>
+        <div class="comp-map show-for-large-only">
+        <iframe src="<?php echo get_addressMap($profileId); ?>" width="305" height="180"></iframe>
+        </div>
         
         <!--Award box-->
+         <?php if($getProfile->awards){ ?>
         <div class="show-for-large-only">
           <div class="sub-head side-bar-subhead">AWARDS & RECOGNITIONS</div>
-          <ul class="links-list">
-            <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-            <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-          </ul>
+          <?php echo $getProfile->awards; ?>
         </div>
+       
         <div class="hide-for-large-only">
           <ul class="accordion" data-accordion="myAccordionGroup">
             <li class="accordion-navigation"> <a href="#panelAward" aria-expanded="false" title="">Awards & Recognitions<i class="fa fa-caret-right"></i></a>
               <div id="panelAward" class="content">
-                <ul class="links-list">
-                  <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-                  <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-                </ul>
+                <?php echo $getProfile->awards; ?>
               </div>
             </li>
           </ul>
           <hr>
         </div>
+         <?php } ?>
         
         <!--Affiliation box-->
+         <?php
+        //Affiliated Company Name Id=1, URL id=2
+        $getAffCompany=GetSingle($metaid=1,$profileId);
+        if(!empty($getAffCompany)){
+        ?>
         <div class="show-for-large-only">
           <div class="sub-head side-bar-subhead">Affiliated Companies</div>
           <ul class="links-list">
-            <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-            <li><a href="" title="">Proin vulputate condimentum risus</a></li>
+            <?php foreach ($getAffCompany as $AffValue) { ?>
+            <li><a href="<?php echo GetSet($metaid=2, $fieldid=$AffValue->fieldid,$profileId); ?>" title="<?php  echo $AffValue->value; ?>"><?php  echo $AffValue->value; ?></a></li>
+            <?php } ?>
           </ul>
         </div>
         <div class="hide-for-large-only">
@@ -136,21 +174,28 @@ $getProfile= get_profileDetail($profileId);
             <li class="accordion-navigation"> <a href="#panelAffliation" aria-expanded="false" title="">Affiliated Companies<i class="fa fa-caret-right"></i></a>
               <div id="panelAffliation" class="content">
                 <ul class="links-list">
-                  <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-                  <li><a href="" title="">Proin vulputate condimentum risus</a></li>
+                   <?php foreach ($getAffCompany as $AffValue) { ?>
+                  <li><a href="<?php echo GetSet($metaid=2, $fieldid=$AffValue->fieldid,$profileId); ?>" title="<?php  echo $AffValue->value; ?>"><?php  echo $AffValue->value; ?></a></li>
+                 <?php } ?>
                 </ul>
               </div>
             </li>
           </ul>
           <hr>
         </div>
-        
+        <?php } ?>
         <!--Funders box-->
+         <?php
+        //Project Funder name ID=10, URL=11
+        $getFunders=GetSingle($metaid=10,$profileId);
+        if(!empty($getFunders)){
+        ?>
         <div class="show-for-large-only">
           <div class="sub-head side-bar-subhead">Project Funders</div>
           <ul class="links-list">
-            <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-            <li><a href="" title="">Proin vulputate condimentum risus</a></li>
+            <?php  foreach ($getFunders as $FundersValue) { //Get all investors ?>
+            <li><a href="<?php echo GetSet($metaid=11, $fieldid=$InvestorsValue->fieldid,$profileId); ?>" title="<?php echo $FundersValue->value; ?>"><?php echo $FundersValue->value; ?></a></li>
+            <?php } ?>
           </ul>
         </div>
         <div class="hide-for-large-only">
@@ -158,21 +203,28 @@ $getProfile= get_profileDetail($profileId);
             <li class="accordion-navigation"> <a href="#paneFunders" aria-expanded="false" title="">Project Funders<i class="fa fa-caret-right"></i></a>
               <div id="paneFunders" class="content">
                 <ul class="links-list">
-                  <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-                  <li><a href="" title="">Proin vulputate condimentum risus</a></li>
+                   <?php  foreach ($getFunders as $FundersValue) { //Get all investors ?>
+                  <li><a href="<?php echo GetSet($metaid=11, $fieldid=$InvestorsValue->fieldid,$profileId); ?>" title="<?php echo $FundersValue->value; ?>"><?php echo $FundersValue->value; ?></a></li>
+                  <?php } ?>
                 </ul>
               </div>
             </li>
           </ul>
           <hr>
         </div>
-        
+        <?php } ?>
         <!--Investors box-->
+          <?php
+        //Investors ID=12, URL=13
+        $getInvestors=GetSingle($metaid=12,$profileId);
+        if(!empty($getInvestors)){
+        ?>
         <div class="show-for-large-only">
           <div class="sub-head side-bar-subhead">Investors</div>
           <ul class="links-list">
-            <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-            <li><a href="" title="">Proin vulputate condimentum risus</a></li>
+             <?php  foreach ($getInvestors as $InvestorsValue) { //Get all investors ?>
+            <li><a href="<?php echo GetSet($metaid=13, $fieldid=$InvestorsValue->fieldid,$profileId); ?>" title="<?php echo $InvestorsValue->value; ?>"><?php echo $InvestorsValue->value; ?></a></li>
+           <?php } ?>
           </ul>
         </div>
         <div class="hide-for-large-only">
@@ -180,13 +232,15 @@ $getProfile= get_profileDetail($profileId);
             <li class="accordion-navigation"> <a href="#paneInvestors" aria-expanded="false" title="">Investors<i class="fa fa-caret-right"></i></a>
               <div id="paneInvestors" class="content">
                 <ul class="links-list">
-                  <li><a href="" title="">Proin vulputate condimentum risus</a></li>
-                  <li><a href="" title="">Proin vulputate condimentum risus</a></li>
+                   <?php  foreach ($getInvestors as $InvestorsValue) { //Get all investors ?>
+                  <li><a href="<?php echo GetSet($metaid=13, $fieldid=$InvestorsValue->fieldid,$profileId); ?>" title="<?php echo $InvestorsValue->value; ?>"><?php echo $InvestorsValue->value; ?></a></li>
+                  <?php } ?>
                 </ul>
               </div>
             </li>
           </ul>
         </div>
+        <?php } ?>
       </div>
     </div>
     <!-- Company detail section ends--> 

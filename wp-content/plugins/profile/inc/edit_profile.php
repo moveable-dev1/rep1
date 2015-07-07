@@ -388,7 +388,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
     <li id="profile_investors">
       <div class="main-label">Investors</div>
       <?php
-        //Project Funder name ID=12, URL=13
+        //Investers ID=12, URL=13
         $getInvesters=GetSingle($metaid=12,$profileId);
         if(!empty($getInvesters)){
           foreach ($getInvesters as $InvestersValue) { //Get all investors

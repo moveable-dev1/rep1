@@ -19,8 +19,8 @@ get_header(); ?>
   <div class="profile-sec">
     <div class="large-12 columns">
       <div class="page-head">
-        <h1 class="page-title">404 Page Not Found</h1>
-        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span> </div>
+        <h1 class="page-title">Sorry! This page was not found.</h1>
+        <span>Continue searching this site…</span> </div>
     </div>
     <div class="large-12 columns"> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="Home" class="sub-btn" role="button">RETURN TO HOMEPAGE</a> </div>
   </div>

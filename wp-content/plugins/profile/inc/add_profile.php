@@ -166,7 +166,7 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
           </label>
           <label class="small-txt addn-txt" for="terms">
             <input type="checkbox" id="terms" class="cb" name="terms" data-validation="required" data-validation-error-msg="You must agree to the terms and conditions.">
-            By submitting your email, you have read and agree to the <a href="#" title="">terms of use</a>.</label>
+            By submitting your email, you have read and agree to the <a href="/terms-conditions/" title="terms-conditions" target="_blank">terms of use</a>.</label>
         </li>
         <li id="profile_website">
           <label for="website">Website
@@ -210,7 +210,7 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
           <hr>
           <a class="add-field-btn" id="addsingleinput" onclick="addsingleinput(elementid='profile_videos',limit=5,postname='videos')">Add Another</a> </div>
         <li id="profile_featured">
-          <div class="main-label">Is featured? </div>
+          <div class="main-label">Is Featured? </div>
           <div class="mb">
             <label for="featured_yes" class="fw-nrml">
               <input id="featured_yes" name="featured" class="element radio" type="radio" value="1" <?php echo $_POST['featured']==1 ? "checked='checked'":""; ?>>

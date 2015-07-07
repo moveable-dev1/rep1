@@ -100,6 +100,20 @@ if(isset($_POST["submit"])){
 		    }
 		}
 		global $wpdb;
+
+		//Save Permalink
+		$newpermalink= sanitize_title($_POST['uname']);
+		
+		//Check duplicate value
+		$exists = $wpdb->get_var( $wpdb->prepare(
+    	"SELECT COUNT(*) FROM aec_profile WHERE permalink = %s", "$newpermalink"
+ 	 	) );
+
+		if($exists>=1)
+		{
+			$newpermalink= $newpermalink."_".$exists;
+		} 
+
 		$wpinsertprofile=$wpdb->insert("aec_profile", array("profile_type" => $_POST['profile_type'],
 					   "name" => $_POST['uname'],
 					   "logo" => $logourl,
@@ -111,7 +125,9 @@ if(isset($_POST["submit"])){
 					   "facebook" => $_POST['facebook'],
 					   "linkedin" => $_POST['linkedin'],
 					   "is_featured" => 0,
-					   "status" => 0
+					   "status" => 0,
+					   "permalink" => $newpermalink,
+					   "created_at" => date('Y-m-d H:i:s')
 					 ));
 		$last_inserted_id = $wpdb->insert_id;
 
@@ -197,6 +213,13 @@ if(isset($_POST["submit"])){
 			session_start();
 			$_SESSION['success_messages']="<div class='updated'>Profile created for ". $_POST['name']."</div>";
 			$_SESSION['profile_id']=$last_inserted_id;
+			// $multiple_recipients = array(
+			//     '',
+			//     ''
+			// );
+			// $subj = 'The email subject';
+			// $body = 'This is the body of the email';
+			// wp_mail( $multiple_recipients, $subj, $body );
 			//echo "<div class='updated'>Profile created for ". $_POST['name']."</div>";
 			wp_redirect( get_permalink( 35 ) );  exit;
 		

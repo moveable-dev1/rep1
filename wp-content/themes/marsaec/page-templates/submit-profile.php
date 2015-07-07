@@ -49,7 +49,10 @@ require get_template_directory() . '/inc/add-profile.php';
               <input type="text" name="uname" id="name" value="<?php echo $_POST['name']; ?>" maxlength="150" data-validation="required">
             </label>
             <label for="logoFile"> Logo <span class="upload"> <span class="file-status">file name</span>
-              <input type="file" name="logo" id="logo" data-validation="required"/>
+              <input type="file" name="logo" id="logo" data-validation="mime size required" 
+          		 data-validation-allowing="jpg, png, gif, jpeg" 
+          		 data-validation-max-size="1M" 
+          		 data-validation-error-msg-required="No image selected"/>
               </span> </label>
           </div>
           <div id="profile_affiliated">
@@ -66,8 +69,9 @@ require get_template_directory() . '/inc/add-profile.php';
             <div class="main-label">Upload Featured Images (Optional) <span id="profileType" class="help-txt">Providing at least one image of your innovation is highly recommended to increase the visibility of your profile on the site.</span></div>
             <div class="has-rt-btn">
               <label><span class="upload"> <span class="file-status">file name</span>
-                <input type="file" class="feauturedimage" id="feauturedimage" name="feauturedimage[]">
-                </span> </label>
+                <input type="file" class="feauturedimage" id="feauturedimage" name="feauturedimage[]" data-validation="mime size" data-validation-allowing="jpg, png, gif, jpeg" data-validation-max-size="1M">
+                </span>
+              </label>
               <div class="fl-btn">
                 <input type="radio" onclick="getElement()" id="feauturedimageradio" name="feauturedimageradio[]">
                 <label class="type_label fw-nrml ">Featured Image</label>
@@ -187,8 +191,8 @@ require get_template_directory() . '/inc/add-profile.php';
               <input type="text" id="email" name="email" class="mar-no" value="<?php echo $_POST['email']; ?>" data-validation="email">
             </label>
             <div>
-              <input type="checkbox" data-validation="required" name="terms" class="cb" id="terms">
-              <label for="terms" class="small-txt">By submitting your email, you have read and agree to the <a href="#" title="">terms of use.</a></label>
+              <input type="checkbox" data-validation="required" name="terms" class="cb" id="terms"  data-validation-error-msg="You must agree to the terms and conditions.">
+              <label for="terms" class="small-txt">By submitting your email, you have read and agree to the <a href="/terms-conditions/" title="terms-conditions" target="_blank">terms of use.</a></label>
             </div>
           </div>
           <div id="profile_website" class="mt">
@@ -227,7 +231,7 @@ require get_template_directory() . '/inc/add-profile.php';
 <!--Form section ends-->
 
 <?php get_footer(); ?>
-<script src="<?php echo get_template_directory_uri().'/js/jquery.form-validator.js'; ?>"></script> 
+<script src="<?php echo get_template_directory_uri().'/js/form-validator/jquery.form-validator.js'; ?>"></script> 
 <script>
 jQuery("[name='term_taxonomy_id[]']:eq(0)")
   .valAttr('','validate_checkbox_group')
@@ -235,6 +239,10 @@ jQuery("[name='term_taxonomy_id[]']:eq(0)")
   .valAttr('error-msg','At least one category is required. ');
 jQuery.validate({
   form : '#CompProfileForm',
+  modules : 'file',
+  /*onModulesLoaded : function() {
+    alert('All modules loaded!');
+  },*/
   errorMessagePosition : 'top',
   validateOnBlur : false,
 });

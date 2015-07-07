@@ -22,8 +22,8 @@ if(!empty($searchterm)) {
 <!--Search results section starts-->
     <div class="large-12 columns">
       <div class="search-status">
-        <div class="left">You searched for: <span class="Search-terms">Item 1, Item 2, Item 3</span></div>
-        <div class="right search-count">51 results</div>
+        <div class="left">You searched for: <span class="Search-terms"><?php echo $searchterm; ?></span></div>
+        <div class="right search-count"><?php echo search_count($searchterm); ?> results</div>
       </div>
     </div>
     <?php 
