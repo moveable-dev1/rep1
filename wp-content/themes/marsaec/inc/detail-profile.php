@@ -3,7 +3,7 @@
  * @package Profile\Detail Profile
  */
 
-//Get Profile ID by permalink
+//Get Profile ID by permalink 
 function get_profileId($var)
 {
 	global $wpdb;

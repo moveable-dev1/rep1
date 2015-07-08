@@ -117,7 +117,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
       <hr>
       <a class="add-field-btn" role="button" id="add_featuredimage" onclick="addfeaturedimage(limit=9)">Add Another</a>
       <input type="hidden" value="" id="feauturedimagevalue" name="feauturedimagevalue"/>
-    </div>
+    </div> 
     <li id="profile_tags">
       <div class="main-label">Categories</div>
       <div id="level1">

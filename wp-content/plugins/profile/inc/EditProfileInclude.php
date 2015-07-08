@@ -206,7 +206,7 @@ if(isset($_POST['update'])) {
     $country_post=$_POST['country'];
     $updatemeta=updatemetavalue(6,$profileId,$country_post);
     }
-
+ 
     //Save Postal Code
     if(isset($_POST['postalcode'])) {
     $postalcode_post=$_POST['postalcode'];

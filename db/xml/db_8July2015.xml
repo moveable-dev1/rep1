@@ -7,7 +7,7 @@
 - Host: localhost
 - Generation Time: Jul 08, 2015 at 12:05 PM
 - Server version: 5.5.37-cll-lve
-- PHP Version: 5.4.28
+- PHP Version: 5.4.28 
 -->
 
 <pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">

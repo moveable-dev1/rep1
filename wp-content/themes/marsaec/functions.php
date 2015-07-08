@@ -760,7 +760,7 @@ function homeCheckAjax() {
                 	 <input id="parent_id<?php echo $catvalue->cat_ID; ?>" name="parent_id" type="hidden" value="<?php echo $parent_cat_ID; ?>">
                 	</div>
 	             	<?php
-					}
+					} 
 					?> 
 				</div>
 				<?php }

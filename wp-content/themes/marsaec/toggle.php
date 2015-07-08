@@ -54,7 +54,7 @@
                 }
                 ?>
             </div>
-          </div>
+          </div> 
           <div class="small-4 columns cat-col dsbl">
             <h4 class="cat-head">Refine</h4>
             <div id="level2">  </div>

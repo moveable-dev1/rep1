@@ -72,7 +72,7 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
   				); 
   				$parentcategory = get_categories($args);
           $qty=1;
-  				foreach ($parentcategory as $catvalue) {
+  				foreach ($parentcategory as $catvalue) { 
   				?>
               <label class="type_label fw-nrml" for="item1">
                 <input id="parent_cat" name="term_taxonomy_id[]" class="element checkbox" type="checkbox" value="<?php echo $catvalue->cat_ID; ?>" data-validation="checkbox_group" <?php echo $qty==1 ? 'data-validation-qty="min1"':""; ?>>

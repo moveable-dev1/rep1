@@ -6,7 +6,7 @@
  *
  * @package Marsaec
  * 
- */
+ */ 
 
 get_header();
 wp_enqueue_script( 'addprofile', get_template_directory_uri() . '/js/profile.js', array( 'jquery' ), '1.0', true );

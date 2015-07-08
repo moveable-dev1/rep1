@@ -353,7 +353,7 @@ $('.more_button').live("click",function()
   {
     var getId = $(this).attr("id");
     if(getId)
-    {
+    { 
       $("#load_more_"+getId).html('<img src="<?php bloginfo('template_directory'); ?>/img/load_img.gif" style="padding:10px 0 0 100px;"/>');  
       $.ajax({
       type: "POST",
