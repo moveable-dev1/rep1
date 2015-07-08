@@ -45,7 +45,7 @@ $getProfile= get_profileDetail($profileId);
      
           	<?php 
           	//Get Featured Image
-          	$getfetauredImage=GetSingle($metaid=8,$profileId);
+          	$getfetauredImage=GetSingleFront($metaid=8,$profileId);
           	if(!empty($getfetauredImage)){ ?>
 		     <div class="row prof-cont comp-short prof-cont-inner">
 		      <div class="sub-head">PHOTOS</div>
@@ -62,18 +62,23 @@ $getProfile= get_profileDetail($profileId);
            <?php }
           	 ?>
             
-           
+          
          <?php
         //Videos ID=14
-        $getVideos=GetSingle($metaid=14,$profileId); //Get All Videos
+        $getVideos=GetSingleFront($metaid=14,$profileId); //Get All Videos
         if(!empty($getVideos)){
         ?>
         <div class="row prof-cont comp-short prof-cont-inner">
           <div class="sub-head">VIDEO</div>
-          <div class="flex-video widescreen vimeo"> 
-           <?php  foreach ($getVideos as $VideosValue) { ?>
-            <iframe src="http://player.vimeo.com/video/60122989" width="400" height="225" allowfullscreen="" title="video"></iframe> 
-            <?php } ?>
+          <div class="clearfix"></div>
+          <div class=""> 
+           <ul id="profileVideos">
+            <?php  foreach ($getVideos as $VideosValue) { ?>
+            <li>
+                  <iframe src="<?php echo $VideosValue->value; ?>" width="400" height="225" allowfullscreen="" title="video"></iframe>
+            </li>
+             <?php } ?>
+          </ul>
           </div>
         </div>
         <?php } ?>
@@ -85,14 +90,19 @@ $getProfile= get_profileDetail($profileId);
       <div class="large-5 large-offset-1 columns"> 
         <!--Company Links box-->
         <ul class="small-block-grid-2 comp-btn">
-          <li><a href="mailto:<?php echo $getProfile->email; ?>" class="button expand radius more-btn big-btn" role="button" title=""> <img src="<?php bloginfo('template_directory'); ?>/img/profile-icon.jpg" alt="image"/> Contact this Profile</a></li>
+          <li>
+            <form action="<?php echo get_permalink( 20 ); ?>" method="post" id="contactProfile">
+            <input type="hidden" name="profile" value="<?php echo $getProfile->profile_type; ?>" />
+            <input type="submit" value="Contact this Profile" class="button expand radius more-btn big-btn cont-comp" />
+          </form>
+          </li>
           <?php $website=$getProfile->website; 
           if($website) {
           ?>
-          <li><a href="<?php echo $website; ?>" class="button expand radius more-btn big-btn" role="button" title=""><img src="<?php bloginfo('template_directory'); ?>/img/website-icon.jpg" alt="image"/> Visit Website</a></li>
+          <li><a href="<?php echo $website; ?>" class="button expand radius more-btn big-btn" role="button" title="Visit Website" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/img/website-icon.jpg" alt="image"/> Visit Website</a></li>
           <?php } ?>
         </ul>
-        <a href="#" class="button expand radius more-btn more-btn-inner req-link" role="button" title="">Request Translation</a> 
+        <a href="mailto:advancedenergycentre@marsdd.com?subject=Request Translation for a Profile from Visible AEC website&body=Translation of this page is available on request in the following languages:%0D%0A%0D%0A- German%0D%0A- French%0D%0A- Mandarin%0D%0A- Spanish%0D%0A%0D%0A<?php echo get_site_url().$_SERVER['REQUEST_URI']; ?>%0D%0A%0D%0APlease let us know how we can help you.%0D%0A%0D%0AThanks,%0D%0AVisible AEC Administration" class="button expand radius more-btn more-btn-inner req-link" role="button" title="">Request Translation</a> 
         
         <!--Follow box-->
         <div class="show-for-large-only">
@@ -140,15 +150,18 @@ $getProfile= get_profileDetail($profileId);
          <?php if($getProfile->awards){ ?>
         <div class="show-for-large-only">
           <div class="sub-head side-bar-subhead">AWARDS & RECOGNITIONS</div>
+          <div class="links-list">
           <?php echo $getProfile->awards; ?>
-        </div>
+        </div></div>
        
         <div class="hide-for-large-only">
           <ul class="accordion" data-accordion="myAccordionGroup">
-            <li class="accordion-navigation"> <a href="#panelAward" aria-expanded="false" title="">Awards & Recognitions<i class="fa fa-caret-right"></i></a>
-              <div id="panelAward" class="content">
+            <li class="accordion-navigation"> <a href="#panelAward" aria-expanded="false" title="">Awards & Recognitions<i class="fa fa-caret-right up"></i></a>
+            <div class="content" id="panelAward">
+              <div class="links-list">
                 <?php echo $getProfile->awards; ?>
               </div>
+            </div>
             </li>
           </ul>
           <hr>
@@ -158,7 +171,7 @@ $getProfile= get_profileDetail($profileId);
         <!--Affiliation box-->
          <?php
         //Affiliated Company Name Id=1, URL id=2
-        $getAffCompany=GetSingle($metaid=1,$profileId);
+        $getAffCompany=GetSingleFront($metaid=1,$profileId);
         if(!empty($getAffCompany)){
         ?>
         <div class="show-for-large-only">
@@ -171,7 +184,7 @@ $getProfile= get_profileDetail($profileId);
         </div>
         <div class="hide-for-large-only">
           <ul class="accordion" data-accordion="myAccordionGroup">
-            <li class="accordion-navigation"> <a href="#panelAffliation" aria-expanded="false" title="">Affiliated Companies<i class="fa fa-caret-right"></i></a>
+            <li class="accordion-navigation"> <a href="#panelAffliation" aria-expanded="false" title="">Affiliated Companies<i class="fa fa-caret-right up"></i></a>
               <div id="panelAffliation" class="content">
                 <ul class="links-list">
                    <?php foreach ($getAffCompany as $AffValue) { ?>
@@ -187,8 +200,8 @@ $getProfile= get_profileDetail($profileId);
         <!--Funders box-->
          <?php
         //Project Funder name ID=10, URL=11
-        $getFunders=GetSingle($metaid=10,$profileId);
-        if(!empty($getFunders)){
+        $getFunders=GetSingleFront($metaid=10,$profileId);
+        if(!empty($getFunders) && $getProfile->profile_type==2){
         ?>
         <div class="show-for-large-only">
           <div class="sub-head side-bar-subhead">Project Funders</div>
@@ -200,7 +213,7 @@ $getProfile= get_profileDetail($profileId);
         </div>
         <div class="hide-for-large-only">
           <ul class="accordion" data-accordion="myAccordionGroup">
-            <li class="accordion-navigation"> <a href="#paneFunders" aria-expanded="false" title="">Project Funders<i class="fa fa-caret-right"></i></a>
+            <li class="accordion-navigation"> <a href="#paneFunders" aria-expanded="false" title="">Project Funders<i class="fa fa-caret-right up"></i></a>
               <div id="paneFunders" class="content">
                 <ul class="links-list">
                    <?php  foreach ($getFunders as $FundersValue) { //Get all investors ?>
@@ -216,8 +229,8 @@ $getProfile= get_profileDetail($profileId);
         <!--Investors box-->
           <?php
         //Investors ID=12, URL=13
-        $getInvestors=GetSingle($metaid=12,$profileId);
-        if(!empty($getInvestors)){
+        $getInvestors=GetSingleFront($metaid=12,$profileId);
+        if(!empty($getInvestors) && $getProfile->profile_type==1){
         ?>
         <div class="show-for-large-only">
           <div class="sub-head side-bar-subhead">Investors</div>
@@ -229,7 +242,7 @@ $getProfile= get_profileDetail($profileId);
         </div>
         <div class="hide-for-large-only">
           <ul class="accordion" data-accordion="myAccordionGroup">
-            <li class="accordion-navigation"> <a href="#paneInvestors" aria-expanded="false" title="">Investors<i class="fa fa-caret-right"></i></a>
+            <li class="accordion-navigation"> <a href="#paneInvestors" aria-expanded="false" title="">Investors<i class="fa fa-caret-right up"></i></a>
               <div id="paneInvestors" class="content">
                 <ul class="links-list">
                    <?php  foreach ($getInvestors as $InvestorsValue) { //Get all investors ?>
@@ -249,81 +262,39 @@ $getProfile= get_profileDetail($profileId);
     <div class="large-12 columns">
       <div class="profile-head">Similar Profiles</div>
     </div>
-    <div class="large-5 columns prof-col">
+    <div id="appendsimilar">
+    <?php 
+      $i=1;
+      foreach(get_similarProfile($profileId) as $similarId) { 
+        $getSimilarID=$similarId->id;
+        $getSimilarProfile= get_profileDetail($getSimilarID);
+      ?>
+
+    <div class="large-5 <?php echo $i%2==0? "large-offset-2":""; ?> columns prof-col">
       <div class="panel">
-        <div class="th radius feat-img"><img src="<?php bloginfo('template_directory'); ?>/img/profile-pic1.jpg" alt="image"/> </div>
+        <?php
+        $featuredimage=feautured_image($similarId->id);
+        if(!empty($featuredimage) && $i<=2) { ?>
+          <div class="th radius feat-img"><img src="<?php echo wpse_resizeimage($featuredimage,291); ?>" alt="image"/>
+             </div>
+        <?php } ?> 
+
+
         <div class="row prof-cont">
           <div class="small-3 columns">
-            <div class="comp-thumb"><img src="<?php bloginfo('template_directory'); ?>/img/company-img1.jpg" alt="image" class="th radius"/> </div>
+            <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
           </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
+          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
+            <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel">
-        <div class="th radius feat-img"><img src="<?php bloginfo('template_directory'); ?>/img/profile-pic2.jpg" alt="image"/> </div>
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="<?php bloginfo('template_directory'); ?>/img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="<?php bloginfo('template_directory'); ?>/img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="<?php bloginfo('template_directory'); ?>/img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="<?php bloginfo('template_directory'); ?>/img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-5 large-offset-2 columns prof-col">
-      <div class="panel panel-search">
-        <div class="row prof-cont">
-          <div class="small-3 columns">
-            <div class="comp-thumb"><img src="<?php bloginfo('template_directory'); ?>/img/company-img2.jpg" alt="image" class="th radius"/> </div>
-          </div>
-          <div class="small-9 columns"> <a href="" class="comp-name" title="">Company / Project Title</a>
-            <div class="comp-short">Morbi ultricies eros vel varius luctus. Proin ullamcorper, quam ut ultrices aliquet, nulla purus molestie lacus, et lobortis ipsum ante sed diam.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="large-12 columns text-center"> <a role="button" class="button tiny radius more-btn more-btn-inner" href="#" title="">Load More</a> </div>
+    <?php echo $i%2==0 ? "<div class='clearfix'></div>":""; 
+    $i++;
+    } ?>
+   </div>
+    <div class="large-12 columns text-center" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
   </div>
 </div>
 <!--Similar Profiles section ends--> 
@@ -334,6 +305,7 @@ jQuery(document).ready(function($) {
 	 $("#profileCarousel").flexisel({
     	visibleItems: 4,
     	enableResponsiveBreakpoints: true,
+      clone:false,
     	responsiveBreakpoints: {
       	portrait: {
         changePoint:480,
@@ -349,14 +321,58 @@ jQuery(document).ready(function($) {
       	}
     }
 	});
+    $("#profileVideos").flexisel({
+      visibleItems: 1,
+      enableResponsiveBreakpoints: true,
+      clone:false,
+      responsiveBreakpoints: {
+        portrait: {
+        changePoint:480,
+        visibleItems: 1
+        }, 
+        landscape: {
+        changePoint:640,
+        visibleItems: 1
+        },
+        tablet: {
+        changePoint:768,
+        visibleItems: 1
+        }
+    }
+  });
+
+
 	$(".fancybox").fancybox({
 		openEffect	: 'none',
 		closeEffect	: 'none'
 	});
+
+//Ajax Load more
+
+$('.more_button').live("click",function() 
+  {
+    var getId = $(this).attr("id");
+    if(getId)
+    {
+      $("#load_more_"+getId).html('<img src="<?php bloginfo('template_directory'); ?>/img/load_img.gif" style="padding:10px 0 0 100px;"/>');  
+      $.ajax({
+      type: "POST",
+      url: "<?php echo admin_url('admin-ajax.php'); ?>",
+      data:'action=get_similar_profile&getLastContentId='+getId+"&getParentId=<?php echo $profileId; ?>",
+      success: function(html){
+          $("#appendsimilar").append(html);
+          $("#load_more_"+getId).remove();
+        }
+      });
+    }
+    return false;
+  });
+
 });
 </script>
 
-<?php } ?>
+
+<?php } else { ?>
 <div class="row">
   <div class="banner"> <img src="<?php bloginfo('template_directory'); ?>/img/profile-banner.jpg" alt="image"/> </div>
 </div>
@@ -368,4 +384,5 @@ jQuery(document).ready(function($) {
     	</div>
     </div>
 </div>
-<?php get_footer(); ?>
+<?php }
+get_footer(); ?>

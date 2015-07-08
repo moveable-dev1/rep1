@@ -35,34 +35,33 @@
         <div aria-hidden="true" class="content" id="panel2-2">
           <div class="small-4 columns cat-col">
             <h4 class="cat-head">Select Categories</h4>
-            <div class="cat-cont">
-              <label for="category1">
-                <input type="checkbox" class="cb" id="category1">
-                <span class="custom checkbox"></span>Centralized Generation</label>
-              <label for="category2">
-                <input type="checkbox" class="cb" id="category2">
-                <span class="custom checkbox"></span>Transmission</label>
-              <label for="category3">
-                <input type="checkbox" class="cb" id="category3">
-                <span class="custom checkbox"></span>Distribution</label>
-              <label for="category4">
-                <input type="checkbox" class="cb" id="category4">
-                <span class="custom checkbox"></span>Customer Technologies</label>
-              <label for="category5">
-                <input type="checkbox" class="cb" id="category5">
-                <span class="custom checkbox"></span>Microgrid</label>
-              <label for="category6">
-                <input type="checkbox" class="cb" id="category6">
-                <span class="custom checkbox"></span>Grid Operation</label>
+            <div class="cat-cont-new" id="level1">
+                <?php
+                //Display all Parent Category
+                $args = array(
+                     'parent'         => 8, //Get all category of profile category ID=8
+                     'hide_empty'    => false,
+                ); 
+                $parentcategory = get_categories($args);
+                $qty=1;
+                foreach ($parentcategory as $catvalue) {
+                ?>
+                <div>
+                 <input type="checkbox" class="cb" id="parent_cat" value="<?php echo $catvalue->cat_ID; ?>">
+                 <label for="<?php echo $catvalue->cat_name; ?>"><?php echo $catvalue->cat_name; ?></label>
+                </div>
+                <?php $qty++;
+                }
+                ?>
             </div>
           </div>
           <div class="small-4 columns cat-col dsbl">
             <h4 class="cat-head">Refine</h4>
-            <div class="cat-cont"> Please select at least one category from level one. </div>
+            <div id="level2">  </div>
           </div>
           <div class="small-4 columns cat-col dsbl">
             <h4 class="cat-head">Refine</h4>
-            <div class="cat-cont"> Please select at least one category from level one. </div>
+            <div id="level3"></div>
           </div>
         </div>
       </div>
@@ -110,4 +109,61 @@
     </div>
   </div>
 </form>
+<script type="text/javascript">
+jQuery(function($) {
+//Get Level 2 Category
+    $('#level1').on("change", ":checkbox", function () {
+        if (this.checked) {
+         var parentCat=this.value;
+            // call ajax add_action declared in functions.php
+            $.ajax({
+                url: "<?php echo admin_url('admin-ajax.php'); ?>",
+                type:'POST',
+                data:'action=home_category_select_action&parent_cat_ID=' + parentCat,
+                success:function(results)
+                {
+                //Append all child element in level 2
+                $("#level2").append(results);
+                }
+             });
+        } else
+        {
+          //Remove all level 2 element if unchecked
+          $("#getallcat"+this.value).remove();
+        }
+    });
+
+//Get Level 3 Category
+    $('#level2').on("change", ":checkbox", function () {
+        if (this.checked) {
+         var parentCat=this.value;
+         var parentvalue = $('#parent_id'+parentCat).val();
+            // call ajax
+            $.ajax({
+                url: "<?php echo admin_url('admin-ajax.php'); ?>",
+                type:'POST',
+                data:'action=home_category_select_action&parent_cat_ID=' + parentCat,
+                success:function(results)
+                {
+                 //Append all child element in level 3
+                $("#level3").append(results);
+                 //Disable parent category
+                $("#level1 input[value='"+parentvalue+"']").prop("disabled", true);
+               // removeChild.push(parentCat);
+                }
+             });
+        } else {
+            var parentvalue = $('#parent_id'+this.value).val();
+            var checkcheckbox=$('#getallcat'+parentvalue+' #parent_cat2').is(':checked');
+            //check if any child category is checked
+            if(checkcheckbox==false) {
+            //Enable the parent checkbox if unchecked all child element
+            $("#level1 input[value='"+parentvalue+"']").prop("disabled", false);
+            }
+             //Remove all level 3 element if unchecked
+            $("#getallcat"+this.value).remove();
+        }
+    });
+ });
+</script>
 <!--toggle section ends--> 

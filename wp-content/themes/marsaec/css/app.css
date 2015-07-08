@@ -527,9 +527,19 @@ a#delete:hover {
 .big-btn {
 	text-align: center;
 }
+.big-btn:hover{
+	background-color: transparent;
+}
 .big-btn img {
 	display: block;
 	margin: 0 auto 0.5rem auto;
+}
+.cont-comp{
+	background: rgba(0, 0, 0, 0) url("../img/profile-icon.jpg") no-repeat scroll center 13px;
+    height: 127px;
+    padding-top: 90px;
+    vertical-align: bottom;
+	box-sizing:border-box;
 }
 .side-bar-subhead {
 	margin-bottom: 0.5rem;
@@ -578,7 +588,7 @@ a#delete:hover {
 	display: inline-block;
 	float: left;
 	font-size: 1.875em;
-	margin: -20px 10px 0 0;
+	margin: -17px 10px 0 0;
 }
 .comp-pic-gal {
 	float: left;

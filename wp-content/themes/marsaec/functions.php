@@ -381,6 +381,126 @@ function implement_ajax() {
 add_action('wp_ajax_category_select_action', 'implement_ajax');
 
 
+//Get Similar Profiles
+function get_similarProfile($ID,$loadmore=false,$parentId=0)
+{	
+
+	   //Display all Parent Category
+        $args = array(
+             'parent'         => 8, //Get all category of profile
+             'hide_empty'    => false,
+        ); 
+        $parentcategory = get_categories($args); 
+        if($loadmore==false){
+        	$loadID=$ID;
+        } else{
+        	$loadID=$parentId;
+        }
+        $getSelectedCat=GetSingleFront($metaid=16,$ID); //Get all taxanomy for user, ID=16
+
+        foreach ($parentcategory as $catvalue) {
+          if(!empty($getSelectedCat)){
+            foreach ($getSelectedCat as $Selectedvalue) {
+              $checkedvalue=$Selectedvalue->value;
+              $taxanomyid=$catvalue->cat_ID;
+              if($checkedvalue==$taxanomyid){
+                $level2checks[]=$checkedvalue; //Add into array parent category in level 2
+              } 
+            }
+          }
+        }
+        if(empty($level2checks)){
+        	return false;
+        }
+         if(is_array($level2checks)) {
+            foreach($level2checks as $level2values){
+              if(!empty($level2values)) {
+              $argsLevel2 = array(
+                   'parent'         => $level2values, //Get all category of profile
+                   'hide_empty'    => false,
+              ); 
+              $parentcategoryLevel2 = get_categories($argsLevel2);
+              foreach ($parentcategoryLevel2 as $catvalueLevel2) {
+                if(!empty($getSelectedCat)){
+                  foreach ($getSelectedCat as $SelectedvalueLevel2) {
+                    $checkedvalueLevel2=$SelectedvalueLevel2->value;
+                    $taxanomyidLevel2=$catvalueLevel2->cat_ID;
+                    if($checkedvalueLevel2==$taxanomyidLevel2){
+                      $level3checks[]=$checkedvalueLevel2;
+                    }
+                  }
+                }
+              }  
+          	} 
+          }//enforeach  
+        }//endif
+        if(!empty($level3checks)){
+        	$similarcategory=array_merge($level2checks,$level3checks);
+        } else{
+        	$similarcategory=$level2checks;
+        }
+        
+        $comma_separated = implode(",", $similarcategory);
+        global $wpdb;
+        if($loadmore==false){
+        	$query="Select DISTINCT(id) from aec_profilevalue where value in ($comma_separated) AND id!=$ID AND metaid=16 ORDER BY id DESC LIMIT 4";
+        } else{ //Load more content
+        	$query="Select DISTINCT(id) from aec_profilevalue where value in ($comma_separated) AND id!=$ID AND id<$ID AND id!=$parentId AND metaid=16 ORDER BY id DESC LIMIT 4";
+        }
+		$profileIds=$wpdb->get_results($query);
+		return $profileIds;
+}
+
+//Get Meta Details
+function GetSingleFront($metaid,$profileId) 
+{
+	global $wpdb;
+	$profileFields=$wpdb->get_results( "SELECT * FROM aec_profilevalue WHERE id=$profileId AND metaid=$metaid");
+	return $profileFields;
+}
+
+//Get Profile detail by ID
+function get_profileDetail($ID)
+{
+	global $wpdb;
+	$getDetail = $wpdb->get_row("SELECT * FROM aec_profile WHERE id=$ID");
+	return $getDetail;
+}
+
+//Similar profile for Load more
+function getSimilarProfile() {
+    if(isset($_POST['getLastContentId']))
+		{
+	      $i=1;
+	      $getRelProfile=get_similarProfile($_POST['getLastContentId'],$loadmore=true,$parentId=$_POST['getParentId']);
+	      if(!empty($getRelProfile)){
+		      foreach($getRelProfile as $similarId) { 
+		     	  $getSimilarID=$similarId->id;
+		      	  $getSimilarProfile= get_profileDetail($getSimilarID); 
+	    		?>
+			    <div class="large-5 <?php echo $i%2==0? "large-offset-2":""; ?> columns prof-col">
+			      <div class="panel">
+			        <div class="row prof-cont">
+			          <div class="small-3 columns">
+			            <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
+			          </div>
+			          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
+			            <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			    <?php echo $i%2==0 ? "<div class='clearfix'></div>":""; 
+			    $i++;
+			    } ?>
+		       <div class="large-12 columns text-center" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
+		<?php }
+    die();
+    } // end if
+}
+add_action('wp_ajax_get_similar_profile', 'getSimilarProfile');
+add_action('wp_ajax_nopriv_get_similar_profile', 'getSimilarProfile');
+
 //Ajax Request for submit a profile frontend
 
 function submit_formcategory() {
@@ -421,7 +541,6 @@ function start_buffer_output() {
 }
 
 //Trim words for page
-
 function trim_words($id)
 {
 	$page_data = get_page( $id );
@@ -619,3 +738,34 @@ function custom_rewrite_rule() {
     add_rewrite_rule('^profile/([^/]*)/?','index.php?page_id=39&profile=$matches[1]','top');
   }
 add_action('init', 'custom_rewrite_rule', 10, 0);
+
+
+//Ajax Request for frontend Search Category Checkbox
+function homeCheckAjax() {
+    $parent_cat_ID = $_POST['parent_cat_ID'];
+    $args = array(
+   					 'parent'         => $parent_cat_ID, //Get all category of profile
+   					 'hide_empty'    => false,
+				); 
+				$parentcategory = get_categories($args);
+				if($parentcategory){
+				?>
+				<div id="getallcat<?php echo $parent_cat_ID; ?>">
+					<?php
+					foreach ($parentcategory as $catvalue) {
+					?>
+					<div>
+                	 <input type="checkbox" class="cb" id="parent_cat2" value="<?php echo $catvalue->cat_ID; ?>">
+                	 <label for="<?php echo $catvalue->cat_name; ?>"><?php echo $catvalue->cat_name; ?></label>
+                	 <input id="parent_id<?php echo $catvalue->cat_ID; ?>" name="parent_id" type="hidden" value="<?php echo $parent_cat_ID; ?>">
+                	</div>
+	             	<?php
+					}
+					?> 
+				</div>
+				<?php }
+        die();
+    } // end if
+
+add_action('wp_ajax_home_category_select_action', 'homeCheckAjax');
+add_action('wp_ajax_nopriv_home_category_select_action', 'homeCheckAjax');
