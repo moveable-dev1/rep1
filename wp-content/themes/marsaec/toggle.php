@@ -7,7 +7,7 @@
 ?>
 <!--toggle section starts-->
 
-<form class="custom" action="<?php echo get_permalink( 28 ); ?>" method="get">
+<form class="custom" action="<?php echo get_permalink( 28 ); ?>" method="get" id="levelContainer">
   <div class="row">
     <div class="toggle-sec show-for-large-only">
       <div class="toggle-head">
@@ -108,6 +108,7 @@
       </ul>
     </div>
   </div>
+<input type="hidden" value="" id="getAllCatId">
 </form>
 <script type="text/javascript">
 jQuery(function($) {
@@ -164,6 +165,63 @@ jQuery(function($) {
             $("#getallcat"+this.value).remove();
         }
     });
- });
+
+    //Load Profile based on tags
+    var list = new Array();
+    $('#levelContainer').on("change", ":checkbox", function () {
+        if (this.checked) {
+         list.push(this.value);
+         $("#getAllCatId").val(list);
+            // call ajax add_action declared in functions.php
+            $.ajax({
+                url: "<?php echo admin_url('admin-ajax.php'); ?>",
+                type:'POST',
+                data:'action=home_tag_select_action&All_cat_ID=' + list+'&listlength='+list.length,
+                success:function(results)
+                {
+                $("#getTagProfiles").html(results);
+                $("#contentSection").remove();
+                }
+             });
+        } else
+        {
+          list.splice( $.inArray(this.value,list) ,1 );
+           $("#getAllCatId").val(list);
+              $.ajax({
+                url: "<?php echo admin_url('admin-ajax.php'); ?>",
+                type:'POST',
+                data:'action=home_tag_select_action&All_cat_ID=' + list+'&listlength='+list.length,
+                success:function(results)
+                {
+                  $("#getTagProfiles").html(results);
+                }
+             });
+        }
+    });
+
+    //Load more
+$('.more_button').live("click",function() 
+  {
+    var getId = $(this).attr("id");
+    var getCat= $("#getAllCatId").val();
+    if(getId)
+    { 
+      $("#load_more_"+getId).html('<img src="<?php bloginfo('template_directory'); ?>/img/load_img.gif" style="padding:10px 0 0 100px;"/>');  
+      $.ajax({
+        type: "POST",
+        url: "<?php echo admin_url('admin-ajax.php'); ?>",
+        data:'action=get_loadmore_profile&getLastContentId='+getId+'&getParentId='+getCat,
+        success: function(html){
+            $(".profile-sec").append(html);
+            $("#load_more_"+getId).remove();
+          }
+      });
+    }
+    return false;
+  });
+
+});
+
 </script>
 <!--toggle section ends--> 
+<div class="row" id="getTagProfiles"></div>

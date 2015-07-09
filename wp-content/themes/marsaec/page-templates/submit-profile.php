@@ -72,7 +72,7 @@ require get_template_directory() . '/inc/add-profile.php';
                 <input type="file" class="feauturedimage" id="feauturedimage" name="feauturedimage[]" data-validation="mime size" data-validation-allowing="jpg, png, gif, jpeg" data-validation-max-size="1M">
                 </span>
               </label>
-              <div class="fl-btn">
+              <div class="has-rt-btn">
                 <input type="radio" onclick="getElement()" id="feauturedimageradio" name="feauturedimageradio[]">
                 <label class="type_label fw-nrml ">Featured Image</label>
               </div>
@@ -141,7 +141,7 @@ require get_template_directory() . '/inc/add-profile.php';
           </div>
           <div id="profile_location">
             <div class="main-label">Location(s) <span class="help-txt">At least one location is required. If you’re a Company, include your head office address. If you’re a Project, include deployed location(s).</span> </div>
-            <div class="has-btn">
+            <div class="fw-nrml main-sub-label">
               <label for="address" class="fw-nrml main-sub-label">Street Address</label>
               <input id="streetaddress" name="streetaddress[]" value="<?php echo $_POST['streetaddress'][0]; ?>" type="text" data-validation="required">
             </div>

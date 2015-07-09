@@ -20,7 +20,7 @@ get_header(); ?>
 <?php get_template_part( 'toggle' ); ?>
 
 <!--Newest Profiles section starts-->
-<div class="row">
+<div class="row" id="contentSection">
   <div class="profile-sec">
     <div class="large-12 columns">
       <h1 class="profile-head">Newest Profiles</h1>

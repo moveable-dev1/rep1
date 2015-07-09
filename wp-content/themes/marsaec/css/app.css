@@ -38,7 +38,7 @@ button, .button {
 	margin-top: 1.6rem;
 }
 .row {
-	max-width: 61rem;
+	max-width: 976px;
 	border-right: 1px solid #b4c5cc;
 	border-left: 1px solid #b4c5cc;
 }
@@ -157,6 +157,9 @@ form .row .toggle-sec .postfix-radius.row.collapse .postfix {
 }
 .toggle-sec .tabs-content .cat-col:last-child {
 	border-right: 0;
+}
+.cat-cont-new {
+    padding: 0.8rem 1.4625rem;
 }
 .cat-head {
 	font-size: 1.063em;
@@ -313,12 +316,14 @@ input[type=radio]:not(old):checked + label {
 	margin-right: 10px;
 	padding: 0;
 	width: 28px;
+	vertical-align: top;
 }
 .remove-field-btn {
 	/*background: url("../img/remove-field.jpg") no-repeat;
 	height: 28px;
 	margin-right: 10px;
 	padding: 0;
+	vertical-align: top;
 	width: 28px;*/
 	background: rgba(0, 0, 0, 0) url("../img/remove-field.jpg") no-repeat scroll 0 0;
 	border: medium none;
@@ -367,6 +372,7 @@ input[type=radio]:not(old):checked + label {
 	float: left;
 	position: relative;
 	width: 145%;
+	margin-bottom: 10px;
 }
 .has-rt-btn .upload {
 	width: 70% !important;
@@ -714,7 +720,7 @@ iframe {
 	width: 100%;
 }
 .footer-links {
-	margin: 0.5rem 0;
+	margin: 10px 0;
 	float: left;
 }
 .footer-links li {
@@ -767,8 +773,19 @@ iframe {
 .footer-copy a {
 	color: inherit;
 }
+@media screen and (max-width: 970px) and (min-width: 768px) {
+.site-footer  img {
+    max-width:70% !important;
+}
+.site-footer .left{ float: none !important;}
+.footer-links a::after{margin: -17px 6px 0;}
+.footer-links{margin: 6px 0;}
+.footer-social a{width: 33px;height: 36px;padding-top:0;}
+.has-btn span{position:static;}
+}
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 767px) {
+.has-btn span{position:static;}
 ul {
 	margin-left: 0;
 }

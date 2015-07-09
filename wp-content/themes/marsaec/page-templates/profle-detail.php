@@ -24,7 +24,7 @@ $getProfile= get_profileDetail($profileId);
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/css/jquery.fancybox.css?v=2.1.5" media="screen" />
 <!--Banner section starts-->
 
-<?php get_template_part( 'toggle' ); ?>
+<?php //get_template_part( 'toggle' ); ?>
 
 <!--Company Detail section starts-->
 <div class="row">

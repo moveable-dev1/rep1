@@ -769,3 +769,93 @@ function homeCheckAjax() {
 
 add_action('wp_ajax_home_category_select_action', 'homeCheckAjax');
 add_action('wp_ajax_nopriv_home_category_select_action', 'homeCheckAjax');
+
+
+//Display profile by tags
+function homeDisplayProfile() {
+	$All_cat_ID = $_POST['All_cat_ID'];
+	$listlen=$_POST['listlength'];
+	global $wpdb;
+	$query="SELECT COUNT(*) AS total, id FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 GROUP BY id HAVING total >= $listlen";
+	//echo $query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND metaid=16 ORDER BY id DESC LIMIT 6";
+	$profileIds=$wpdb->get_results($query); 
+	$i=1;
+	?>		
+	<div class="profile-sec">
+	    <div class="large-12 columns">
+	      <div class="search-status">
+	        <div class="left">You searched for: <span class="Search-terms">Item 1, Item 2, Item 3</span></div>
+	        <div class="right search-count">51 results</div>
+	      </div>
+	    </div>
+		<?php 
+		foreach($profileIds as $IdsValue) {
+		$getSimilarProfile= get_profileDetail($IdsValue->id);
+		?>
+		<div class="large-5 columns <?php echo $i%2==0? "large-offset-2":""; ?> prof-col">
+		  <div class="panel">
+		  	 <?php
+		    $featuredimage=feautured_image($IdsValue->id);
+		    if(!empty($featuredimage) && $i<=2) { ?>
+		    <div class="th radius feat-img"><img src="<?php echo wpse_resizeimage($featuredimage,291); ?>" alt="image"/> </div>
+		    <?php } ?>
+
+		    <div class="row prof-cont">
+		      <div class="small-3 columns">
+		        <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
+		      </div>
+		      <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name ?></a>
+		        <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
+		      </div>
+		    </div>
+		  </div>
+		</div>	
+    	<?php echo $i%2==0 ? "<div class='clearfix'></div>":"";
+    	$i++; 
+		} ?>
+		<div class="large-12 columns text-center" id="load_more_<?php echo $IdsValue->id; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $IdsValue->id; ?>">Load More</a> </div>	
+	<div>
+	<?php	
+    die();
+} 
+
+add_action('wp_ajax_home_tag_select_action', 'homeDisplayProfile');
+add_action('wp_ajax_nopriv_home_tag_select_action', 'homeDisplayProfile');
+
+//Load More
+function getLoadMoreProfile() {
+    if(isset($_POST['getLastContentId']))
+		{
+		  $All_cat_ID=$_POST['getParentId'];
+		  $pID=$_POST['getLastContentId'];
+	      $i=1;
+	      global $wpdb;
+	      $query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND id<$pID AND metaid=16 ORDER BY id DESC LIMIT 6";
+		  $getRelProfile=$wpdb->get_results($query); 
+	      if(!empty($getRelProfile)){
+		      foreach($getRelProfile as $similarId) { 
+		     	  $getSimilarID=$similarId->id;
+		      	  $getSimilarProfile= get_profileDetail($getSimilarID); 
+	    		?>
+			    <div class="large-5 <?php echo $i%2==0? "large-offset-2":""; ?> columns prof-col">
+			      <div class="panel">
+			        <div class="row prof-cont">
+			          <div class="small-3 columns">
+			            <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
+			          </div>
+			          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
+			            <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			    <?php echo $i%2==0 ? "<div class='clearfix'></div>":""; 
+			    $i++;
+			    } ?>
+		       <div class="large-12 columns text-center" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
+		<?php }
+    die();
+    } // end if
+}
+add_action('wp_ajax_get_loadmore_profile', 'getLoadMoreProfile');
+add_action('wp_ajax_nopriv_get_loadmore_profile', 'getLoadMoreProfile');
