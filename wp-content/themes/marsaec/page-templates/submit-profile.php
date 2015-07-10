@@ -52,11 +52,11 @@ require get_template_directory() . '/inc/add-profile.php';
               <input type="file" name="logo" id="logo" data-validation="mime size required" 
           		 data-validation-allowing="jpg, png, gif, jpeg" 
           		 data-validation-max-size="1M" 
-          		 data-validation-error-msg-required="No image selected"/>
+          		 data-validation-error-msg-required="No image is selected."/>
               </span> </label>
           </div>
           <div id="profile_affiliated">
-            <div class="main-label">Affiliated Companies <span class="help-txt" id="profileType">Provide up to 20 company names. If a company is not listed on this website, you may direct them to the following URL to submit a profile: (<a href="#">Submit a Profile webform</a>). </span> </div>
+            <div class="main-label">Affiliated Companies <span class="help-txt" id="profileType">Up to 20 companies may be provided.</span> </div>
             <div class="has-btn">
               <label for="affiliated" class="fw-nrml main-sub-label">Company Name</label>
               <input type="text" name="affiliated[]" id="affiliated" value="<?php echo $_POST['affiliated'][0]; ?>" data-validation="required">
@@ -162,12 +162,12 @@ require get_template_directory() . '/inc/add-profile.php';
             <hr>
             <a class="add-field-btn" id="add_address" onclick="add_address(limit=19)"><img src="<?php bloginfo('template_directory'); ?>/img/add-field.jpg" alt="addmore"/></a> Add Another Location </div>
           <div id="profile_description" class="mt">
-            <label for="description">Description <span class="help-txt">Help Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            <label for="description">Description <!--<span class="help-txt">Help Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>-->
               <textarea class="mar-no" id="description" name="description" data-validation="required"><?php echo $_POST['description']; ?></textarea>
-              <span class="sub-label">250 maximum characters</span> </label>
+              <span class="sub-label">300 maximum characters</span> </label>
           </div>
-          <div id="profile_projectfunders" style="display:none">
-            <div class="main-label">Project Funders <span class="help-txt">Provide up to 20 company names. If a company is not listed on this website, you may direct them to the following URL to submit a profile: (<a href="#">Submit a Profile webform</a>)</span> </div>
+          <div id="profile_projectfunders" style="display:none" class="mt">
+            <div class="main-label">Project Funders <span class="help-txt">Up to 20 companies may be provided.</span> </div>
             <div class="has-btn">
               <label for="project_funders" class="fw-nrml main-sub-label">Company Name</label>
               <input type="text" id="project_funders" name="project_funders[]" value="<?php echo $_POST['project_funders'][0]; ?>">
@@ -177,7 +177,7 @@ require get_template_directory() . '/inc/add-profile.php';
             <hr>
             <a class="add-field-btn" id="addinput" onclick="addinput(elementid='profile_projectfunders',limit=19,postname='project_funders')" class="add-field-btn"><img src="<?php bloginfo('template_directory'); ?>/img/add-field.jpg" alt="addmore"/>Add Another Company </a> </div>
           <div id="profile_investors">
-            <div class="main-label">Investors <span class="help-txt">Provide up to 20 company names. If a company is not listed on this website, you may direct them to the following URL to submit a profile: (<a href="#">Submit a Profile webform</a>)</span> </div>
+            <div class="main-label mt">Investors <span class="help-txt">Up to 20 companies may be provided.</span> </div>
             <div class="has-btn">
               <label for="investorName" class="fw-nrml main-sub-label">Company Name</label>
               <input type="text" id="investors" name="investors[]" value="<?php echo $_POST['investors'][0]; ?>">
@@ -197,7 +197,7 @@ require get_template_directory() . '/inc/add-profile.php';
           </div>
           <div id="profile_website" class="mt">
             <label for="website">Website
-              <input type="text" id="website" name="website" value="<?php echo $_POST['website']?$_POST['website']:""; ?>" data-validation="url" data-validation-error-msg="Please enter correct website URL e.g. http://aec.com" placeholder="http://">
+              <input type="text" id="website" name="website" value="<?php echo $_POST['website']?$_POST['website']:""; ?>" data-validation="url" data-validation-error-msg="Please enter correct website URL e.g. http://aec.com." placeholder="http://">
             </label>
           </div>
           <div class="main-label">Social Media <span class="help-txt">Users will be able to follow you on social media using the links provided</span> </div>

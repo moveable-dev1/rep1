@@ -776,23 +776,35 @@ function homeDisplayProfile() {
 	$All_cat_ID = $_POST['All_cat_ID'];
 	$listlen=$_POST['listlength'];
 	global $wpdb;
-	$query="SELECT COUNT(*) AS total, id FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 GROUP BY id HAVING total >= $listlen";
+	$query="SELECT COUNT(*) AS total, id FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 GROUP BY id HAVING total >= $listlen ORDER BY id DESC LIMIT 6";
 	//echo $query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND metaid=16 ORDER BY id DESC LIMIT 6";
 	$profileIds=$wpdb->get_results($query); 
 	$i=1;
+	$countrows=$wpdb->num_rows; 
+	if(!empty($profileIds)) {
 	?>		
-	<div class="profile-sec">
 	    <div class="large-12 columns">
 	      <div class="search-status">
-	        <div class="left">You searched for: <span class="Search-terms">Item 1, Item 2, Item 3</span></div>
-	        <div class="right search-count">51 results</div>
+	        <div class="left">You searched for: <span class="Search-terms"><?php $cat=explode(',',$All_cat_ID);
+	        	$count=1;
+	        	foreach ($cat as $cat_id) {
+	        		echo get_cat_name( $cat_id );
+	        		if($count<$listlen)
+	        		{
+	        			echo " ,";
+	        		}
+	        		$count++;
+	        	}
+
+	         ?></span></div>
+	        <div class="right search-count" id="<?php echo $countrows; ?>"><?php echo $countrows; ?> results</div>
 	      </div>
 	    </div>
 		<?php 
 		foreach($profileIds as $IdsValue) {
 		$getSimilarProfile= get_profileDetail($IdsValue->id);
 		?>
-		<div class="large-5 columns <?php echo $i%2==0? "large-offset-2":""; ?> prof-col">
+		<div class="large-5 columns <?php echo $i%2==0? "large-offset-2":""; ?> prof-col items">
 		  <div class="panel">
 		  	 <?php
 		    $featuredimage=feautured_image($IdsValue->id);
@@ -812,10 +824,12 @@ function homeDisplayProfile() {
 		</div>	
     	<?php echo $i%2==0 ? "<div class='clearfix'></div>":"";
     	$i++; 
-		} ?>
+		} 
+		if($countrows>=6) {
+		?>
 		<div class="large-12 columns text-center" id="load_more_<?php echo $IdsValue->id; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $IdsValue->id; ?>">Load More</a> </div>	
-	<div>
-	<?php	
+		<?php } ?>
+	<?php } else { echo '<div class="large-12 columns text-center">No records found</div>'; }
     die();
 } 
 
@@ -828,10 +842,13 @@ function getLoadMoreProfile() {
 		{
 		  $All_cat_ID=$_POST['getParentId'];
 		  $pID=$_POST['getLastContentId'];
+		  $listlen=$_POST['listlength'];
 	      $i=1;
 	      global $wpdb;
-	      $query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND id<$pID AND metaid=16 ORDER BY id DESC LIMIT 6";
+	      $query="SELECT COUNT(*) AS total, id FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 AND id<$pID GROUP BY id HAVING total >= $listlen ORDER BY id DESC LIMIT 6";
+	      //$query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND id<$pID AND metaid=16 ORDER BY id DESC LIMIT 6";
 		  $getRelProfile=$wpdb->get_results($query); 
+		  $countrows=$wpdb->num_rows; 
 	      if(!empty($getRelProfile)){
 		      foreach($getRelProfile as $similarId) { 
 		     	  $getSimilarID=$similarId->id;
@@ -851,11 +868,16 @@ function getLoadMoreProfile() {
 			    </div>
 			    <?php echo $i%2==0 ? "<div class='clearfix'></div>":""; 
 			    $i++;
-			    } ?>
+			    }
+			    if($countrows>=6) { ?>
 		       <div class="large-12 columns text-center" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
+		       <?php } ?>
 		<?php }
     die();
     } // end if
 }
 add_action('wp_ajax_get_loadmore_profile', 'getLoadMoreProfile');
 add_action('wp_ajax_nopriv_get_loadmore_profile', 'getLoadMoreProfile');
+
+
+require get_template_directory() . '/inc/custom_gravity.php';

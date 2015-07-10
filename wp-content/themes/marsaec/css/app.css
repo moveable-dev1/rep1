@@ -5,6 +5,7 @@ body {
 	color: #000;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
+	background:#fafafa;
 }
 h1, h2, h3, h4, h5, h6 {
 	color: #000;
@@ -41,9 +42,10 @@ button, .button {
 	max-width: 976px;
 	border-right: 1px solid #b4c5cc;
 	border-left: 1px solid #b4c5cc;
+	background:#fff;
 }
 .site-head {
-	margin: 1.875rem 0;
+	margin: 1.975rem 0 1.6rem;
 	float: left;
 	width: 100%;
 	padding: 0 1.5625rem;
@@ -59,7 +61,7 @@ button, .button {
 	background-color: #4695b3;
 }
 .toggle-head {
-	padding: 1.4rem 1.5625rem;
+	padding: 1.3rem 1.5625rem;
 	float: left;
 	width: 100%;
 	border-top: 1px solid #b4c5cc;
@@ -69,7 +71,7 @@ button, .button {
 	display: inline-block;
 	font-size: 0.813em;
 	color: #acacac;
-	margin: 10px 10px 0 0;
+	margin: 14px 10px 0 0;
 }
 .toggle-sec .tabs {
 	float: left;
@@ -121,8 +123,8 @@ button, .button {
 .search-sub {
 	background: #fff url(../img/search-icon.png) no-repeat 10px 10px;
 	border-radius: 0 7px 7px 0 !important;
-	border: 2px solid #b4c5cc;
-	height: 3rem;
+	border: 1px solid #b4c5cc;
+	height: 2.8rem;
 	border-left: none;
 	width: 3rem;
 }
@@ -132,8 +134,8 @@ form .row .toggle-sec .postfix-radius.row.collapse input, form .row .toggle-sec 
 .search-box input[type="text"] {
 	font-size: 1.063em;
 	box-shadow: none;
-	border: 2px solid #b4c5cc;
-	height: 3rem;
+	border: 1px solid #b4c5cc;
+	height: 2.8rem;
 }
 .search-box a.postfix {
 	font-size: 1.375em;
@@ -407,7 +409,7 @@ a#delete:hover {
 	overflow: hidden !important;
 }
 .profile-sec {
-	padding: 2.8rem 5rem;
+	padding: 1.5rem 5rem;
 }
 .prof-col {
 	padding: 0;
@@ -429,8 +431,9 @@ a#delete:hover {
 	background: #fff;
 }
 .profile-sec .panel .th {
-	border: 2px solid #b4c5cc;
+	border:1px solid #b4c5cc;
 	box-shadow: none;
+	border-radius: 0;
 }
 .prof-cont {
 	border: none;
@@ -459,6 +462,7 @@ a#delete:hover {
 	color: #000 !important;
 	font-size: 0.875em;
 	line-height: 1.3;
+	min-height: 3.5rem;
 }
 .promo-head {
 	color: #60c2e6;
@@ -773,6 +777,47 @@ iframe {
 .footer-copy a {
 	color: inherit;
 }
+/*gform*/
+.basic-cont .gform_wrapper .top_label input.medium, .basic-cont .gform_wrapper .top_label select.medium{width: 50%;}
+.basic-cont .gform_wrapper .top_label .gfield_label{margin:0;}
+body .basic-cont .gform_wrapper label.gfield_label + div.ginput_container{ margin-top: 3px;}
+.basic-cont .gform_wrapper .gfield_checkbox li label, .basic-cont .gform_wrapper .gfield_radio li label{margin:0 0 0 -3px;padding: 2px 0 0 24px;font-size: 0.75em;background: rgba(0, 0, 0, 0) url("../img/check_bx.png") no-repeat scroll 0 0;}
+.basic-cont .gform_wrapper ul.gfield_checkbox li input[type="checkbox"]:checked + label, .basic-cont .gform_wrapper ul.gfield_radio li input[type="radio"]:checked + label{background-position: 0 -45px;}
+.basic-cont #field_3_3 .gfield_label, .basic-cont #field_1_3 .gfield_label{display:none;}
+.basic-cont #field_3_3  .ginput_container, .basic-cont #field_1_3  .ginput_container{margin-bottom: 30px;    margin-top: 8px;}
+.basic-cont .gform_wrapper .top_label .gfield #input_3_2, .basic-cont .gform_wrapper .top_label .gfield #input_1_2{margin-bottom: 0;}
+.basic-cont .gform_wrapper .top_label .gfield_description{font-size: 11px;color: #cccccc; font-style: italic;font-weight: 400; margin: 0;}
+.basic-cont .gform_wrapper textarea.medium {    height: 8rem;    width:50%;}
+.basic-cont .gform_wrapper .gform_footer{padding:0;}
+.basic-cont .gform_wrapper  .gform_footer .gform_button{background: #5bc2e7 none repeat scroll 0 0;
+    border: medium none;    border-radius: 3px !important;    color: #fff;    display: block;    font-size: 1.125em;    padding: 0.5rem 0;    text-align: center;    text-transform: uppercase;
+    width: 15rem;}
+.basic-cont .gform_wrapper label a:hover{background:none;color:#000;}
+.basic-cont .gform_wrapper .gfield_required{display:none;}
+
+.basic-cont .gform_wrapper li.gfield.gfield_error, .basic-cont .gform_wrapper li.gfield.gfield_error.gfield_contains_required.gfield_creditcard_warning{background:none;border: medium none;}
+.basic-cont .gform_wrapper li.gfield.gfield_error.gfield_contains_required{margin:0 !important;}
+.basic-cont .gform_wrapper li.gfield.gfield_error.gfield_contains_required div.gfield_description{display:none;}
+.basic-cont  .gform_wrapper .gfield_error .gfield_label{color:#000;}
+.gform_wrapper li.gfield_error input[type="email"], .gform_wrapper li.gfield_error input[type="number"], .gform_wrapper li.gfield_error input[type="password"], .gform_wrapper li.gfield_error input[type="tel"], .gform_wrapper li.gfield_error input[type="text"], .gform_wrapper li.gfield_error input[type="url"], .gform_wrapper li.gfield_error textarea{
+background: #fdeeee ; border: 2px solid #ff0000 !important;}
+.basic-cont .gform_wrapper .top_label .gfield_error input.large, .basic-cont .gform_wrapper .top_label .gfield_error select.large, .basic-cont  .gform_wrapper .top_label .gfield_error textarea.textarea{width: 50%;}
+.basic-cont .gform_wrapper div.validation_error{color: #ff0000;margin-bottom: 0; width:100%;border:none;font-size: 1rem;font-weight: 700;}
+.basic-cont .gform_wrapper .top_label .gfield_error{ width: 100%;}
+.basic-cont .gform_wrapper li.gfield.gfield_error.gfield_contains_required div.ginput_container, .basic-cont .gform_wrapper li.gfield.gfield_error.gfield_contains_required label.gfield_label{ margin: 0;    max-width: 100%;    width: 100%;}
+
+/*changes*/
+
+.button.radius.prof-btn.right {
+    margin-bottom: 0;
+    margin-top: 1.1rem;
+}
+.toggle-sec .toggle-head .tabs .tab-title a{padding: 0.6rem 1.5rem;}
+form .row .search-box .small-10.columns input[type="text"]{margin:0;}
+.profile-sec .large-3{width: 27%;}
+.profile-sec .large-3 .button.tiny{font-size: 0.7875rem;}
+
+
 @media screen and (max-width: 970px) and (min-width: 768px) {
 .site-footer  img {
     max-width:70% !important;
@@ -786,6 +831,7 @@ iframe {
 
 @media only screen and (max-width: 767px) {
 .has-btn span{position:static;}
+.profile-sec .large-3{width:100%;}
 ul {
 	margin-left: 0;
 }
@@ -887,4 +933,10 @@ ul {
 .footer-social a:first-child {
 	margin-left: 0;
 }
+.basic-cont .gform_wrapper .top_label input.medium, .basic-cont .gform_wrapper .top_label select.medium, .basic-cont .gform_wrapper textarea.medium{width: 100%;}
+.basic-cont .gform_wrapper .top_label .gfield_error input.large, .basic-cont .gform_wrapper .top_label .gfield_error select.large, .basic-cont  .gform_wrapper .top_label .gfield_error textarea.textarea{width:100%;}
+.basic-cont .gform_wrapper div.validation_error{width:100%;}
+}
+@media only screen and (max-width: 414px) {
+h1.page-title{font-size: 2em;}
 }
