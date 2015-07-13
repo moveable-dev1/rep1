@@ -4,9 +4,10 @@
  *
  * @package marsaec
  */
+wp_enqueue_style( 'toggleCss', get_template_directory_uri() . '/css/toggle.css', array(), '1' );
+wp_enqueue_script( 'isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array( 'jquery' ), '1.5.26', true );
 wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', array( 'jquery' ), '1.0', true );
 ?>
-<script type="text/javascript" src="http://isotope.metafizzy.co/v1/jquery.isotope.min.js"></script>
 
 <!--toggle section starts-->
 
@@ -36,6 +37,7 @@ wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', arr
           <div class="infographic"> <img src="<?php bloginfo('template_directory'); ?>/img/infographic.jpg" alt="image"/> </div>
         </div>
         <div aria-hidden="true" class="content" id="panel2-2">
+          <div class="category-panel">
           <div class="small-4 columns cat-col">
             <h4 class="cat-head">Select Categories</h4>
             <div class="cat-cont-new" id="level1">
@@ -60,12 +62,13 @@ wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', arr
           </div> 
           <div class="small-4 columns cat-col dsbl">
             <h4 class="cat-head">Refine</h4>
-            <div id="level2"></div>
+            <div id="level2" class="cat-cont-new"></div>
           </div>
           <div class="small-4 columns cat-col dsbl">
             <h4 class="cat-head">Refine</h4>
-            <div id="level3"></div>
+            <div id="level3" class="cat-cont-new"></div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -114,68 +117,5 @@ wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', arr
 <input type="hidden" value="" id="getAllCatId">
 </form>
 <!--toggle section ends--> 
-<div class="row">
-  <div class="profile-sec" id="getTagProfiles">
-  </div>
+<div class="row" id="getTagProfiles">
 </div>
-<style type="text/css">
-#getTagProfiles {
-
-}
-
-.item {
-
-}
-
-.item.next {
-
-}
-
-
-
-/* Start: Recommended Isotope styles */
-
-/**** Isotope Filtering ****/
-
-.isotope-item {
-  z-index: 2;
-}
-
-.isotope-hidden.isotope-item {
-  pointer-events: none;
-  z-index: 1;
-}
-
-/**** Isotope CSS3 transitions ****/
-
-.isotope,
-.isotope .isotope-item {
-  -webkit-transition-duration: 0.8s;
-     -moz-transition-duration: 0.8s;
-          transition-duration: 0.8s;
-}
-
-.isotope {
-  -webkit-transition-property: height, width;
-     -moz-transition-property: height, width;
-          transition-property: height, width;
-}
-
-.isotope .isotope-item {
-  -webkit-transition-property: -webkit-transform, opacity;
-     -moz-transition-property:    -moz-transform, opacity;
-          transition-property:         transform, opacity;
-}
-
-/**** disabling Isotope CSS3 transitions ****/
-
-.isotope.no-transition,
-.isotope.no-transition .isotope-item,
-.isotope .isotope-item.no-transition {
-  -webkit-transition-duration: 0s;
-     -moz-transition-duration: 0s;
-          transition-duration: 0s;
-}
-
-/* End: Recommended Isotope styles */
-</style>

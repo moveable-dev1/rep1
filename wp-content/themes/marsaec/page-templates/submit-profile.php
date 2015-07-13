@@ -29,7 +29,7 @@ require get_template_directory() . '/inc/add-profile.php';
 	 			echo "<h3 class='sub-txt'>".get_post_meta($post->ID, 'sub-heading', true)."</h3>"; 
 	 		} ?>
       </div>
-      <div class="large-7 columns">
+      <div class="large-7 columns submit_pc_area">
         <form id="CompProfileForm" class="custom" enctype="multipart/form-data" method="post" action="<?php echo get_permalink( 20 ); ?>">
           <div id="profile_type">
             <div class="main-label">Profile Type <span class="help-txt" id="CompHTxt"><strong>Company</strong> is defined as a Canadian company that has deployed innovative energy technologies and is seeking export opportunities</span><span class="help-txt" id="ProfHTxt" style="display:none;"><strong>Project</strong> is defined as deployed initiatives using innovative energy technologies and solutions by Canadian companies.</span></div>
@@ -221,7 +221,7 @@ require get_template_directory() . '/inc/add-profile.php';
         </form>
       </div>
       <div class="large-6 columns"> </div>
-      <div class="large-12 columns">
+      <div class="large-12 columns submit_text_area">
         <div class="form-btm-txt">Please note that all responses are up to individual companies’/project’s discretion. A Visible AEC administrator will be copied on your message for information purposes only.<br>
           Please don’t hesitate to contact the Advanced Energy Centre if you would like to collaborate further: advancedenergycentre@marsdd.com </div>
       </div>

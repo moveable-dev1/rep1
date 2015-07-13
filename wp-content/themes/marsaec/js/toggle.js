@@ -59,53 +59,113 @@ jQuery(function($) {
     var $checkboxes = $('#levelContainer input.cb');
     $('#levelContainer').on("change", ":checkbox", function () {
         if (this.checked) {
-         list.push(this.value);
-         $("#getAllCatId").val(list);
-            // call ajax add_action declared in functions.php
-            $.ajax({
-                url: "/wp-admin/admin-ajax.php",
-                type:'POST',
-                data:'action=home_tag_select_action&All_cat_ID=' + list+'&listlength='+list.length,
-                success:function(results)
-                {
-                $container.html(results);
-                //$container.append( results ).isotope( 'appended', results );
+          var filterclass=".isoShow";
+          list.push(this.value);
+          $("#getAllCatId").val(list);
+          $container.isotope({
+            itemSelector: '.items',
+            masonry: {
+              columnWidth: 40,
+              isFitWidth: true
+            }
+          });
+          $.post("/wp-admin/admin-ajax.php", 'action=home_tag_select_action&All_cat_ID=' + list+'&listlength='+list.length, function(response) 
+          {
                 $("#contentSection").remove();
+                $container.html(response);
+                if(!$container.hasClass('isotope')){
+                  $container.isotope({ filter: filterclass });
+                } else {
+                  $container.isotope('reloadItems');
+                  $container.isotope({
+                  itemSelector: '.items',
+				          masonry: {
+                      columnWidth: 40,
+                      isFitWidth: true
+                    }
+                });
+                $container.isotope({ filter: filterclass });
                 }
-             });
-        } else
+          });
+        } else //If unchecked
         {
+          var filterclass=".isoShow";
           list.splice( $.inArray(this.value,list) ,1 );
-           $("#getAllCatId").val(list);
-              $.ajax({
-                url: "/wp-admin/admin-ajax.php",
-                type:'POST',
-                data:'action=home_tag_select_action&All_cat_ID=' + list+'&listlength='+list.length,
-                success:function(results)
-                {
-                  $("#getTagProfiles").html(results);
+          $("#getAllCatId").val(list);
+          $container.isotope({
+            itemSelector: '.items',
+            masonry: {
+              columnWidth: 40,
+              isFitWidth: true
+              }
+          });
+          $.post("/wp-admin/admin-ajax.php", 'action=home_tag_select_action&All_cat_ID=' + list+'&listlength='+list.length, function(response) 
+          {
+                $("#contentSection").remove();
+                $container.html(response);
+                if(!$container.hasClass('isotope')){
+                  $container.isotope({ filter: filterclass });
+                } else {
+                  $container.isotope('reloadItems');
+                  $container.isotope({
+                  itemSelector: '.items',
+                  masonry: {
+                    columnWidth: 40,
+                    isFitWidth: true
+                    }
+                });
+                $container.isotope({ filter: filterclass });
                 }
-             });
+          });
         }
     });
 
     //Load more
 $('.more_button').live("click",function() 
   {
+    //var $container2 = $('#getTagProfiles .profile-sec');
     var getId = $(this).attr("id");
     var getCat= $("#getAllCatId").val();
+    var filterclass=".isoShow";
     if(getId)
     { 
       $("#load_more_"+getId).html('<img src="/wp-content/themes/marsaec/img/load_img.gif" style="padding:10px 0 0 100px;"/>');  
-      $.ajax({
-        type: "POST",
-        url: "/wp-admin/admin-ajax.php",
-        data:'action=get_loadmore_profile&getLastContentId='+getId+'&getParentId='+getCat+'&listlength='+getCat.length,
-        success: function(html){
-            $(".profile-sec").append(html);
-            $("#load_more_"+getId).remove();
-          }
-      });
+         $container.isotope({
+            itemSelector: '.items',
+             masonry: {
+              columnWidth: 40,
+              isFitWidth: true
+              }
+          });
+          $.post("/wp-admin/admin-ajax.php", 'action=get_loadmore_profile&getLastContentId='+getId+'&getParentId='+getCat+'&listlength='+getCat.length, function(response) 
+            {
+                
+                $container.append(response);
+                if(!$container.hasClass('isotope')){
+                  $("#load_more_"+getId).remove();
+                  $container.isotope({ filter: filterclass });
+                } else {
+                  $("#load_more_"+getId).remove();
+                  $container.isotope('reloadItems');
+                  $container.isotope({
+                  itemSelector: '.items',
+                   masonry: {
+                    columnWidth: 40,
+                    isFitWidth: true
+                    }
+                  });
+                  $container.isotope({ filter: filterclass });
+                }
+          });
+      // $.ajax({
+      //   type: "POST",
+      //   url: "/wp-admin/admin-ajax.php",
+      //   data:'action=get_loadmore_profile&getLastContentId='+getId+'&getParentId='+getCat+'&listlength='+getCat.length,
+      //   success: function(html){
+      //       $container2.append(html);
+      //       $("#load_more_"+getId).remove();
+      //     }
+      // });
     }
     return false;
   });

@@ -24,12 +24,12 @@ $getProfile= get_profileDetail($profileId);
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/css/jquery.fancybox.css?v=2.1.5" media="screen" />
 <!--Banner section starts-->
 
-<?php //get_template_part( 'toggle' ); ?>
+<?php get_template_part( 'toggle' ); ?>
 
 <!--Company Detail section starts-->
-<div class="row">
+<div class="row" id="contentSection">
   <div class="profile-sec">
-    <div class="large-12 columns text-center"> <a href="#" class="share-btn" title=""><img src="<?php bloginfo('template_directory'); ?>/img/share-icon.jpg" alt="image"/></a> </div>
+    <div class="large-6 columns pad-no text-right"> <a href="#" class="share-btn" title=""><img src="<?php bloginfo('template_directory'); ?>/img/share-icon.jpg" alt="image"/></a> </div>
     <!--Left Column-->
     <div class="comp-detail-sec">
       <div class="large-6 columns pad-no">
@@ -91,8 +91,9 @@ $getProfile= get_profileDetail($profileId);
         <!--Company Links box-->
         <ul class="small-block-grid-2 comp-btn">
           <li>
-            <form action="<?php echo get_permalink( 20 ); ?>" method="post" id="contactProfile">
-            <input type="hidden" name="profile" value="<?php echo $getProfile->profile_type; ?>" />
+            <form action="<?php echo get_permalink( 22 ); ?>" method="get" id="contactProfile">
+            <input type="hidden" name="pid" value="<?php echo $getProfile->id; ?>" />
+            <input type="hidden" name="email" value="<?php echo $getProfile->email; ?>" />
             <input type="submit" value="Contact this Profile" class="button expand radius more-btn big-btn cont-comp" />
           </form>
           </li>
@@ -257,7 +258,8 @@ $getProfile= get_profileDetail($profileId);
       </div>
     </div>
     <!-- Company detail section ends--> 
-    
+     </div>
+     <div class="profile-sec">
     <!-- Similar Profile section starts-->
     <div class="large-12 columns">
       <div class="profile-head">Similar Profiles</div>

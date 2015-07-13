@@ -19,7 +19,7 @@ session_start();
 
 <!--Form section starts-->
 <div class="row">
-	<div class="profile-sec">
+	<div class="profile-sec thanku_title">
     	<div class="large-12 columns">
       		<div class="page-head">
 		 		<?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
