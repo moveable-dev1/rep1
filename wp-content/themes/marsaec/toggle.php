@@ -4,7 +4,10 @@
  *
  * @package marsaec
  */
+
 wp_enqueue_style( 'toggleCss', get_template_directory_uri() . '/css/toggle.css', array(), '1' );
+wp_enqueue_script( 'jqueryUI', get_template_directory_uri() . 'js/jquery-ui.js', array( 'jquery' ), '1.10.4', true );
+wp_enqueue_script( 'infographic', get_template_directory_uri() . 'js/infographic.js', array( 'jquery' ), '1.0', true );
 wp_enqueue_script( 'isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array( 'jquery' ), '1.5.26', true );
 wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', array( 'jquery' ), '1.0', true );
 ?>

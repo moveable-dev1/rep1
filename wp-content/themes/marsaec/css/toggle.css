@@ -43,3 +43,19 @@
 }
 
 /* End: Recommended Isotope styles */
+
+.visualSelect { width: 100%; /*max-width: 1200px;*/
+margin: auto; margin-top: 5%; display: none; }
+.grid25 { width: 4%; float: left; height: auto; border: 0px solid #999; }
+.gridIMG { width: 100% }
+.clickable { cursor: pointer }
+/*.secondaryGrid {
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+    }
+    */
+    
+input { margin-right: 20px }
+.increase { width: 25px; height: 22px; background-color: #CCC; float: left; margin-right: 1px; text-align: center; cursor: pointer }
+.decrease { width: 25px; height: 22px; background-color: #CCC; float: left; text-align: center; cursor: pointer }
+.loader { text-align: center; margin-top: 80px; position: absolute; width: 100% }

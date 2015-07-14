@@ -792,6 +792,8 @@ iframe {
 .basic-cont .gform_wrapper .top_label .gfield_label{margin:0;}
 body .basic-cont .gform_wrapper label.gfield_label + div.ginput_container{ margin-top: 3px;}
 .basic-cont .gform_wrapper .gfield_checkbox li label, .basic-cont .gform_wrapper .gfield_radio li label{margin:0 0 0 -3px;padding: 2px 0 0 24px;font-size: 0.75em;background: rgba(0, 0, 0, 0) url("../img/check_bx.png") no-repeat scroll 0 0;}
+.basic-cont .gform_wrapper .gfield_error .gfield_checkbox li label:before{border: 2px solid #ff0000;  border-radius: 4px; content: ""; height: 16px;  left: 0;    position: absolute;    top: 3px;width: 18px;}
+.basic-cont .gform_wrapper .gfield_error ul.gfield_checkbox li input[type="checkbox"]:checked + label:before{border: medium none;}
 .basic-cont .gform_wrapper ul.gfield_checkbox li input[type="checkbox"]:checked + label, .basic-cont .gform_wrapper ul.gfield_radio li input[type="radio"]:checked + label{background-position: 0 -45px;}
 .basic-cont #field_3_3 .gfield_label, .basic-cont #field_1_3 .gfield_label{display:none;}
 .basic-cont #field_3_3  .ginput_container, .basic-cont #field_1_3  .ginput_container{margin-bottom: 30px;    margin-top: 8px;}

@@ -92,10 +92,9 @@ $getProfile= get_profileDetail($profileId);
         <ul class="small-block-grid-2 comp-btn">
           <li>
             <form action="<?php echo get_permalink( 22 ); ?>" method="get" id="contactProfile">
-            <input type="hidden" name="pid" value="<?php echo $getProfile->id; ?>" />
-            <input type="hidden" name="email" value="<?php echo $getProfile->email; ?>" />
-            <input type="submit" value="Contact this Profile" class="button expand radius more-btn big-btn cont-comp" />
-          </form>
+              <input type="hidden" name="pid" value="<?php echo $getProfile->id; ?>" />
+              <input type="submit" value="Contact this Profile" class="button expand radius more-btn big-btn cont-comp" />
+            </form>
           </li>
           <?php $website=$getProfile->website; 
           if($website) {
