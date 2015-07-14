@@ -88,7 +88,8 @@ function homeDisplayProfile() {
 		?><?php 
 		if($countrows>=6) {
 		?>
-		<div class="large-12 columns text-center items isoShow" id="load_more_<?php echo $IdsValue->id; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $IdsValue->id; ?>">Load More</a> </div>	
+			<div class="large-12 columns text-center items isoShow loadSection" id="load_more_<?php echo $IdsValue->id; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $IdsValue->id; ?>">Load More</a> 
+			</div>
 		<?php } ?>
 	
 	<?php } else { echo '<div class="large-12 columns text-center items isoShow">No records found</div>'; }
@@ -132,7 +133,8 @@ function getLoadMoreProfile() {
 			    $i++;
 			    }
 			    if($countrows>=6) { ?>
-		       <div class="large-12 columns text-center items isoShow" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
+			       <div class="large-12 columns text-center items isoShow loadSection" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> 
+			       </div>
 		       <?php } ?>
 		<?php }
     die();

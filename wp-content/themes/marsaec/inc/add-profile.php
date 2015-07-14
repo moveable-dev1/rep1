@@ -207,6 +207,27 @@ if(isset($_POST["submit"])){
 		$suggesttags=$_POST['suggesttags'];
 		$wpmeta=$wpdb->insert("aec_profilevalue", array("metaid" => 15, "id" => $last_inserted_id, "fieldid" => 1, "value"=>$suggesttags ));
 		}
+		
+		//Send Confirmation mail to user
+		include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/marsaec/email/profile_confirmation.php");
+		wp_mail( $_POST['email'], $subject, $confirm_content, $headers);
+		
+		
+		//Send Notification to Admin
+		if($_POST['profile_type'] == 1){
+			$supplier_type= "Company";
+		}elseif($_POST['profile_type'] == 2){
+			$supplier_type= "Project";	
+		}
+		if($_POST['region'] == 1){
+			$region = 'Ontario';
+		}elseif($_POST['region'] == 2){
+			$region = 'Canada';
+		}elseif($_POST['region'] == 3){
+			$region = 'Worldwide';
+		}
+		include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/marsaec/email/admin_notification.php");
+		wp_mail( get_option('admin_email'), $subject, $admin_message, $headers);
 
 		//If no error in save or upload show success message
 		if( $wpinsertprofile!=false ) {

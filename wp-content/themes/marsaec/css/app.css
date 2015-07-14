@@ -72,7 +72,7 @@ button, .button {
 	display: inline-block;
 	font-size: 0.813em;
 	color: #acacac;
-	margin: 14px 10px 0 0;
+	margin: 12px 10px 0 0;
 }
 .toggle-sec .tabs {
 	float: left;
@@ -347,11 +347,11 @@ input[type=radio]:not(old):checked + label {
 }
 .has-btn {
 	position: relative;
-	width: 145%;
+	width: 100%;
 	float: left;
 }
 .has-btn input {
-	width: 70%;
+	
 }
 .has-btn span {
 	position: absolute;
@@ -377,11 +377,10 @@ input[type=radio]:not(old):checked + label {
 .has-rt-btn {
 	float: left;
 	position: relative;
-	width: 145%;
+	width: 100%;
 	margin-bottom: 10px;
 }
 .has-rt-btn .upload {
-	width: 70% !important;
 }
 .has-rt-btn .fl-btn {
 	font-size: 0.875rem;
@@ -659,7 +658,7 @@ label {
 }
 .sub-label {
 	color: #b4c5cc;
-	font-weight: 700;
+	font-weight:700 !important;
 	line-height: 2;
 	font-size: 0.875rem;
 	margin-bottom: 0;
@@ -831,10 +830,14 @@ form .row .search-box .small-10.columns input[type="text"]{margin:0;}
 .profile-sec .large-3 .button.tiny{font-size: 0.7875rem;}
 
 .large-7.columns.submit_pc_area, .large-12.columns.submit_text_area{padding:0;}
-
+.row.isotope {
+    border-bottom: 1px solid #b4c5cc;
+}
 .isotope .large-12.isotope-item{padding: 2.8rem 5rem 0;}
-.isotope .prof-col{width: 35%; margin:0 3rem 0 5rem;}
-.isotope .prof-col .panel{background: #fff none repeat scroll 0 0;    border: 2px solid #b4c5cc;}
+.isotope .large-12.isotope-item.loadSection img{padding:0!important;margin-bottom:	20px;}
+.isotope .prof-col{margin:0 3rem 0 5rem;width:35%;}
+.isotope  .row.prof-cont {width:100%;float:left;}
+.isotope .prof-col .panel{background: #fff none repeat scroll 0 0;    border: 2px solid #b4c5cc;float: left;margin-bottom:1.5rem;}
 .isotope .prof-col .panel .feat-img{border: 2px solid #b4c5cc;box-shadow:none;}
 
 
@@ -960,6 +963,8 @@ ul {
 .prof-col .prof-cont .small-9.columns {    float: none ;    width: auto;}
 .has-btn input{width: 100%;}
 .has-rt-btn .upload{width: 100% !important;}
+
+.isotope .prof-col{width:100%;margin:0;}
 }
 @media only screen and (max-width: 600px) {
 .prof-col .prof-cont .small-3.columns{margin-bottom: 3rem;}

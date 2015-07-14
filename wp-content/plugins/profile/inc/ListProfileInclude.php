@@ -178,6 +178,20 @@ if(isset($profileStatus)){
 	elseif($profileStatus==0){
 		$updateStatusFalse = $wpdb->query("UPDATE aec_profile SET status = 1 WHERE id = '".$profileId."'");
 		echo "UPDATE aec_profile SET status = 1 WHERE id = '".$profileId."'";
+		
+		//Send Approved copy to user
+		$getProfile= get_profileDetail($profileId);
+		$newpermalink = $getProfile->permalink;
+		
+		if($getProfile->profile_type == 1){
+			$supplier_type= "Company";
+		}elseif($getProfile->profile_type == 2){
+			$supplier_type= "Project";	
+		}
+		include_once($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/marsaec/email/profile_approve.php" );
+		wp_mail( $getProfile->email, $subject, $approve_message, $headers);
+		
+		
 		if($updateStatusFalse==FALSE){
 			$class = "error";
 			echo "<div class=\"$class\"> <p>$wpdb->last_error</p></div>";

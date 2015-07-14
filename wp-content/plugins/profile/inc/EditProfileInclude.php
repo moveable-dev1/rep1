@@ -138,7 +138,6 @@ if($_FILES['feauturedimage']['name']) {
 
 //Update fields in aec_profile table
 if(isset($_POST['update'])) {
-
     //Save Permalink
         if(!empty($_POST['permalink'])) {
             $ispermalink=$_POST['permalink'];
@@ -300,6 +299,18 @@ if(isset($_POST['update'])) {
     //             updatefeatured(8,$profileId,$newvalue);
     //         }
     // }
+	
+	//Send Approved copy to user
+	if(isset($_POST['approve_confirmation']) && $_POST['status'] == 1){
+		if($_POST['profile_type'] == 1){
+			$supplier_type= "Company";
+		}elseif($_POST['profile_type'] == 2){
+			$supplier_type= "Project";	
+		}
+		include_once($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/marsaec/email/profile_approve.php" );
+		wp_mail( $_POST['email'], $subject, $approve_message, $headers);
+	}
+	
     if($result!=false || $updatemeta==1){ 
         $_SESSION['success_messages']="<div class='updated'>Successfully Updated ".$_POST['name']."</div>";
        wp_redirect( admin_url( "admin.php?page=edit-profile&profileid=$profileId")); exit;

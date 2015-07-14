@@ -508,6 +508,9 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
           <input id="status_unapproved" name="status" class="element radio" type="radio" 
         value="0" <?php echo $profileName->status==0? "checked='checked'":""; ?>>
           Unapproved</label>
+		  <label class="fw-nrml" for="approve_confirmation">
+            <input type="checkbox" id="approve_confirmation" class="cb" name="approve_confirmation" value="1">
+            Send approve notification to user</label>
       </div>
     </li>
 

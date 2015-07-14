@@ -1,14 +1,8 @@
-//base path used in hover/on/off states
-var formattedDefaultIMG = "$(this).children().attr('src').substring(0, $(this).children().attr('src').indexOf('_') + '_'.length)"
-
-
-
-
-
 jQuery(document).ready(function ($) {
+
+	//base path used in hover/on/off states
+	var formattedDefaultIMG = "$(this).children().attr('src').substring(0, $(this).children().attr('src').indexOf('_') + '_'.length)";
 	// content arrays
-
-
 	// primary click array
 	var primaryGrid = new Array();
 	primaryGrid = [46, 'op', 47, 'op', 48, 'op', 126, 'generation', 127, 'generation', 128, 'generation', 144, 'microgrid', 145, 'microgrid', 146, 'microgrid', 205, 'transmission', 206, 'transmission', 207, 'transmission', 284, 'distribution', 285, 'distribution', 286, 'distribution', 337, 'tech', 338, 'tech', 339, 'tech']
@@ -29,7 +23,6 @@ jQuery(document).ready(function ($) {
 
 	})
 
-
 	function sniffEnabled(k) {
 
 	}
@@ -49,7 +42,6 @@ jQuery(document).ready(function ($) {
 					$('.' + x[i]).eq(0).click()
 				}
 				$('.' + x[i]).eq(0).click()
-
 			}
 
 		} else {
@@ -75,7 +67,7 @@ jQuery(document).ready(function ($) {
 	//create full grid elements  - MAGIC :-)
 	var fullGrid = '';
 	for (i = 0; i < 376; i++) {
-		fullGrid += '<div class="grid25 element' + i + '" dataVal="' + i + '"><img src="grid/images/marsgrid_' + i + '.jpg" class="gridIMG" alt=" " /></div>';
+		fullGrid += '<div class="grid25 element' + i + '" dataVal="' + i + '"><img src="/wp-content/themes/marsaec/img/grid/marsgrid_' + i + '.jpg" class="gridIMG" alt=" " /></div>';
 	}
 	// create grid html
 	$('.visualSelect').append(fullGrid);
@@ -133,8 +125,6 @@ jQuery(document).ready(function ($) {
 			}
 		}
 	})
-
-
 
 
 	//Primary tag functionality
@@ -265,47 +255,46 @@ jQuery(document).ready(function ($) {
 })
 
 
-$(window).load(function () {
+jQuery(window).load(function ($) {
 	
-	
+	var j = jQuery.noConflict();
 	
 	//Turn on all checkboces
-	$('#op').click()
-	$('#generation').click()
-	$('#microgrid').click()
-	$('#transmission').click()
-	$('#distribution').click()
-	$('#tech').click()
+	j('#op').click()
+	j('#generation').click()
+	j('#microgrid').click()
+	j('#transmission').click()
+	j('#distribution').click()
+	j('#tech').click()
 
 
 	
 	//wait until all images are loaded and fade loader out
 
-	$('.loader').fadeOut(500)
-	$('.visualSelect').fadeIn(1500)
+	j('.loader').fadeOut(500)
+	j('.visualSelect').fadeIn(1500)
 
 	
 	
 	//Add classes after grid built
-	$('.grid25').each(function (index) {
-		if ($(this).attr('hlclass') != null && !$(this).hasClass('towerHL')) {
-			$('.element' + index).click(function () {
+	j('.grid25').each(function (index) {
+		if (j(this).attr('hlclass') != null && !j(this).hasClass('towerHL')) {
+			j('.element' + index).click(function () {
 
-				$('#' + $(this).attr('hlclass').replace('HL', '')).click()
+				j('#' + j(this).attr('hlclass').replace('HL', '')).click()
 
 			})
 		}
 	})
 	
-	
 
 	// DEV testing show/hide
-	$('.tog').click(function () {
-		$('.visualSelect').hide()
+	j('.tog').click(function () {
+		j('.visualSelect').hide()
 	})
 
-	$('.tog2').click(function () {
-		$('.visualSelect').show()
+	j('.tog2').click(function () {
+		j('.visualSelect').show()
 	})
 
 

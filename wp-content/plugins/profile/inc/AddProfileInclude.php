@@ -235,7 +235,24 @@ if(isset($_POST["submit"])){
 		$wpmeta=$wpdb->insert("aec_profilevalue", array("metaid" => 15, "id" => $last_inserted_id, "fieldid" => 1, "value"=>$suggesttags ));
 		}
 
-
+		//Send Confirmation mail to user
+		//require_once(get_template_directory_uri()."/email/profile_confirmation.php" );
+		include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/marsaec/email/profile_confirmation.php");
+		//wp_mail( $to, $subject, $message, $headers, $attachments );
+		wp_mail( $_POST['email'], $subject, $confirm_content, $headers);
+		
+		
+		//Send Approved copy to user
+		if(isset($_POST['approve_confirmation']) && $_POST['status'] == 1){
+			if($_POST['profile_type'] == 1){
+				$supplier_type= "Company";
+			}elseif($_POST['profile_type'] == 2){
+				$supplier_type= "Project";	
+			}
+			include($_SERVER['DOCUMENT_ROOT']."/wp-content/themes/marsaec/email/profile_approve.php");
+			wp_mail( $_POST['email'], $subject, $approve_message, $headers);
+		}
+		
 		//If no error in save or upload show success message
 		if( $wpinsertprofile!=false ) {
 			session_start();
