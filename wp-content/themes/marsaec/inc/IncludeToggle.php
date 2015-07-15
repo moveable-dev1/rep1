@@ -92,7 +92,7 @@ function homeDisplayProfile() {
 			</div>
 		<?php } ?>
 	
-	<?php } else { echo '<div class="large-12 columns text-center items isoShow">No records found</div>'; }
+	<?php } else { echo '<div class="large-12 columns text-center items isoShow noRecords">No records found</div>'; }
     die();
 } 
 

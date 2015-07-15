@@ -295,7 +295,7 @@ $getProfile= get_profileDetail($profileId);
     $i++;
     } ?>
    </div>
-    <div class="large-12 columns text-center" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
+    <div class="large-12 columns text-center loadSection" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
   </div>
 </div>
 <!--Similar Profiles section ends--> 

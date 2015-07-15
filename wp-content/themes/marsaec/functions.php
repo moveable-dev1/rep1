@@ -493,7 +493,7 @@ function getSimilarProfile() {
 			    <?php echo $i%2==0 ? "<div class='clearfix'></div>":""; 
 			    $i++;
 			    } ?>
-		       <div class="large-12 columns text-center" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
+		       <div class="large-12 columns text-center loadSection" id="load_more_<?php echo $getSimilarID; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner more_button" href="#" title="" id="<?php echo $getSimilarID; ?>">Load More</a> </div>
 		<?php }
     die();
     } // end if

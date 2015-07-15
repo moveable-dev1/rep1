@@ -1,27 +1,56 @@
 
-function sendArrayAjax(arr,i,j) { //AJAX call
-	alert(arr+","+i+" "+j) //TEST ONLY
+function sendArrayAjax(arr,j) { //AJAX call
+var filterclass=".isoShow";
+var $q = jQuery.noConflict();
+var container = $q('#getTagProfiles');
+$q("#getAllCatId").val(arr);
+container.isotope({
+itemSelector: '.items',
+masonry: {
+  columnWidth: 40,
+  isFitWidth: true
+}
+});
+
+$q.post("/wp-admin/admin-ajax.php", 'action=home_tag_select_action&All_cat_ID=' + arr+'&listlength='+arr.length, function(response) 
+          {
+                $q("#contentSection").remove();
+                container.html(response);
+                if(!container.hasClass('isotope')){
+                  container.isotope({ filter: filterclass });
+                } else {
+                  container.isotope('reloadItems');
+                  container.isotope({
+                  itemSelector: '.items',
+				          masonry: {
+                      columnWidth: 40,
+                      isFitWidth: true
+                    }
+                });
+                container.isotope({ filter: filterclass });
+                }
+          });
 }
 
 function toggleSecondary() {
 
 	var arr = []
-	jQuery("input:checked").each(function () {
-	 arr.push(jQuery(this).attr('id'))
+	jQuery("#infocheckbox input:checked").each(function () {
+	 arr.push(jQuery(this).val())
 	})
-	sendArrayAjax(arr,x="", 'on')
+	sendArrayAjax(arr, 'on')
 }
 
 function togglePrimaryUncheck(l) {
 
 	var arr = []
-	jQuery("input:checked").each(function () {
+	jQuery("#infocheckbox input:checked").each(function () {
 	 var id=jQuery(this).attr('id');
 		 if(id!=l){
-		 	arr.push(id)
+		 	arr.push(jQuery(this).val())
 		 }
 	})
-	sendArrayAjax(arr,x="", 'on')
+	sendArrayAjax(arr, 'on')
 }
 
 jQuery(document).ready(function ($) {
@@ -57,25 +86,24 @@ jQuery(document).ready(function ($) {
 	function togglePrimary(r) {
 
 		var arr = []
-		$("input:checked").each(function () {
-    	 arr.push($(this).attr('id'))
+		$("#infocheckbox input:checked").each(function () {
+    	 arr.push($(this).val())
 		})
 		l = r
 		x = eval(l)
 		b = "$('#" + l + "')"
 		if (eval(b).prop('checked')) {
-			sendArrayAjax(arr,x, 'on')// SEND ARRAY OF DIVS to AJAX - ON STATE
+			
 			eval(b).prop('checked', 'false')
 			for (i = 0; i < eval(l).length; i++) {
+				arr.push($('#' + x[i]).val())
 				if ($('#' + x[i]).prop("checked")) {
 					$('.' + x[i]).eq(0).click()
 					
 				}
 				$('.' + x[i]).eq(0).click()
-				
-				
-				
 			}
+			sendArrayAjax(arr, 'on')// SEND ARRAY OF DIVS to AJAX - ON STATE
 
 		} else {
 			//sendArrayAjax(arr,x,'off')// SEND ARRAY OF DIVS to AJAX - OFF STATE
@@ -180,7 +208,9 @@ jQuery(document).ready(function ($) {
 					$('#' + primaryGrid[i]).prop("checked", true); // input code - to be removed/integrate with IDS	
 					//$('#'+primaryGrid[i]).click()
 				}
+
 				if (index == 0) {
+
 					togglePrimary(primaryGrid[i])
 				}
 			})
@@ -232,9 +262,9 @@ jQuery(document).ready(function ($) {
 
 		$('.' + secondaryGrid[i]).click(function () {
 
-			$('.' + secondaryGrid[i]).each(function () {
-				r = $(this).attr('dataval')
+			$('.' + secondaryGrid[i]).each(function (index) {
 
+				r = $(this).attr('dataval')
 
 				if ($(this).hasClass('selected')) {
 					$('#' + secondaryGrid[i]).prop("checked", false); // input code - to be removed/integrate with IDS
@@ -243,11 +273,15 @@ jQuery(document).ready(function ($) {
 					s = "." + $(this).attr('hl') + "HL"
 					getSRC(1, s)
 				} else {
+
 					$('#' + secondaryGrid[i]).prop("checked", true); // input code - to be removed/integrate with IDS
 					$(this).addClass('selected')
 					s = "." + $(this).attr('hl') + "HL"
 					getSRC(0, s)
 				}
+				// if (index == 0) {
+				// 	togglePrimary(r)
+				// }
 			})
 
 		})
@@ -318,9 +352,14 @@ jQuery(window).load(function ($) {
 
 				j('#' + j(this).attr('hlclass').replace('HL', '')).click()
 				toggleSecondary()
+		
 			})
 		}
 	})
 
-
+	j(".secondaryGrid").click(function(e) {
+    if(e.which) {
+     toggleSecondary()
+    }
+    })
 });

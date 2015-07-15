@@ -115,6 +115,9 @@ button, .button {
 .toggle-sec .tabs-content > .content {
 	padding: 0;
 }
+#panel2-1 {
+    min-height: 300px;
+}
 .category-panel{display: table;width:100%;}
 .infographic {
 	margin: 1.5rem 0;
@@ -179,7 +182,7 @@ form .row .toggle-sec .postfix-radius.row.collapse .postfix {
 	padding: 0.8rem 1.5625rem;
 }
 .cat-cont input[type="checkbox"] {
-	margin: 10px 10px 0 0;
+	/*margin: 10px 10px 0 0;*/
 }
 .cat-cont label {
 	font-size: 0.813em;
@@ -188,7 +191,7 @@ form .row .toggle-sec .postfix-radius.row.collapse .postfix {
 	font-weight: 400;
 }
 .cat-cont input[type=radio], .cat-cont input[type=checkbox] {
-	display: none;
+	/*display:none;*/
 }
 .banner {
 	float: left;
@@ -342,7 +345,7 @@ input[type=radio]:not(old):checked + label {
 	line-height: 2;
 	padding: 0 0 0 35px;
 	position: absolute;
-	right: 0;
+	right:-50%;
 	width: auto;
 }
 .has-btn {
@@ -387,11 +390,11 @@ input[type=radio]:not(old):checked + label {
 	font-weight: 700;
 	line-height: 2;
 	position: absolute;
-	right: 25px;
+	right:-46%;
 	top: 5px;
 }
 .has-rt-btn .remove-field-btn {
-	right: -6.5625rem;
+	right: -85%;
 	top: 6px;
 }
 span.file-status {
@@ -498,6 +501,9 @@ a#delete:hover {
 	border-bottom: 1px solid #b4c5cc;
 	padding-bottom: 1rem;
 	font-weight: 700;
+}
+.search-status .left {
+    width: 89%;
 }
 .Search-terms {
 	font-weight: 400;
@@ -833,11 +839,14 @@ form .row .search-box .small-10.columns input[type="text"]{margin:0;}
 .row.isotope {
     border-bottom: 1px solid #b4c5cc;
 }
+
 .isotope .large-12.isotope-item{padding: 2.8rem 5rem 0;}
+.isotope .large-12.isotope-item.noRecords{padding: 2.8rem 5rem;}
 .isotope .large-12.isotope-item.loadSection img{padding:0!important;margin-bottom:	20px;}
+.profile-sec .large-12.loadSection img{padding:0!important;margin-bottom:	20px;}
 .isotope .prof-col{margin:0 3rem 0 5rem;width:35%;}
-.isotope  .row.prof-cont {width:100%;float:left;}
-.isotope .prof-col .panel{background: #fff none repeat scroll 0 0;    border: 2px solid #b4c5cc;float: left;margin-bottom:1.5rem;}
+/*.isotope  .row.prof-cont {width:100%;float:left;}*/
+.isotope .prof-col .panel{background: #fff none repeat scroll 0 0;    border: 2px solid #b4c5cc;}
 .isotope .prof-col .panel .feat-img{border: 2px solid #b4c5cc;box-shadow:none;}
 
 
@@ -960,11 +969,17 @@ ul {
 .basic-cont .gform_wrapper .top_label .gfield_error input.large, .basic-cont .gform_wrapper .top_label .gfield_error select.large, .basic-cont  .gform_wrapper .top_label .gfield_error textarea.textarea{width:100%;}
 .basic-cont .gform_wrapper div.validation_error{width:100%;}
 .prof-col .prof-cont .small-3.columns{width: auto;}
-.prof-col .prof-cont .small-9.columns {    float: none ;    width: auto;}
 .has-btn input{width: 100%;}
 .has-rt-btn .upload{width: 100% !important;}
-
 .isotope .prof-col{width:100%;margin:0;}
+.remove-field-btn{display: inline-block;position: static;margin-bottom: 2%;}
+.has-rt-btn .fl-btn{margin-bottom: 2%;position: static;}
+}
+@media screen and (max-width: 767px) and (min-width: 625px) {
+.prof-col .prof-cont .small-9.columns {   width: 86%;}
+}
+@media screen and (max-width: 626px) and (min-width: 510px) {
+.prof-col .prof-cont .small-9.columns {   width: 82%;}
 }
 @media only screen and (max-width: 600px) {
 .prof-col .prof-cont .small-3.columns{margin-bottom: 3rem;}

@@ -10,6 +10,7 @@ wp_enqueue_script( 'jqueryUI', get_template_directory_uri() . '/js/jquery-ui.js'
 wp_enqueue_script( 'infographic', get_template_directory_uri() . '/js/infographic.js', array( 'jquery' ), '1.0', true );
 wp_enqueue_script( 'isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array( 'jquery' ), '1.5.26', true );
 wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', array( 'jquery' ), '1.0', true );
+wp_enqueue_script( 'mobile-toggle', get_template_directory_uri() . '/js/mobileToggle.js', array( 'jquery' ), '1.0', true );
 ?>
 
 <!--toggle section starts-->
@@ -39,59 +40,30 @@ wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', arr
         <div aria-hidden="false" class="content active text-center" id="panel2-1">
   <!-- DEV CHECKBOXES - TO BE INTEGRATED WITH WP -->
 
-  <div style="background-color:#ccc; padding:20px; margin-bottom:20px; ">
-    <p> Primary
-      <br>
-      <label for="op">operational grid</label>
-      <input name="op" id="op" type="checkbox" value="" class="pCheck" />
-      <label for="generation">generation</label>
-      <input name="generation" id="generation" type="checkbox" value="" class="pCheck" />
-      <label for="microgrid">microgrid</label>
-      <input name="microgrid" id="microgrid" type="checkbox" value="" class="pCheck" />
-      <label for="transmission">transmission</label>
-      <input name="transmission" id="transmission" type="checkbox" value="" class="pCheck" />
-      <label for="distribution">distribution</label>
-      <input name="distribution" id="distribution" type="checkbox" value="" class="pCheck" />
-      <label for="tech">tech</label>
-      <input name="tech" id="tech" type="checkbox" value="" class="pCheck" />
-    </p>
-    <p> Secondary
-      <br>
-      <label for="hydro">Hydro</label>
-      <input name="hydro" id="hydro" type="checkbox" value="" class="sCheck" />
-      <label for="gas">gas</label>
-      <input name="gas" id="gas" type="checkbox" value="" class="sCheck" />
-      <label for="nuclear">nuclear</label>
-      <input name="nuclear" id="nuclear" type="checkbox" value="" class="sCheck" />
-      <label for="solar">solar</label>
-      <input name="solar" id="solar" type="checkbox" value="" class="sCheck" />
-      <label for="wind">wind</label>
-      <input name="wind" id="wind" type="checkbox" value="" class="sCheck" />
-      <label for="biomass">biomass</label>
-      <input name="biomass" id="biomass" type="checkbox" value="" class="sCheck" />
-      <label for="other">other</label>
-      <input name="other" id="other" type="checkbox" value="" class="sCheck" />
-      <label for="tower">tower</label>
-      <input name="tower" id="tower" type="checkbox" value="" class="sCheck" />
-      <label for="generation2">generation2</label>
-      <input name="generation2" id="generation2" type="checkbox" value="" class="sCheck" />
-      <label for="residential">residential</label>
-      <input name="residential" id="residential" type="checkbox" value="" class="sCheck" />
-      <label for="ads">ads</label>
-      <input name="ads" id="ads" type="checkbox" value="" class="sCheck" />
-      <label for="comInd">comInd</label>
-      <input name="comInd" id="comInd" type="checkbox" value="" class="sCheck" />
-      <label for="cTech">cTech</label>
-      <input name="cTech" id="cTech" type="checkbox" value="" class="sCheck" />
-      <label for="eStorage">eStorage</label>
-      <input name="eStorage" id="eStorage" type="checkbox" value="" class="sCheck" />
-      <label for="ami">ami</label>
-      <input name="ami" id="ami" type="checkbox" value="" class="sCheck" />
-      <label for="dGeneration">dGeneration</label>
-      <input name="dGeneration" id="dGeneration" type="checkbox" value="" class="sCheck" />
-      <label for="es">es</label>
-      <input name="es" id="es" type="checkbox" value="" class="sCheck" />
-    </p>
+  <div id="infocheckbox" style="display:none">
+      <input name="op" id="op" type="checkbox" value="77" class="pCheck" />
+      <input name="generation" id="generation" type="checkbox" value="3" class="pCheck" />
+      <input name="microgrid" id="microgrid" type="checkbox" value="71" class="pCheck" />
+      <input name="transmission" id="transmission" type="checkbox" value="34" class="pCheck" />
+      <input name="distribution" id="distribution" type="checkbox" value="9" class="pCheck" />
+      <input name="tech" id="tech" type="checkbox" value="64" class="pCheck" />
+      <input name="hydro" id="hydro" type="checkbox" value="20" class="sCheck" />
+      <input name="gas" id="gas" type="checkbox" value="32" class="sCheck" />
+      <input name="nuclear" id="nuclear" type="checkbox" value="31" class="sCheck" />
+      <input name="solar" id="solar" type="checkbox" value="4" class="sCheck" />
+      <input name="wind" id="wind" type="checkbox" value="16" class="sCheck" />
+      <input name="biomass" id="biomass" type="checkbox" value="30" class="sCheck" />
+      <input name="other" id="other" type="checkbox" value="33" class="sCheck" />
+      <input name="tower" id="tower" type="checkbox" value="85" class="sCheck" />
+      <input name="generation2" id="generation2" type="checkbox" value="72" class="sCheck" />
+      <input name="residential" id="residential" type="checkbox" value="67" class="sCheck" />
+      <input name="ads" id="ads" type="checkbox" value="45" class="sCheck" />
+      <input name="comInd" id="comInd" type="checkbox" value="65" class="sCheck" />
+      <input name="cTech" id="cTech" type="checkbox" value="74" class="sCheck" />
+      <input name="eStorage" id="eStorage" type="checkbox" value="46" class="sCheck" />
+      <input name="ami" id="ami" type="checkbox" value="15" class="sCheck" />
+      <input name="dGeneration" id="dGeneration" type="checkbox" value="10" class="sCheck" />
+      <input name="es" id="es" type="checkbox" value="46" class="sCheck" />
   </div>
 
 
@@ -153,36 +125,29 @@ wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', arr
       <ul class="accordion" data-accordion="myAccordionGroup">
         <li class="accordion-navigation"> <a href="#panel4c" aria-expanded="false" title="">Search Site <i class="fa fa-caret-right up"></i></a>
           <div id="panel4c" class="content">
-            <div class="cat-col">
+            <div class="cat-col" id="mlevelContainer">
               <h4 class="cat-head">Select Categories</h4>
-              <div class="cat-cont">
-                <label for="category1a">
-                  <input type="checkbox" class="cb" id="category1a">
-                  <span class="custom checkbox"></span>Centralized Generation</label>
-                <label for="category2a">
-                  <input type="checkbox" class="cb" id="category2a">
-                  <span class="custom checkbox"></span>Transmission</label>
-                <label for="category3a">
-                  <input type="checkbox" class="cb" id="category3a">
-                  <span class="custom checkbox"></span>Distribution</label>
-                <label for="category4a">
-                  <input type="checkbox" class="cb" id="category4a">
-                  <span class="custom checkbox"></span>Customer Technologies</label>
-                <label for="category5a">
-                  <input type="checkbox" class="cb" id="category5a">
-                  <span class="custom checkbox"></span>Microgrid</label>
-                <label for="category6a">
-                  <input type="checkbox" class="cb" id="category6a">
-                  <span class="custom checkbox"></span>Grid Operation</label>
+              <div class="cat-cont" id="mlevel1">
+              <?php foreach ($parentcategory as $catvalue) {
+                ?>
+                <div>
+                  
+                  <input type="checkbox" class="cb" id="parent_cat" value="<?php echo $catvalue->cat_ID; ?>">
+                  <label for="<?php echo $catvalue->cat_name; ?>">
+                  <?php echo $catvalue->cat_name; ?></label>
+                </div>
+                <?php $qty++;
+                }
+                ?>
               </div>
             </div>
             <div class="cat-col dsbl">
               <h4 class="cat-head">Refine</h4>
-              <div class="cat-cont"> Please select at least one category from level one. </div>
+              <div class="cat-cont" id="mlevel2"> </div>
             </div>
             <div class="cat-col dsbl">
               <h4 class="cat-head">Refine</h4>
-              <div class="cat-cont"> Please select at least one category from level one. </div>
+              <div class="cat-cont" id="mlevel3"> </div>
             </div>
           </div>
         </li>
