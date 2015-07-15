@@ -1,3 +1,29 @@
+
+function sendArrayAjax(arr,i,j) { //AJAX call
+	alert(arr+","+i+" "+j) //TEST ONLY
+}
+
+function toggleSecondary() {
+
+	var arr = []
+	jQuery("input:checked").each(function () {
+	 arr.push(jQuery(this).attr('id'))
+	})
+	sendArrayAjax(arr,x="", 'on')
+}
+
+function togglePrimaryUncheck(l) {
+
+	var arr = []
+	jQuery("input:checked").each(function () {
+	 var id=jQuery(this).attr('id');
+		 if(id!=l){
+		 	arr.push(id)
+		 }
+	})
+	sendArrayAjax(arr,x="", 'on')
+}
+
 jQuery(document).ready(function ($) {
 
 	//base path used in hover/on/off states
@@ -30,32 +56,41 @@ jQuery(document).ready(function ($) {
 	//Turn all checkboxes in category 2 on/off based on category 1
 	function togglePrimary(r) {
 
+		var arr = []
+		$("input:checked").each(function () {
+    	 arr.push($(this).attr('id'))
+		})
 		l = r
 		x = eval(l)
 		b = "$('#" + l + "')"
-
 		if (eval(b).prop('checked')) {
-			//alert(1)
+			sendArrayAjax(arr,x, 'on')// SEND ARRAY OF DIVS to AJAX - ON STATE
 			eval(b).prop('checked', 'false')
 			for (i = 0; i < eval(l).length; i++) {
 				if ($('#' + x[i]).prop("checked")) {
 					$('.' + x[i]).eq(0).click()
+					
 				}
 				$('.' + x[i]).eq(0).click()
+				
+				
+				
 			}
 
 		} else {
-
+			//sendArrayAjax(arr,x,'off')// SEND ARRAY OF DIVS to AJAX - OFF STATE
 			eval(b).prop('checked', 'true')
 			for (i = 0; i < eval(l).length; i++) {
 				if (!$('#' + x[i]).prop("checked")) {
 					$('.' + x[i]).eq(0).click()
 				}
 				$('.' + x[i]).eq(0).click()
+				
 			}
+			togglePrimaryUncheck(l)
 		}
+		
 	}
-
 	
 	
 
@@ -260,12 +295,12 @@ jQuery(window).load(function ($) {
 	var j = jQuery.noConflict();
 	
 	//Turn on all checkboces
-	j('#op').click()
-	j('#generation').click()
-	j('#microgrid').click()
-	j('#transmission').click()
-	j('#distribution').click()
-	j('#tech').click()
+	// j('#op').click()
+	// j('#generation').click()
+	// j('#microgrid').click()
+	// j('#transmission').click()
+	// j('#distribution').click()
+	// j('#tech').click()
 
 
 	
@@ -282,19 +317,9 @@ jQuery(window).load(function ($) {
 			j('.element' + index).click(function () {
 
 				j('#' + j(this).attr('hlclass').replace('HL', '')).click()
-
+				toggleSecondary()
 			})
 		}
-	})
-	
-
-	// DEV testing show/hide
-	j('.tog').click(function () {
-		j('.visualSelect').hide()
-	})
-
-	j('.tog2').click(function () {
-		j('.visualSelect').show()
 	})
 
 

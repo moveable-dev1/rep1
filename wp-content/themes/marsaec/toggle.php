@@ -39,10 +39,7 @@ wp_enqueue_script( 'toggle', get_template_directory_uri() . '/js/toggle.js', arr
         <div aria-hidden="false" class="content active text-center" id="panel2-1">
   <!-- DEV CHECKBOXES - TO BE INTEGRATED WITH WP -->
 
-  <div style="background-color:#ccc; padding:20px; margin-bottom:20px; display:none">
-    <p>
-      <h4>Developer test console</h4>
-    </p>
+  <div style="background-color:#ccc; padding:20px; margin-bottom:20px; ">
     <p> Primary
       <br>
       <label for="op">operational grid</label>
