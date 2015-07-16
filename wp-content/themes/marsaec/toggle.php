@@ -74,7 +74,7 @@ wp_enqueue_script( 'mobile-toggle', get_template_directory_uri() . '/js/mobileTo
           <div style="width:100%;  margin:auto; position:relative" class="container">
             <!-- LOADER DIV -->
             <div class="loader">
-              <img src="<?php bloginfo('template_directory'); ?>/img/bv.gif" width="80" height="80" />
+              <img src="<?php bloginfo('template_directory'); ?>/img/bv.gif" width="80" height="80" alt="loader" />
             </div>
             <!-- END LOADER DIV -->
             <!-- INFOGRAPHIC - JS CONTROLLED -->
@@ -100,20 +100,26 @@ wp_enqueue_script( 'mobile-toggle', get_template_directory_uri() . '/js/mobileTo
                 ?>
                 <div>
                  <input type="checkbox" class="cb" id="parent_cat" value="<?php echo $catvalue->cat_ID; ?>">
-                 <label for="<?php echo $catvalue->cat_name; ?>"><?php echo $catvalue->cat_name; ?></label>
+                 <label for="<?php echo sanitize_title($catvalue->cat_name); ?>"><?php echo $catvalue->cat_name; ?></label>
                 </div>
                 <?php $qty++;
                 }
                 ?>
             </div>
           </div> 
-          <div class="small-4 columns cat-col dsbl">
-            <h4 class="cat-head">Refine</h4>
-            <div id="level2" class="cat-cont-new"></div>
+          <div class="small-4 columns cat-col lev1 dsbl">
+            <h4 class="cat-head">Refine <div id="imageloader" style="display:none">
+                <img src="/wp-content/themes/marsaec/img/ajax-loader.gif"/>
+              </div></h4> 
+            <div id="level2" class="cat-cont-new">
+              <span id="level2help"> Please select at least one category from level two. </span>
+            </div>
           </div>
-          <div class="small-4 columns cat-col dsbl">
-            <h4 class="cat-head">Refine</h4>
-            <div id="level3" class="cat-cont-new"></div>
+          <div class="small-4 columns cat-col lev2 dsbl">
+            <h4 class="cat-head">Refine <div id="imageloader2" style="display:none">
+                <img src="/wp-content/themes/marsaec/img/ajax-loader.gif"/>
+              </div> </h4>
+            <div id="level3" class="cat-cont-new"><span id="level3help"> Please select at least one category from level two. </span></div>
           </div>
         </div>
         </div>
@@ -125,37 +131,53 @@ wp_enqueue_script( 'mobile-toggle', get_template_directory_uri() . '/js/mobileTo
       <ul class="accordion" data-accordion="myAccordionGroup">
         <li class="accordion-navigation"> <a href="#panel4c" aria-expanded="false" title="">Search Site <i class="fa fa-caret-right up"></i></a>
           <div id="panel4c" class="content">
-            <div class="cat-col" id="mlevelContainer">
-              <h4 class="cat-head">Select Categories</h4>
-              <div class="cat-cont" id="mlevel1">
-              <?php foreach ($parentcategory as $catvalue) {
-                ?>
-                <div>
-                  
-                  <input type="checkbox" class="cb" id="parent_cat" value="<?php echo $catvalue->cat_ID; ?>">
-                  <label for="<?php echo $catvalue->cat_name; ?>">
-                  <?php echo $catvalue->cat_name; ?></label>
+            <div id="mlevelContainer">
+              <div class="cat-col">
+                <h4 class="cat-head">Select Categories</h4>
+                <div class="cat-cont" id="mlevel1">
+                <?php //Show level 1 category for devices
+                foreach ($parentcategory as $catvalue) {
+                  ?>
+                  <div>
+                    
+                    <input type="checkbox" class="cb" id="parent_cat" value="<?php echo $catvalue->cat_ID; ?>">
+                    <label for="<?php echo $catvalue->cat_name; ?>">
+                    <?php echo $catvalue->cat_name; ?></label>
+                  </div>
+                  <?php $qty++;
+                  }
+                  ?>
                 </div>
-                <?php $qty++;
-                }
-                ?>
               </div>
-            </div>
-            <div class="cat-col dsbl">
-              <h4 class="cat-head">Refine</h4>
-              <div class="cat-cont" id="mlevel2"> </div>
-            </div>
-            <div class="cat-col dsbl">
-              <h4 class="cat-head">Refine</h4>
-              <div class="cat-cont" id="mlevel3"> </div>
+              <div class="mlev1 cat-col dsbl">
+                <h4 class="cat-head">Refine  
+                  <div id="mimageloader" style="display:none">
+                      <img src="/wp-content/themes/marsaec/img/ajax-loader.gif"/>
+                  </div>
+                </h4>
+                <div class="cat-cont" id="mlevel2"> 
+                  <span id="mlevel2help"> Please select at least one category from level two. </span>
+                </div>
+              </div>
+              <div class="mlev2 cat-col dsbl">
+                <h4 class="cat-head">Refine
+                  <div id="mimageloader2" style="display:none">
+                    <img src="/wp-content/themes/marsaec/img/ajax-loader.gif"/>
+                  </div> 
+                </h4>
+                <div class="cat-cont" id="mlevel3">
+                 <span id="mlevel3help"> Please select at least one category from level two. 
+                  </span>
+              </div>
+              </div>
             </div>
           </div>
         </li>
       </ul>
     </div>
   </div>
-<input type="hidden" value="" id="getAllCatId">
 </form>
+<input type="hidden" value="" id="getAllCatId">
 <!--toggle section ends--> 
 <div class="row" id="getTagProfiles">
 </div>

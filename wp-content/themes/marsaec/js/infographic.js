@@ -200,12 +200,12 @@ jQuery(document).ready(function ($) {
 				if ($(this).hasClass('selected')) {
 					$(this).removeClass('selected')
 					r = $(this).attr('dataval')
-					$('#' + primaryGrid[i]).prop("checked", false); // input code - to be removed/integrate with IDS
+					$('#' + primaryGrid[i]).prop("checked", false); // input code - to be removed/integrate with 
 					$(this).children().attr('src', eval(formattedDefaultIMG) + r + '.jpg')
 				} else {
 					$(this).addClass('selected')
 					$(this).children().attr('src', eval(formattedDefaultIMG) + 'primaryHL_' + r + '.jpg')
-					$('#' + primaryGrid[i]).prop("checked", true); // input code - to be removed/integrate with IDS	
+					$('#' + primaryGrid[i]).prop("checked", true); // input code - to be removed/integrate with 	
 					//$('#'+primaryGrid[i]).click()
 				}
 
@@ -267,14 +267,14 @@ jQuery(document).ready(function ($) {
 				r = $(this).attr('dataval')
 
 				if ($(this).hasClass('selected')) {
-					$('#' + secondaryGrid[i]).prop("checked", false); // input code - to be removed/integrate with IDS
+					$('#' + secondaryGrid[i]).prop("checked", false); // input code - to be removed/integrate with 
 					$(this).removeClass('selected')
 					r = $(this).attr('dataval')
 					s = "." + $(this).attr('hl') + "HL"
 					getSRC(1, s)
 				} else {
 
-					$('#' + secondaryGrid[i]).prop("checked", true); // input code - to be removed/integrate with IDS
+					$('#' + secondaryGrid[i]).prop("checked", true); // input code - to be removed/integrate with 
 					$(this).addClass('selected')
 					s = "." + $(this).attr('hl') + "HL"
 					getSRC(0, s)

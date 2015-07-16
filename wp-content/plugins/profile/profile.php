@@ -2,9 +2,8 @@
 /*
 Plugin Name: Company/Project Profile
 Description: Manages Company/Project Profile
-Author: IDS Logic
+Author: Marsaec
 Version: 1.0.0
-Author URI: http://idslogic.com/
 
 */
 //error_reporting(0);

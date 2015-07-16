@@ -35,11 +35,13 @@ function homeDisplayProfile() {
 	$All_cat_ID = $_POST['All_cat_ID'];
 	$listlen=$_POST['listlength'];
 	global $wpdb;
-	$query="SELECT COUNT(*) AS total, id FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 GROUP BY id HAVING total >= $listlen ORDER BY id DESC LIMIT 6";
-	//echo $query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND metaid=16 ORDER BY id DESC LIMIT 6";
+	//$query="SELECT COUNT(*) AS total, id FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 GROUP BY id HAVING total >= $listlen ORDER BY id DESC LIMIT 6";
+	$query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND metaid=16 ORDER BY id DESC LIMIT 6";
 	$profileIds=$wpdb->get_results($query); 
-	$i=1;
 	$countrows=$wpdb->num_rows; 
+	$i=1;
+	$queryCount="Select COUNT(DISTINCT(id)) from aec_profilevalue where value in ($All_cat_ID) AND metaid=16";
+	$getsearch=$wpdb->get_var($queryCount);
 	if(!empty($profileIds)) {
 	?>
 	    <div class="large-12 columns items isoShow">
@@ -56,7 +58,7 @@ function homeDisplayProfile() {
 	        	}
 
 	         ?></span></div>
-	        <div class="right search-count" id="<?php echo $countrows; ?>"><?php echo $countrows; ?> results</div>
+	        <div class="right search-count" id="<?php echo $countrows; ?>"><?php echo $getsearch; ?> results</div>
 	      </div>
 	    </div>
 	   
@@ -108,7 +110,7 @@ function getLoadMoreProfile() {
 		  $listlen=$_POST['listlength'];
 	      $i=1;
 	      global $wpdb;
-	      $query="SELECT COUNT(*) AS total, id FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 AND id<$pID GROUP BY id HAVING total >= $listlen ORDER BY id DESC LIMIT 6";
+	      $query="SELECT DISTINCT(id) FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 AND id<$pID ORDER BY id DESC LIMIT 6";
 	      //$query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND id<$pID AND metaid=16 ORDER BY id DESC LIMIT 6";
 		  $getRelProfile=$wpdb->get_results($query); 
 		  $countrows=$wpdb->num_rows; 

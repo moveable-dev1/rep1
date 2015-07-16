@@ -8,19 +8,20 @@
  */
 
 get_header();
+wp_enqueue_script( 'searchResult', get_template_directory_uri() . '/js/searchResult.js', array( 'jquery' ), '1.0', true );
 ?>
 
 <?php get_template_part( 'toggle' ); ?>
 
-<div class="row">
-  <div class="profile-sec">
+<div class="row isotope firstsearch">
+<div class="searcharea">
 <?php 
 $searchterm=$_GET['q'];
 if(!empty($searchterm)) { 
 //print_r(search_keyword($searchterm));
   ?>
 <!--Search results section starts-->
-    <div class="large-12 columns">
+    <div class="large-12 columns isotope-item">
       <div class="search-status">
         <div class="left">You searched for: <span class="Search-terms"><?php echo $searchterm; ?></span></div>
         <div class="right search-count"><?php echo search_count($searchterm); ?> results</div>
@@ -31,7 +32,7 @@ if(!empty($searchterm)) {
     $getsearch=search_keyword($searchterm);
     foreach($getsearch as $searchvalue){
      ?>
-    <div class="large-5 <?php echo $i%2==0?"large-offset-2":""; ?> columns prof-col">
+    <div class="large-5 columns prof-col">
       <div class="panel <?php echo $i>2?"panel-search":""; ?>">
       <?php 
       $featuredimage=feautured_image($searchvalue->id);
@@ -55,9 +56,11 @@ if(!empty($searchterm)) {
      <div class="clearfix"></div>
     <?php } $i++; 
     }?>
-
-    <div class="large-12 columns text-center"> <a role="button" class="button tiny radius more-btn more-btn-inner" href="#">Load More</a> 
+    <?php if(search_count($searchterm)>6) {?>
+    <div class="large-12 columns text-center isotope-item loadSection" id="load_more_<?php echo $searchvalue->id; ?>"> <a role="button" class="button tiny radius more-btn more-btn-inner searchmore_button" href="#" id="<?php echo $searchvalue->id; ?>">Load More</a> 
     </div>
+    </div>
+    <?php } ?>
 <!--Search results section ends--> 
 <?php } 
       else { 
@@ -69,7 +72,9 @@ if(!empty($searchterm)) {
       endwhile;
       } ?>
   </div>
-</div>
+     <div id="getSearchProfiles" class="row">
+   </div>
+
 <?php get_template_part( 'promo' ); ?> 
 
 <?php get_footer(); ?>

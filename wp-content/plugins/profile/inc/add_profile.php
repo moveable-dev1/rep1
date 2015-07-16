@@ -29,7 +29,10 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
         </li>
         <li id="profile_logo">
           <label for="logo"> Logo <span class="upload"> <span class="file-status">file name</span>
-            <input id="logo" name="logo" class="element file" type="file" data-validation="required" />
+            <input id="logo" name="logo" class="element file" type="file" data-validation="mime size required" 
+               data-validation-allowing="jpg, png, gif, jpeg" 
+               data-validation-max-size="1M" 
+               data-validation-error-msg-required="No image is selected." />
             </span> </label>
         </li>
         <li id="profile_affiliated">
@@ -48,7 +51,9 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
           <div class="main-label">Upload Featured Images (Optional) <span class="help-txt" id="profileType">Providing at least one image of your innovation is highly recommended to increase the visibility of your profile on the site.</span></div>
           <div class="has-rt-btn">
             <label><span class="upload"> <span class="file-status">file name</span>
-              <input name="feauturedimage[]" type="file" id="feauturedimage" class="feauturedimage">
+              <input name="feauturedimage[]" type="file" id="feauturedimage" class="feauturedimage" data-validation="mime size" 
+               data-validation-allowing="jpg, png, gif, jpeg" 
+               data-validation-max-size="1M">
               </span> </label>
             <div class="fl-btn">
               <input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()">
@@ -170,7 +175,7 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
         </li>
         <li id="profile_website">
           <label for="website">Website
-            <input id="website" name="website" class="element text medium" type="text" value="<?php echo $_POST['website']?$_POST['website']:""; ?>" data-validation="url" data-validation-error-msg="Please enter correct website URL e.g. http://aec.com." placeholder="http://">
+            <input id="website" name="website" class="element text medium" type="text" value="<?php echo $_POST['website']?$_POST['website']:""; ?>" data-validation="url" data-validation-error-msg="Please enter correct website URL e.g. http://example.com." placeholder="http://">
           </label>
         </li>
         <div class="main-label">Social Media <span class="help-txt">Users will be able to follow you on social media using the links provided</span> </div>
@@ -202,9 +207,8 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
         <li id="profile_videos">
           <div class="main-label">Videos</div>
           <div class="">
-              <textarea id="videos" name="videos[]" class="element textarea medium"></textarea>
-           <!--  <input id="videos" name="videos[]" class="element text medium" type="text" value="<?php echo $_POST['videos'][0]; ?>">
- -->          </div>
+            <input id="videos" name="videos[]" class="element text medium" type="text" value="<?php echo $_POST['videos'][0]; ?>">
+          </div>
         </li>
         <div class="fw-nrml sub-label mb">
           <hr>
@@ -251,7 +255,7 @@ include( plugin_dir_path( __FILE__ ) . 'AddProfileInclude.php'); ?>
   </div>
 </div>
 <!-- jQuery Validation --> 
-<script src="<?php echo plugins_url( 'inc/assets/jquery.form-validator.min.js' , dirname(__FILE__) ); ?>"></script> 
+<script src="<?php echo plugins_url( 'inc/assets/jquery.form-validator.js' , dirname(__FILE__) ); ?>"></script> 
 <script>
 jQuery("[name='term_taxonomy_id[]']:eq(0)")
   .valAttr('','validate_checkbox_group')
@@ -259,7 +263,11 @@ jQuery("[name='term_taxonomy_id[]']:eq(0)")
   .valAttr('error-msg','At least one category is required. ');
 jQuery.validate({
   form : '#adminprofile',
-  errorMessagePosition : 'top'
- //validateOnBlur : false
+  modules : 'file',
+  /*onModulesLoaded : function() {
+    alert('All modules loaded!');
+  },*/
+  errorMessagePosition : 'top',
+  validateOnBlur : false,
 });
 </script> 

@@ -1,8 +1,8 @@
 <?php 
+session_start();
 /**
  * @package Profile\Edit profile
  */
-session_start();
 if($_SESSION['success_messages']) {
 	echo $_SESSION['success_messages'];
 }

@@ -32,7 +32,9 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
         <?php $imageUrl=$profileName->logo; ?>
         <span class="logoimage"><img src="<?php echo wpse_resizeimage($imageUrl,100); ?>" alt="logo"/></span>
         <label for="logo" class="fw-nrml main-sub-label">Change Image <span class="upload"> <span class="file-status">file name</span>
-          <input id="logo" name="logo" class="element file" type="file"/>
+          <input id="logo" name="logo" class="element file" type="file" data-validation="mime size" 
+               data-validation-allowing="jpg, png, gif, jpeg" 
+               data-validation-max-size="1M"/>
           </span> </label>
       </div>
     </li>
@@ -47,8 +49,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
             ?>
         <hr>
         <label class="type_label fw-nrml main-sub-label" for="affiliated">Company Name</label>
-        <input id="affiliated" name="affiliated[]" class="element text medium" 
-            type="text" value="<?php  echo $AffValue->value; ?>" />
+        <input id="affiliated" name="affiliated[]" class="element text medium" type="text" value="<?php  echo $AffValue->value; ?>" />
         <label class="type_label fw-nrml main-sub-label" for="affiliated_url">Company URL</label>
         <input id="affiliated_url" name="affiliated_url[]" class="element text medium" 
             type="text" value="<?php echo GetSet($metaid=2, $fieldid=$AffValue->fieldid,$profileId); ?>" />
@@ -103,9 +104,10 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
             $Checkfeatured++; 
           } //endforach
       } else{ //elseIf featured image not found ?>
-      <div class="main-label">Featured Image</div>
       <div class="has-rt-btn mb">
-        <input name="feauturedimage[]" type="file" id="feauturedimage">
+        <input name="feauturedimage[]" type="file" id="feauturedimage" data-validation="mime size" 
+               data-validation-allowing="jpg, png, gif, jpeg" 
+               data-validation-max-size="1M">
         <div class="fl-btn">
           <input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()">
           <span class="type_label fw-nrml" for="feauturedimageradio">Featured Image</span> </div>
@@ -202,10 +204,13 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
       <?php } 
           }//enforeach ?>
           <script type="text/javascript">
-          <?php foreach(array_unique($disablefield) as $dvalue) {?>
-            jQuery('#level1 input[value="<?php echo $dvalue; ?>"]').prop("disabled", true);
-          //print_r(array_unique($disablefield));
-           <?php }?>
+          <?php 
+          if(!empty($disablefield)) {
+            foreach(array_unique($disablefield) as $dvalue) {?>
+              jQuery('#level1 input[value="<?php echo $dvalue; ?>"]').prop("disabled", true);
+            //print_r(array_unique($disablefield));
+             <?php }
+          }?>
           </script>
         <?php }//endif
           ?>
@@ -353,7 +358,8 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
         <textarea id="description" name="description" class="element textarea medium" data-validation="required" maxlength="300"><?php echo $profileName->description; ?></textarea>
       </label>
     </li>
-    <li id="profile_projectfunders">
+    <?php $checkProfile=$profileName->profile_type; ?>
+    <li id="profile_projectfunders" style="<?php echo $checkProfile==1?"display:none":""; ?>">
       <div class="main-label">Project Funders</div>
       <?php
         //Project Funder name ID=10, URL=11
@@ -382,10 +388,11 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
         
       ?>
     </li>
-    <div class="fw-nrml sub-label mb">
+    <div class="fw-nrml sub-label mb" id="projectaddmore" style="<?php echo $checkProfile==1?"display:none":""; ?>">
       <hr>
       <a class="add-field-btn" id="addinput" onclick="addinput(elementid='profile_projectfunders',limit=21,postname='project_funders',postname2='project_fundersurl')">Add Another Company</a> </div>
-    <li id="profile_investors">
+
+    <li id="profile_investors" style="<?php echo $checkProfile==2?"display:none":""; ?>">
       <div class="main-label">Investors</div>
       <?php
         //Investers ID=12, URL=13
@@ -414,7 +421,7 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
         
         ?>
     </li>
-    <div class="fw-nrml sub-label mb">
+    <div class="fw-nrml sub-label mb" id="companyaddmore" style="<?php echo $checkProfile==2?"display:none":""; ?>">
       <hr>
       <a class="add-field-btn" id="addinput" onclick="addinput(elementid='profile_investors',limit=21,postname='investors',postname2='investorsurl')">Add Another Company</a> </div>
     <li id="profile_email">
@@ -466,16 +473,17 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
           foreach ($getVideos as $VideosValue) {
         ?>
       <label class="type_label" for="videos">Videos
-         <textarea id="videos" name="videos[]" class="element textarea medium"><?php echo $VideosValue->value; ?></textarea>
-     <?php /*   <input id="videos" name="videos[]" class="element text medium" type="text" 
-        value="<?php echo $VideosValue->value; ?>"> */?>
+        <?php /*  <textarea id="videos" name="videos[]" class="element textarea medium"><?php //echo $VideosValue->value; ?></textarea>*/ ?>
+       <input id="videos" name="videos[]" class="element text medium" type="text" 
+        value="<?php echo $VideosValue->value; ?>"> 
       </label>
       <hr>
       <?php 
           } 
         } else { ?>
       <label class="type_label" for="videos">Videos
-        <textarea id="videos" name="videos[]" class="element textarea medium"></textarea>
+          <input id="videos" name="videos[]" class="element text medium" type="text" 
+        value=""> 
       </label>
       <?php
         }
@@ -536,11 +544,16 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
 }
 ?>
 <!-- jQuery Validation --> 
-<script src="<?php echo plugins_url( 'inc/assets/jquery.form-validator.min.js' , dirname(__FILE__) ); ?>"></script> 
+<script src="<?php echo plugins_url( 'inc/assets/jquery.form-validator.js' , dirname(__FILE__) ); ?>"></script> 
 <script>
 jQuery.validate({
   form : '#adminprofile',
-  errorMessagePosition : 'top'
+  modules : 'file',
+  /*onModulesLoaded : function() {
+    alert('All modules loaded!');
+  },*/
+  errorMessagePosition : 'top',
+  validateOnBlur : false,
 });
-</script>
+</script> 
 <?php session_destroy(); ?>

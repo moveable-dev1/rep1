@@ -581,28 +581,6 @@ function get_profileUrl($id)
 	return "/profile/".$getURL;
 }
 
-//Get Search by keyword
-function search_keyword($searchterm)
-{
-	global $wpdb;
-	$searchFieldName= "name";
-	$searchCondition = "$searchFieldName LIKE '%" . $searchterm . "%'";
-	$query="SELECT * FROM aec_profile WHERE $searchCondition AND status=1 ORDER BY id DESC";
-	$getsearch=$wpdb->get_results($query);
-	return $getsearch;
-}
-
-//
-function search_count($searchterm)
-{
-	global $wpdb;
-	$searchFieldName= "name";
-	$searchCondition = "$searchFieldName LIKE '%" . $searchterm . "%'";
-	$query="SELECT COUNT(*) FROM aec_profile WHERE $searchCondition AND status=1 ORDER BY id DESC";
-	$getsearch=$wpdb->get_var($query);
-	return $getsearch;
-}
-
 //Add Fields in settings
 $new_general_setting = new new_general_setting();
 
@@ -739,7 +717,12 @@ function custom_rewrite_rule() {
   }
 add_action('init', 'custom_rewrite_rule', 10, 0);
 
+
+
 //Include Code for Filter by tag options
 require get_template_directory() . '/inc/IncludeToggle.php';
 
 require get_template_directory() . '/inc/custom_gravity.php';
+
+//Search by keyword
+require get_template_directory() . '/inc/keywordSearch.php';

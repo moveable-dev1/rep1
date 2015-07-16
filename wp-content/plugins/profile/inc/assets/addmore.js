@@ -40,7 +40,7 @@ function addfeaturedimage(limit)
         var n = jQuery("#profile_featured div#FimageBox").length;
 		
         if (n <=limit) {
-               jQuery("#profile_featured").append('<div class="has-rt-btn mb" id="FimageBox"><input name="feauturedimage[]" type="file" id="feauturedimage" class="feauturedimage"><div class="fl-btn"><input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()"><span class="type_label fw-nrml " for="featured_image">Featured Image</span></div><button class="delete remove-field-btn">Remove</button></div>');
+               jQuery("#profile_featured").append('<div class="has-rt-btn mb" id="FimageBox"><input name="feauturedimage[]" type="file" id="feauturedimage" class="feauturedimage" data-validation="mime size" data-validation-allowing="jpg, png, gif, jpeg" data-validation-max-size="1M"><div class="fl-btn"><input name="feauturedimageradio[]" type="radio" id="feauturedimageradio" onclick="getElement()"><span class="type_label fw-nrml " for="featured_image">Featured Image</span></div><button class="delete remove-field-btn">Remove</button></div>');
         }
         else{
                 alert("No more additional fields are allowed!");

@@ -1,11 +1,15 @@
-<?php 
+<?php
+session_start();
+#require_once( '/srv/bindings/384a7dc947f845f298125383d3bb9a66/code/wp-content/mu-plugins/wp-native-php-sessions/pantheon-sessions.php');
+#require WPMU_PLUGIN_DIR.'/wp-native-php-sessions/pantheon-sessions.php';
 /**
  * @package Profile\Manage profile
  */
-session_start();
 if($_SESSION['success_messages']) {
 	echo $_SESSION['success_messages'];
 }
+
+
 wp_enqueue_style( 'profile', plugins_url( 'inc/assets/profile.css' , dirname(__FILE__) ) );
 wp_enqueue_script('profile', plugins_url( 'inc/assets/listprofile.js' , dirname(__FILE__) ));
 
