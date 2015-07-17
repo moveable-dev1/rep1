@@ -6,7 +6,7 @@ function search_keyword($searchterm)
 	$searchFieldName= "name";
 	$searchCondition = "$searchFieldName LIKE '%" . $searchterm . "%'";
 	//$query="SELECT * FROM aec_profile WHERE $searchCondition AND status=1 ORDER BY id DESC";
-	$query="SELECT * FROM aec_profile WHERE status=1 ORDER BY id DESC LIMIT 6";
+	$query="SELECT * FROM aec_profile WHERE $searchCondition AND status=1 ORDER BY id DESC LIMIT 6";
 	$getsearch=$wpdb->get_results($query);
 	return $getsearch;
 }
@@ -18,7 +18,7 @@ function search_count($searchterm)
 	$searchFieldName= "name";
 	$searchCondition = "$searchFieldName LIKE '%" . $searchterm . "%'";
 	//$query="SELECT COUNT(*) FROM aec_profile WHERE $searchCondition AND status=1 ORDER BY id DESC";
-    $query="SELECT COUNT(*) FROM aec_profile WHERE status=1 ORDER BY id DESC LIMIT 6";
+    $query="SELECT COUNT(*) FROM aec_profile WHERE $searchCondition AND status=1 ORDER BY id DESC LIMIT 6";
 	$getsearch=$wpdb->get_var($query);
 	return $getsearch;
 }
@@ -45,7 +45,7 @@ function getSearchLoadMoreProfile() {
 			            <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
 			          </div>
 			          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
-			            <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
+			            <div class="comp-short"><?php echo substr($getSimilarProfile->description, 0,300); ?></div>
 			          </div>
 			        </div>
 			      </div>

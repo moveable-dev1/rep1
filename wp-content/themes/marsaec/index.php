@@ -41,7 +41,7 @@ get_header(); ?>
             <div class="comp-thumb"><img src="<?php echo $newvalue->logo; ?>" alt="image" class="th radius"/> </div>
           </div>
           <div class="small-9 columns"> <a href="<?php echo get_profileUrl($newvalue->id); ?>" class="comp-name" title=""><?php echo $newvalue->name; ?></a>
-            <div class="comp-short"><?php echo $newvalue->description; ?></div>
+            <div class="comp-short"><?php echo substr($newvalue->description, 0,300); ?></div>
           </div>
         </div>
       </div>
@@ -52,7 +52,5 @@ get_header(); ?>
   </div>
 </div>
 <!--Newest Profiles section ends--> 
-
-<?php get_template_part( 'promo' ); ?> 
 
 <?php get_footer(); ?>

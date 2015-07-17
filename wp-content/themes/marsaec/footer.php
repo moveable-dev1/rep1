@@ -11,7 +11,7 @@
 ?>
 
 	<!--footer starts-->
-<div class="row">
+<div class="row footer_area">
   <footer class="site-footer">
     <div class="large-4 columns"> <a href="http://www.marsdd.com/systems-change/advanced-energy-centre" class="left" title=""><img src="<?php bloginfo('template_directory'); ?>/img/footer-logo.jpg" alt="image"/></a> <a href="http://www.marsdd.com" class="right" title=""><img src="<?php bloginfo('template_directory'); ?>/img/mars-logo.jpg" alt="image"/></a> </div>
     <div class="large-8 columns">

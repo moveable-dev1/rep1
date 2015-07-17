@@ -1,0 +1,76 @@
+body {
+	color: #000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 400;
+	font-size:12px;
+}
+.toggle-sec.show-for-large-only, .large-6.columns.show-for-large-only, .flex-video.widescreen.vimeo.show-for-large-only, .sidebar-social, .comp-map {
+	display: none !important;
+}
+.hide-for-large-only {
+	display: none !important;
+}
+.large-5.columns.prof-col {
+	width:100%;
+	float:left;
+}
+.large-5.columns.prof-col .panel {
+	border:none;
+}
+.feat-img, .feat-img img {
+	width: 100%;
+}
+.promo-cont.show-for-large-only {
+	display: block !important;
+}
+.comp-name {
+	font-size: 16px;
+	text-decoration:none;
+}
+.prof-col .prof-cont .small-3.columns , .small-3.columns  {
+	float: left;
+	width:20%;
+}
+.prof-col .prof-cont .small-9.columns, .small-9.columns {
+	width: 80%;
+	float: right;
+}
+.profile-sec .large-3 {
+	width: 100%;
+	float: left;
+}
+.footer-links, .footer-social {
+	margin-left: 0.5rem;
+	width: 100%;
+}
+.footer-links li {
+	width: 100%;
+}
+.footer-links a {
+	font-size: 16px;
+	text-decoration:none;
+}
+.footer-links a:after {
+	content: " ";
+	margin: 0;
+}
+.footer-social a:first-child {
+	margin-left: 0;
+}
+.footer-copy {
+	margin-top:20px;
+	text-align:left;
+	float:left;
+	width:100%;
+}
+.button.tiny.radius.more-btn{display:none!important;}
+
+input[type="radio"], input[type="checkbox"]{border:1px solid #b4c5cc !important; opacity: 1 !important;width:15px; height:15px;}
+.basic-cont .gform_wrapper .gform_footer .gform_button, .sub-btn{border:1px solid #b4c5cc !important;}
+
+.isotope .large-12.isotope-item{width:100% !important;margin:0 !important;position: static !important;    transform: translate3d(0px, 0px, 0px) !important;}
+.isotope .prof-col, .similar_profiles_area .prof-col{width:100% !important;margin:0 !important;position: static !important;    transform: translate3d(0px, 0px, 0px) !important;}
+.row.isotope, .similar_profiles_area {    height: auto !important;}
+
+.nbs-flexisel-item{width:120px!important;height:80px !important;}
+.small-block-grid-2 > li{width: 50% !important;float:left;}

@@ -84,6 +84,7 @@ jQuery(function($) {
           });
           $.post("/wp-admin/admin-ajax.php", 'action=home_tag_select_action&All_cat_ID=' + list+'&listlength='+list.length, function(response) 
           {
+                $(".firstsearch").remove();
                 $("#contentSection").remove();
                 $container.html(response);
                 if(!$container.hasClass('isotope')){
@@ -94,6 +95,7 @@ jQuery(function($) {
                   itemSelector: '.items',
 				          masonry: {
                       columnWidth: 40,
+					  rowHeight: 107,
                       isFitWidth: true
                     }
                 });
@@ -114,6 +116,7 @@ jQuery(function($) {
           });
           $.post("/wp-admin/admin-ajax.php", 'action=home_tag_select_action&All_cat_ID=' + list+'&listlength='+list.length, function(response) 
           {
+                $(".firstsearch").remove();
                 $("#contentSection").remove();
                 $container.html(response);
                 if(!$container.hasClass('isotope')){
@@ -124,6 +127,7 @@ jQuery(function($) {
                   itemSelector: '.items',
                   masonry: {
                     columnWidth: 40,
+					rowHeight: 107,
                     isFitWidth: true
                     }
                 });

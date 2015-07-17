@@ -242,6 +242,9 @@ function marsaec_scripts() {
 	// Add app.css
 	wp_enqueue_style( 'app', get_template_directory_uri() . '/css/app.css', array(), '1' );
 
+	// Add print.css
+	wp_enqueue_style( 'print', get_template_directory_uri() . '/css/print.css', array(), '1' ,'print');	
+
 	// Add modernizr.js
 	wp_enqueue_script( 'marsaec', get_template_directory_uri() . '/js/vendor/modernizr.js', array( 'jquery' ), '2.8.3', true );
 
@@ -443,9 +446,9 @@ function get_similarProfile($ID,$loadmore=false,$parentId=0)
         $comma_separated = implode(",", $similarcategory);
         global $wpdb;
         if($loadmore==false){
-        	$query="Select DISTINCT(id) from aec_profilevalue where value in ($comma_separated) AND id!=$ID AND metaid=16 ORDER BY id DESC LIMIT 4";
+        	$query="Select DISTINCT(v.id) from aec_profilevalue AS v INNER JOIN aec_profile AS p ON v.id=p.id where v.value in ($comma_separated) AND v.id!=$ID AND v.metaid=16 AND p.status=1 ORDER BY v.id DESC LIMIT 4";
         } else{ //Load more content
-        	$query="Select DISTINCT(id) from aec_profilevalue where value in ($comma_separated) AND id!=$ID AND id<$ID AND id!=$parentId AND metaid=16 ORDER BY id DESC LIMIT 4";
+        	$query="Select DISTINCT(v.id) from aec_profilevalue AS v INNER JOIN aec_profile AS p ON v.id=p.id where v.value in ($comma_separated) AND v.id!=$ID AND v.id<$ID AND v.id!=$parentId AND v.metaid=16 AND p.status=1 ORDER BY v.id DESC LIMIT 4";
         }
 		$profileIds=$wpdb->get_results($query);
 		return $profileIds;
@@ -478,14 +481,16 @@ function getSimilarProfile() {
 		     	  $getSimilarID=$similarId->id;
 		      	  $getSimilarProfile= get_profileDetail($getSimilarID); 
 	    		?>
-			    <div class="large-5 <?php echo $i%2==0? "large-offset-2":""; ?> columns prof-col">
+			    <div class="large-5 columns prof-col">
 			      <div class="panel">
 			        <div class="row prof-cont">
 			          <div class="small-3 columns">
 			            <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
 			          </div>
-			          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
-			            <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
+			          <div class="small-9 columns"> <a href="<?php echo "/profile/".$getSimilarProfile->permalink; ?>" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
+			            <div class="comp-short">
+			            	<?php echo substr($getSimilarProfile->description, 0,300); ?>
+			            </div>
 			          </div>
 			        </div>
 			      </div>
@@ -554,7 +559,7 @@ function trim_words($id)
 function newest_profile()
 {
 	global $wpdb;
-	$query="SELECT * FROM aec_profile ORDER BY id DESC LIMIT 2";
+	$query="SELECT * FROM aec_profile WHERE status=1 ORDER BY id DESC LIMIT 2";
 	$newprofile=$wpdb->get_results($query);
 	return $newprofile;
 }

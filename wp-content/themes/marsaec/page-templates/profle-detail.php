@@ -286,7 +286,7 @@ $getProfile= get_profileDetail($profileId);
             <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
           </div>
           <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
-            <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
+            <div class="comp-short"><?php echo substr($getSimilarProfile->description, 0,300); ?></div>
           </div>
         </div>
       </div>

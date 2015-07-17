@@ -36,11 +36,11 @@ function homeDisplayProfile() {
 	$listlen=$_POST['listlength'];
 	global $wpdb;
 	//$query="SELECT COUNT(*) AS total, id FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 GROUP BY id HAVING total >= $listlen ORDER BY id DESC LIMIT 6";
-	$query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND metaid=16 ORDER BY id DESC LIMIT 6";
+	$query="Select DISTINCT(v.id) from aec_profilevalue AS v INNER JOIN aec_profile AS p ON v.id=p.id where v.value in ($All_cat_ID) AND v.metaid=16 AND p.status=1 ORDER BY v.id DESC LIMIT 6";
 	$profileIds=$wpdb->get_results($query); 
 	$countrows=$wpdb->num_rows; 
 	$i=1;
-	$queryCount="Select COUNT(DISTINCT(id)) from aec_profilevalue where value in ($All_cat_ID) AND metaid=16";
+	$queryCount="Select COUNT(DISTINCT(v.id)) from aec_profilevalue AS v INNER JOIN aec_profile AS p ON v.id=p.id where v.value in ($All_cat_ID) AND v.metaid=16 AND p.status=1";
 	$getsearch=$wpdb->get_var($queryCount);
 	if(!empty($profileIds)) {
 	?>
@@ -78,8 +78,8 @@ function homeDisplayProfile() {
 		      <div class="small-3 columns">
 		        <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
 		      </div>
-		      <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name ?></a>
-		        <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
+		      <div class="small-9 columns"> <a href="<?php echo "/profile/".$getSimilarProfile->permalink; ?>" class="comp-name" title=""><?php echo $getSimilarProfile->name ?></a>
+		        <div class="comp-short"><?php echo substr($getSimilarProfile->description, 0,300); ?></div>
 		      </div>
 		    </div>
 		  </div>
@@ -110,7 +110,7 @@ function getLoadMoreProfile() {
 		  $listlen=$_POST['listlength'];
 	      $i=1;
 	      global $wpdb;
-	      $query="SELECT DISTINCT(id) FROM aec_profilevalue WHERE value IN ($All_cat_ID) and metaid=16 AND id<$pID ORDER BY id DESC LIMIT 6";
+	      $query="SELECT DISTINCT(v.id) FROM aec_profilevalue AS v INNER JOIN aec_profile AS p ON v.id=p.id WHERE v.value IN ($All_cat_ID) and v.metaid=16 AND v.id<$pID AND p.status=1 ORDER BY v.id DESC LIMIT 6";
 	      //$query="Select DISTINCT(id) from aec_profilevalue where value in ($All_cat_ID) AND id<$pID AND metaid=16 ORDER BY id DESC LIMIT 6";
 		  $getRelProfile=$wpdb->get_results($query); 
 		  $countrows=$wpdb->num_rows; 
@@ -125,8 +125,8 @@ function getLoadMoreProfile() {
 			          <div class="small-3 columns">
 			            <div class="comp-thumb"><img src="<?php echo $getSimilarProfile->logo; ?>" alt="image" class="th radius"/> </div>
 			          </div>
-			          <div class="small-9 columns"> <a href="" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
-			            <div class="comp-short"><?php echo $getSimilarProfile->description; ?></div>
+			          <div class="small-9 columns"> <a href="<?php echo "/profile/".$getSimilarProfile->permalink; ?>" class="comp-name" title=""><?php echo $getSimilarProfile->name; ?></a>
+			            <div class="comp-short"><?php echo substr($getSimilarProfile->description, 0,300); ?></div>
 			          </div>
 			        </div>
 			      </div>
