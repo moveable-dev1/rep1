@@ -1,0 +1,342 @@
+/* CSS Document */
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700);
+.manage-profile_page_add-profile #wpcontent, .manage-profile_page_edit-profile #wpcontent {
+	background: #fff;
+}
+#profilebody {
+	color: #000;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: #000;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
+a {
+	color: #5bc2e7;
+}
+a:hover, a:focus {
+	color: #022954;
+}
+button, .button {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
+.pad-no {
+	padding: 0;
+}
+.mar-no {
+	margin: 0 !important;
+}
+.fw-nrml {
+	font-weight: 400 !important;
+}
+.mb {
+	margin-bottom: 1.6rem !important;
+}
+.column li {
+	display: block;
+	float: left;
+	margin-bottom: 0;
+	width: 100%;
+}
+.btn {
+	background-color: #5bc2e7;
+	border: medium none;
+	border-radius: 3px;
+	color: #ffffff;
+	font-size: 17px;
+	font-weight: 600;
+	height: 2.5rem;
+	padding: 0 2.5rem;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+#wpbody {
+	margin-right: 30px;
+}
+.column {
+	float: left;
+	padding-left: 0.9375rem;
+	padding-right: 0.9375rem;
+	position: relative;
+	width: 385px;
+}
+.form_description {
+	border-bottom: 1px solid #b4c5cc;
+	float: left;
+	margin-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
+	width: 100%;
+}
+.form_description h1 {
+	font-size: 48px;
+	font-weight: 300;
+	line-height: 1;
+}
+/* Custom Checkbox and Radio Inputs */
+
+form.custom [class*="block-grid-"] > li {
+	padding: 0 0.625rem 0rem;
+}
+form.custom [class*="block-grid-"] {
+	margin: 0 -0.625rem 1rem;
+}
+form.custom hr {
+	margin: 0 0 0.5rem;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #dddddd;
+	border-image: none;
+	border-style: solid;
+	border-width: 1px 0 0;
+	clear: both;
+	height: 0;
+}
+.add-field-btn {
+	background: url("add-field.jpg") no-repeat;
+	color: #b7b7b7;
+	display: block;
+	height: 28px;
+	margin-right: 10px;
+	padding: 0 0 0 35px;
+	width: auto;
+	cursor: pointer;
+}
+.remove-field-btn {
+	background: url("remove-field.jpg") no-repeat;
+	border: none;
+	height: 28px;
+	padding: 0 0 0 35px;
+	width: auto;
+	color: #b4c5cc;
+	font-size: 0.875rem;
+	font-weight: 700;
+	line-height: 2;
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	bottom: 30px;
+}
+.has-btn, .has-rt-btn {
+	position: relative;
+	width: 550px;
+	float: left;
+}
+.has-btn input, .has-rt-btn .upload, .has-btn textarea {
+	width: 385px !important;
+}
+.has-btn span {
+	position: absolute;
+	right: 0;
+	top: 30px;
+}
+.has-rt-btn .fl-btn {
+	position: absolute;
+	right: 30px;
+	top: 5px;
+	font-size: 0.875rem;
+	font-weight: 700;
+	line-height: 2;
+}
+.fl-btn input {
+	width: auto !important;
+}
+.has-rt-btn .remove-field-btn {
+	right: -70px;
+	top: 6px;
+}
+.upload {
+	width: 100%;
+	border: 2px solid #b4c5cc;
+	border-radius: 3px;
+	height: 2.5rem;
+	margin-bottom: 1.6rem;
+	overflow: hidden;
+	background: #fff;
+	position: relative;
+	float: left;
+	display: block;
+}
+#profile_logo .has-error {
+	background: #fdeeee !important;
+	border: 2px solid #ff0000 !important;
+}
+span.file-status {
+	display: none;
+	font-weight: normal;
+	left: 10px;
+	position: absolute;
+}
+.upload input {
+	display: block !important;
+	width: 157px !important;
+	height: 57px !important;
+	opacity: 0 !important;
+	overflow: hidden !important;
+}
+.main-label {
+	color: #000;
+	font-size: 0.875rem;
+	font-weight: 700;
+	line-height: 2;
+	margin-bottom: 0;
+}
+.form-error ul {
+	list-style: disc !important;
+	margin: 0 0 1.5rem 1rem;
+	font-size: 0.875rem;
+}
+.form-error ul li {
+	display: list-item;
+}
+.alert-danger {
+	font-weight: 700;
+	color: #ff0000;
+	font-size: 18px;
+}
+.error, input.error {
+	border: 2px solid #ff0000 !important;
+	background: #fdeeee;
+}
+.manage-profile_page_edit-profile .notice-success, .manage-profile_page_edit-profile div.updated, .toplevel_page_list-profile div.updated {
+	background: #43ac6a;
+	border: medium none;
+	color: #fff;
+	font-size: 1.5em;
+	font-weight: 700;
+	margin: 2rem 0;
+	padding: 1rem;
+}
+label {
+	font-weight: 700;
+	color: #000;
+	line-height: 2;
+	display: block;
+	font-size: 0.875rem;
+	margin-bottom: 0;
+}
+.main-label {
+	font-weight: 700;
+	color: #000;
+	line-height: 2;
+	font-size: 0.875rem;
+	margin-bottom: 0;
+}
+.sub-label {
+	color: #b4c5cc;
+	float: left;
+	font-size: 0.875rem;
+	font-weight: 700;
+	line-height: 2;
+	margin-bottom: 0;
+	width: 100%;
+}
+.main-sub-label {
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 2;
+	margin-bottom: 0;
+}
+input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea, select {
+	height: 2.5rem;
+	border: 2px solid #b4c5cc;
+	border-radius: 3px;
+	margin-bottom: 1.6rem;
+	width: 100%;
+	display: block;
+	padding: 0.5rem;
+	font-size: 0.875rem;
+	font-weight: 400;
+}
+textarea {
+	height: 8rem;
+}
+.sub-btn {
+	background: #5bc2e7;
+	border: medium none;
+	border-radius: 3px !important;
+	color: #fff;
+	display: block;
+	font-size: 18px;
+	padding: 0.5rem 0;
+	text-align: center;
+	text-transform: uppercase;
+	width: 15rem;
+}
+.small-txt {
+	font-size: 12px;
+	font-weight: 400;
+}
+.help-txt {
+	color: #cccccc;
+	display: block;
+	float: left;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.5;
+	width: 100%;
+}
+.addn-txt {
+	margin: 0.5rem 0 1.6rem 0;
+	display: block;
+	float: left;
+	width: 100%;
+}
+.form-btm-txt {
+	font-size: 10px;
+	margin: 3rem 0;
+}
+#wpbody-content table {
+}
+#wpbody-content table tr .tableheading {
+	color: #7A2650;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 26px;
+	font-weight: 400;
+}
+#wpbody-content table tr {
+	padding: 6px;
+}
+#wpbody-content table tr td {
+	padding: 6px;
+}
+#search_pagination a {
+	font-size: 1em;
+	margin: 0 6px;
+	padding: 5px 10px;
+	background: #dbeff5;
+	color: #022954;
+	font-weight: 700;
+}
+#search_pagination .current {
+	padding: 3px;
+}
+#wpbody-content table .head {
+	text-align: center;
+}
+#wpbody-content table .even {
+	color: #1c3f56;
+}
+.tableheading {
+	font-size: 22px;
+}
+#wpbody-content .tableheading td {
+	padding: 16px 0px;
+}
+#toplevel_page_list-profile ul li:last-child {
+	display: none;
+}
+.toplevel_page_list-profile .wrap h2 {
+    font-size: 48px;
+    font-weight: 300;
+	border-bottom: 1px solid #b4c5cc;
+    margin-bottom: 1.5rem;
+    padding-bottom: 2rem;
+    width: 100%;
+}

@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['profileid'])) { 
-include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
+include( plugin_dir_path( __FILE__ ) . 'include_edit.php');
 ?>
 
 <div id="profilebody">
@@ -549,9 +549,6 @@ include( plugin_dir_path( __FILE__ ) . 'EditProfileInclude.php');
 jQuery.validate({
   form : '#adminprofile',
   modules : 'file',
-  /*onModulesLoaded : function() {
-    alert('All modules loaded!');
-  },*/
   errorMessagePosition : 'top',
   validateOnBlur : false,
 });
